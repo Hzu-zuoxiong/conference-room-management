@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <title>掌上智能访客及会议室管理系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=0" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <link rel="stylesheet" href="layui/css/layui.css" />
+    <link rel="stylesheet" href="css/admin.css" />
+    <link rel="stylesheet" href="css/meetingRoomAnalysic.css">
+    <link rel="stylesheet" type="text/css" media="screen and (max-width:992px)" href="css/admin.mobile.css">
+</head>
+<body>
+<!-- 布局容器 -->
+<div class="layui-layout layui-layout-admin">
+
+    <!-- 头部 -->
+    <div id="header">
+        <header-component></header-component>
+    </div>
+
+    <!-- 遮罩层 -->
+    <div class="masked"></div>
+
+    <!-- 左侧菜单 -->
+    <div id="leftSlide">
+        <leftslide-component></leftslide-component>
+    </div>
+
+    <!-- 主体 -->
+    <div class="layui-body">
+        <div class="container">
+
+            <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                <ul class="layui-tab-title">
+                    <li class="layui-this">
+                        <label><span>时间分布统计</span>
+                            <input class="tabToggle hide" type="radio" name="tabToggle" value="0"/>
+                        </label>                        
+                    </li>
+                    <li>
+                        <label><span>容量统计情况</span>
+                            <input class="tabToggle hide" type="radio" name="tabToggle" value="1"/>
+                        </label>
+                    </li>
+                </ul>
+                <div class="layui-tab-content" style="margin-top: 20px;">
+                    <div class="layui-tab-item layui-show">
+                        <div class="loading-parent">
+                            <div id="meetingRoomUsedAll" class="layui-col-md12 layui-col-lg12" style="height: 350px;"></div>
+                            <div id="meetingRoomUsedNear" class="layui-col-md6 layui-col-lg6" style="height: 350px; margin-top: 2%;"></div>
+                            <div id="meetingRoomUsedNearAnalysic" class="layui-col-md6 layui-col-lg6" style="height: 350px; margin-top: 2%;"></div>
+                            <div class="loadingContent1">
+                                <div class="loader">
+                                    <div class="loader__bar"></div>
+                                    <div class="loader__bar"></div>
+                                    <div class="loader__bar"></div>
+                                    <div class="loader__bar"></div>
+                                    <div class="loader__bar"></div>
+                                    <div class="loader__ball"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-tab-item">
+                        <div>
+                            <div id="meetingRoomCapacity" class="layui-col-md6 layui-col-lg6" style="height: 400px; margin-top: 30px;"></div>
+                            <div class="layui-col-md6 layui-col-lg6">
+                                <div class="layui-inline CapacityAnalysicTime">
+                                    <label class="layui-form-label">时间段</label>
+                                    <div class="layui-input-inline">
+                                        <input class="layui-input layui-date" name="reservelTime" skin="molv" placeholder="起始年月" id="CapacityAnalysicTime" readonly>
+                                    </div>
+                                </div>
+                                <div class="CapacityAnalysicRadioBox" id="CapacityAnalysicRadioBox">
+                                    <label class="demo--label">
+                                        <input class="demo--radio" type="radio" name="time" value="季度">
+                                        <span class="demo--checkbox demo--radioInput"></span>季度
+                                    </label>
+                                    <label class="demo--label">
+                                        <input class="demo--radio" type="radio" name="time" value="月">
+                                        <span class="demo--checkbox demo--radioInput"></span>月
+                                    </label>
+                                    <label class="demo--label">
+                                        <input class="demo--radio" type="radio" name="time" value="周" checked="">
+                                        <span class="demo--checkbox demo--radioInput"></span>周
+                                    </label>
+                                </div>
+                                <div id="meetingRoomCapacityAnalysic" style="height: 350px;"></div>
+                            </div>
+                            <div class="loadingContent2">
+                                <div class="loader">
+                                    <div class="loader__bar"></div>
+                                    <div class="loader__bar"></div>
+                                    <div class="loader__bar"></div>
+                                    <div class="loader__bar"></div>
+                                    <div class="loader__bar"></div>
+                                    <div class="loader__ball"></div>
+                                </div>
+                            </div>
+                            <div id="meetingRoomCapacityUsedNumber" class="layui-col-md12 layui-col-lg12" style="height: 300px; margin-top: 2%;"></div>
+                            <!--<div id="meetingRoomUsed" class="layui-col-md12 layui-col-lg12" style="height: 350px;margin-top: 5%;"></div>-->
+                        </div>
+                    </div>
+                    <!--<div class="layui-tab-item" id="meetingRoomUseNumber"></div>-->
+                    <!--<div class="layui-tab-item" id="meetingRoomAreaUseNumber"></div>-->
+                </div>
+
+
+
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+
+<!-- 可不引入 -->
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script type="text/javascript" src="layui/layui.js"></script>
+<script type="text/javascript" src="js/echarts.common.min.js"></script>
+<script type="text/javascript" src="js/fastclick.js"></script>
+<script type="text/javascript" src="js/admin.js"></script>
+<script type="text/javascript" src="js/meetingRoomAnalysic.js"></script>
+<script type="text/javascript" src="js/macarons.js"></script>
+<!--<script type="text/javascript" src="js/shine.js"></script>-->
+</body>
+
+</html>

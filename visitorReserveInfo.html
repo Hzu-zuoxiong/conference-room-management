@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<title>掌上智能访客及会议室管理系统</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=0" name="viewport">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta content="telephone=no" name="format-detection">
+	<link rel="stylesheet" href="layui/css/layui.css" />
+	<link rel="stylesheet" href="css/admin.css" />
+	<link rel="stylesheet" type="text/css" media="screen and (max-width:992px)" href="css/admin.mobile.css">
+</head>
+
+<body>
+	<!-- 布局容器 -->
+	<div class="layui-layout layui-layout-admin">
+
+		<!-- 头部 -->
+		<div id="header">
+			<header-component></header-component>
+		</div>
+
+		<!-- 遮罩层 -->
+		<div class="masked"></div>
+
+		<!-- 左侧菜单 -->
+		<div id="leftSlide">
+			<leftslide-component></leftslide-component>
+		</div>
+
+		<!-- 主体 -->
+		<div class="layui-body">
+			<!-- 主要内容 -->
+			<div class="container">
+                <!-- 搜索条件 -->
+                <div class="search-res-mask"></div>
+                <div class="search-res">
+                    <div class="search-res-btn hide-pc">
+                        <button class="layui-btn" id="search-btn"><i class="layui-icon">&#xe615;</i>查询</button>
+                    </div>
+                    <div class="content-search search-fix">
+                        <div class="layui-form layui-form-pane">
+                            <div class="layui-inline">
+                                <label class="layui-form-label">姓名</label>
+                                <div class="layui-input-inline">
+                                    <input class="layui-input" name="guestName" placeholder="请输入访客姓名" id="guestName">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">预约用途</label>
+                                <div class="layui-input-inline" id="select">
+                                    <select lay-verify="" name="tagId" id="select-type">
+                                        <option value="">请选择预约用途</option>
+                                        <!-- <option value="1">学术报告</option>
+                                        <option value="2">会议</option>
+                                        <option value="3">培训</option>
+                                        <option value="4">组织活动</option>
+                                        <option value="5">接待客人</option>
+                                        <option value="6">其他</option> --> -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">预约时间</label>
+                                <div class="layui-input-inline">
+                                    <input class="layui-input layui-date" skin="molv" placeholder="请选择时间段" id="reserveltime" readonly>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">使用时间</label>
+                                <div class="layui-input-inline">
+                                    <input class="layui-input layui-date"skin="molv" placeholder="请选择时间段" id="usetime" readonly>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <button class="layui-btn" lay-submit="" id="btnSearch" lay-filter="btnSearch">查询</button>
+                                <button class="layui-btn layui-btn-primary hide-pc" id="search-close">关闭</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tar mt10">
+                    <button class="layui-btn layui-btn-normal layui-btn-small export">导出</button>
+                </div>
+                <!-- 表格列表 -->
+                <div class="table-list">
+                    <table class="layui-table layui-list-table" lay-skin="line">
+                        <thead>
+                            <tr>
+                                <th>姓名</th>
+                                <th>会议室名称</th>
+                                <th>用途</th>
+                                <th>容纳人数</th>
+                                <th>占地面积</th>
+                                <th>使用时间</th>
+                                <th>预约时间</th>
+                                <!-- <th>发布时间</th>
+                                <th>操作</th> -->
+                            </tr>
+                        </thead>
+                        <!-- 表格 -->
+                        <tbody id="tableResult">
+
+                        
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- 加载时候的效果 -->
+                <div class="loading">    
+                    <i class="layui-icon layui-anim layui-anim-rotate layui-anim-loop" style="font-size: 30px;">&#xe63d;</i>
+                </div>
+
+                <!-- 分页 -->
+                <div id="table-pages" class="tac"></div>
+				
+			</div>
+		</div>
+	</div>
+	<!-- 可不引入 -->
+	<script type="text/javascript" src="js/vue.min.js"></script>
+	<script type="text/javascript" src="layui/layui.js"></script>
+	<script type="text/javascript" src="js/fastclick.js"></script>
+	<script type="text/javascript" src="js/admin.js"></script>
+	<script type="text/javascript" src="js/visitorReserveInfo.js"></script>
+</body>
+
+</html>

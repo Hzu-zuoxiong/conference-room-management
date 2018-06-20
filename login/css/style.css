@@ -1,0 +1,226 @@
+
+body{
+    font-family:"微软雅黑","Arial";
+    font-size:14px;
+    padding:0;
+    margin:0;
+    color:#434343;
+}
+
+h1,h2,h3,h4,h5{
+    font-size:12px;
+    margin:0;
+    padding:0;
+}
+
+ul,li,dl,dt,dd,p{
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+a{
+    text-decoration:none;
+    color: #dadada;
+}
+
+a:hover{
+    color:#ff3131;
+}
+
+img{
+    border:0;
+    vertical-align:middle;
+}
+
+em,i{
+    font-style:normal;
+}
+
+input{
+    vertical-align:middle;
+    margin:0;
+    padding:0;
+    outline:none;
+}
+
+button{
+    border:none;
+    cursor:pointer;
+}
+
+label{
+    vertical-align:middle;
+}
+
+select{
+    vertical-align:middle;
+}
+
+textarea{
+    outline:none;
+    resize:none;
+}
+
+.clear:after{
+    display:block;
+    clear:both;
+    content:"";
+    visibility:hidden;
+    height:0;
+}
+
+.clear{
+    zoom:1;
+}
+
+.tar{
+	text-align: right;
+}
+
+
+
+.body_bj{
+    /*此部分支持chrome，也支持firefox*/
+    background: url(../img/bj.jpg) no-repeat center fixed;
+    background-attachment: fixed;
+    background-size: cover;
+    /*以下是IE部分，使用滤镜*/
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/bj.jpg',sizingMethod='scale');
+    background-repeat: no-repeat;
+    background-positon: 100% 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100%;
+}
+
+
+.login{
+	width: 400px;
+	height: 345px;
+	background:  #1B2131;
+	background:rgba(0, 0, 0,.3);
+	border-radius: 5px;
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	margin:-225px 0 0 -200px;
+}
+
+.logo{
+	width: 55%;
+	margin:30px auto 30px;
+	font-size: 18px;
+	color: #fff;
+	text-align: center;
+}
+.logo span {
+    width: 100%;
+    margin-top: 10px;
+    line-height: 150%;  
+    font-size: 22px;
+    font-weight: bold;
+    color: rgba(253, 252, 252, 0.88);
+}
+/*.logo img{
+	width: 100%;
+    margin-top: 10px;
+}*/
+.login-list{
+	width: 90%;
+	margin:0 auto;
+}
+.login-list li{
+	margin-bottom:15px;
+	position: relative;
+}
+.login-list input{
+    padding: 13px 10px;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    font-size: 14px;
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+}
+.login-list .btn{
+	width: 100%;
+	height: 45px;
+	line-height:45px;
+	text-align: center;
+	background:#17b5a6;
+	font-size: 16px;
+	color:#fff;
+	display: block;
+    border-radius: 3px;
+}
+.login-list .btn:hover{
+    cursor: pointer;
+	background:#1db7a8;
+}
+.login-list .yzm{
+    position: absolute;
+    right: 5px;
+    top: 3px;
+    background: #17b5a6;
+    padding: 6px;
+    color: #fff;
+    cursor: pointer;
+    padding: 8px 14px;
+    font-size: 14px;
+    border-radius: 3px;
+}
+.login-list .yzm.gray{
+	background: #d5d5d5;
+    color: #fff;
+}
+.login-list .tar a:hover{
+	color:#17b5a6;
+}
+.login-list .yzm2{
+	position: absolute;
+	right: 5px;
+	top: 3px;
+	cursor: pointer;
+
+}
+.login-list .yzm2 img{
+	width: 100px;
+	height: 36px;
+}
+
+@media screen and (max-width: 992px){
+	.login{
+		width:96%;
+		margin: 0;
+		height: auto;
+		background:transparent;
+		-webkit-transform:translate(-50%, -50%);
+	}
+	.login-list{
+		width: 90%;
+	}
+	.login-list input{
+		width: 100%;
+		-webkit-box-sizing:border-box;
+	}
+	.login-list .yzm2{
+		right:1px;
+		top:2px;
+	}
+	.login-list .yzm2 img{
+		width: 100px;
+		height: 34px;
+	}
+	.login-list .yzm{
+		right: 1px;
+		top: 2px;
+		padding: 11px 15px;
+	}
+}
+
+
+
+
+

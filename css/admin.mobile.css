@@ -1,0 +1,839 @@
+@charset "utf-8";
+/*移动设备*/
+/*
+	列表 layui-table-list  layui-table-btn 
+	提示 init
+	详情 添加 修改  layui-table-detail  layui-table-btn2  验证码 verify-tr
+	汇总 layui-field-res
+*/
+
+@media screen and (max-width: 992px) {
+    /* 移动端公共样式 */
+     html {
+         -webkit-text-size-adjust: none;
+         -moz-text-size-adjust: none;
+         -webkit-tap-highlight-color: transparent;
+         background: #f4f4f4;
+     }
+ 
+     body {
+         background: #f4f4f4;
+     }
+ 
+     .container {
+         padding: 0;
+     }
+
+    .box {
+        display: -webkit-box;
+    }
+
+    .flex {
+        -webkit-box-flex: 1;
+        display: block;
+    }
+ 
+     .layui-nav,.layui-footer {
+         display: none;
+     }
+ 
+     .hide-wap {
+         display: none!important;
+     }
+ 
+     .layui-layout-admin .layui-body {
+         left: 0;
+         -webkit-overflow-scrolling: touch;
+     }
+ 
+     .layui-tab-item {
+         -webkit-overflow-scrolling: touch;
+     }
+ 
+     .layui-tab-content {
+         padding: 0;
+     }
+ 
+     .scroll-wrapper {
+         -webkit-overflow-scrolling: touch;
+         overflow-y: scroll;
+     }
+ 
+     .layui-nav-tree .layui-nav-item {
+         cursor: pointer;
+     }
+ 
+     .layui-layer-content iframe {
+         background: #f4f4f4;
+     }
+ 
+     .layui-table tr:hover, .layui-table[lay-even] tr:nth-child(even) {
+         background: #fff;
+     }
+ 
+     .layui-layer-title {
+         font-size: 15px!important;
+         padding-left: 15px!important;
+     }
+ 
+     .layui-tab-title .layui-this:after {
+         border-bottom-color: #009688;
+     }
+     
+     /* 侧边栏 */
+     .mulu-hide .left-menu {
+         display: block;
+     }
+ 
+     .left-menu-all {
+         left: auto;
+         transform: translateX(-200px);
+         -webkit-transform: translateX(-200px);
+     }
+ 
+     .mulu-hide .left-menu-all {
+         left: auto;
+         transform: translateX(0);
+         -webkit-transform: translateX(0);
+         z-index: 10001;
+     }
+ 
+     .mulu-hide .masked {
+         display: block;
+     }
+     
+ 
+    /*温馨提示  */
+     .init {
+         padding: 10px 5px;
+     }
+ 
+     .init .init-main p {
+         text-align: justify;
+     }
+ 
+     /*统计图  */
+     .box-main {
+         background: #fff;
+         position: relative;
+         margin-top: -1px;
+     }
+ 
+     .box-main #main:before {
+         content: " ";
+         position: absolute;
+         left: 0;
+         right: 0;
+         height: 1px;
+         color: #d9d9d9;
+         top: 0;
+         border-top: 1px solid #d9d9d9;
+         -webkit-transform-origin: 0 100%;
+         transform-origin: 0 100%;
+         -webkit-transform: scaleY(.5);
+         transform: scaleY(.5);
+     }
+     
+ 
+     /*列表  */
+     .roll-x .layui-list-table {
+         min-width: 100%!important;
+         position: relative;
+         border: none;
+     }
+ 
+     .layui-list-table {
+         position: relative;
+         border: none!important;
+     }
+ 
+     .layui-list-table tr {
+         position: relative;
+         display: block;
+     }
+ 
+     .layui-list-table tbody::after {
+         content: " ";
+         position: absolute;
+         left: 0;
+         right: 0;
+         height: 1px;
+         color: #d9d9d9;
+         bottom: 0;
+         border-bottom: 1px solid #d9d9d9;
+         -webkit-transform-origin: 0 100%;
+         transform-origin: 0 100%;
+         -webkit-transform: scaleY(.5);
+         transform: scaleY(.5);
+     }
+ 
+     .layui-list-table thead {
+         display: none;
+     }
+ 
+     .layui-list-table td:not(.layui-table-first) {
+         display: none;
+     }
+ 
+     .layui-list-table td {
+         padding: 10px;
+         display: -webkit-box;
+         text-align: right;
+         font-size: 15px;
+         background: #fff;
+         border-bottom: 0!important;
+         position: relative;
+     }
+ 
+     .layui-list-table td:before {
+         content: " ";
+         position: absolute;
+         left: 0;
+         top: 0;
+         right: 0;
+         height: 1px;
+         border-top: 1px solid #D9D9D9;
+         color: #D9D9D9;
+         -webkit-transform-origin: 0 0;
+         transform-origin: 0 0;
+         -webkit-transform: scaleY(0.5);
+         transform: scaleY(0.5);
+     }
+ 
+     .layui-list-table .layui-table-hd {
+         display: block;
+         font-style: normal;
+         font-size: 15px;
+         color: #464646;
+     }
+ 
+     .layui-list-table .layui-table-bd {
+         -webkit-box-flex: 1;
+         display: block;
+         font-size: 15px;
+         color: #464646;
+     }
+ 
+     .layui-list-table .layui-table-first {
+         background: #f9f9f9;
+         cursor: pointer;
+         text-align: left;
+         color: #464646;
+     }
+ 
+     .layui-list-table .layui-table-first .layui-table-hd {
+         display: none;
+     }
+ 
+     .layui-list-table .layui-table-first .layui-table-bd {
+         padding-right: 10px;
+         background: url(../img/arrow.png) no-repeat right center;
+         background-size: 20px 20px;
+         font-weight: bold;
+     }
+ 
+     .layui-list-table .layui-table-first.cur .layui-table-bd {
+         background: url(../img/arrow-cur.png) no-repeat right center;
+         background-size: 20px 20px;
+     }
+  
+ 
+     /* 列表按钮 */
+     .layui-table-btn {
+         display: -webkit-box;
+     }
+ 
+     .layui-table-btn .layui-btn {
+         -webkit-box-flex: 1;
+         display: block;
+         height: 38px;
+         line-height: 38px;
+         font-size: 15px;
+         padding: 0 18px;
+         margin-bottom: 0;
+     }
+ 
+     .layui-table-btn .layui-btn:last-child {
+         margin-right: 0;
+     }
+ 
+ 
+     /*添加删除详情页表格  */
+     .pad {
+         padding: 10px 15px!important;
+     }
+ 
+     .layui-table-detail {
+         position: relative;
+         margin-top: -1px;
+     }
+ 
+     .layui-table-detail tr {
+         display: -webkit-box;
+         position: relative;
+         padding-top: 1px;
+         background: #fff;
+     }
+ 
+     .layui-table-detail tr:before {
+         content: " ";
+         position: absolute;
+         left: 0;
+         top: 0;
+         right: 0;
+         height: 1px;
+         border-top: 1px solid #D9D9D9;
+         color: #D9D9D9;
+         -webkit-transform-origin: 0 0;
+         transform-origin: 0 0;
+         -webkit-transform: scaleY(0.5);
+         transform: scaleY(0.5);
+     }
+ 
+     .layui-table-detail:after {
+         content: " ";
+         position: absolute;
+         left: 0;
+         right: 0;
+         height: 1px;
+         color: #d9d9d9;
+         bottom: 0;
+         border-bottom: 1px solid #d9d9d9;
+         -webkit-transform-origin: 0 100%;
+         transform-origin: 0 100%;
+         -webkit-transform: scaleY(.5);
+         transform: scaleY(.5);
+     }
+ 
+     .layui-table-detail th {
+         text-align: left;
+         width: auto;
+         display: block;
+         padding: 9px 15px!important;
+     }
+ 
+     .layui-table-detail td {
+         -webkit-box-flex: 1;
+         text-align: right;
+         display: block;
+         padding: 0 15px;
+     }
+ 
+     .layui-table-detail .table-input {
+         width: 100%;
+     }
+ 
+     .layui-table-detail .table-input .layui-input {
+         border: none;
+         text-align: right;
+     }
+ 
+     .layui-table-detail .layui-form-select dl dd {
+         text-align: left;
+     }
+ 
+ 
+ 
+    /*添加删除详情页  按钮组 */
+     .layui-table-btn2 {
+         display: -webkit-box;
+         margin-left: 5px;
+     }
+ 
+     .layui-table-btn2 .layui-btn {
+         -webkit-box-flex: 1;
+         display: block;
+         height: 38px;
+         line-height: 38px;
+         font-size: 16px;
+         padding: 0 18px;
+         min-width: auto;
+     }
+ 
+     .table-input .layui-form-select .layui-input {
+         padding-right: 30px;
+     }
+ 
+ 
+     /* 添加删除详情页 验证码 */
+     .layui-table-detail .verify-tr th {
+         display: none;
+     }
+ 
+     .layui-table-detail .verify-tr .verify {
+         width: 100%;
+     }
+ 
+     .layui-table-detail .verify-tr input {
+         width: 100%!important;
+         border: none;
+         padding-left: 0;
+     }
+ 
+     .layui-table-detail .verify-tr td {
+         padding-right: 0;
+     }
+ 
+     .verify .layui-btn:hover {
+         color: #fff;
+     }
+     
+ 
+     /*汇总  */
+     .layui-field-res {
+         border: 0;
+         margin-top: 0!important;
+         width: 100%;
+         margin: 0;
+     }
+ 
+     .layui-field-res legend {
+         margin: 0;
+         padding: 0;
+         display: block;
+         width: 100%;
+         padding: 9px 0;
+         text-indent: 14px;
+         color: #464646;
+     }
+ 
+     .layui-field-res .layui-field-box {
+         padding: 0;
+     }
+ 
+     .layui-field-res .layui-table {
+         margin: 0;
+     }
+ 
+     .layui-field-res .layui-table td {
+         display: -webkit-box;
+         position: relative;
+         font-size: 15px;
+         color: #464646;
+         -webkit-box-align: center;
+     }
+ 
+     .layui-field-res .layui-table td .layui-btn {
+         margin-bottom: 0;
+         font-size: 15px;
+     }
+ 
+     .layui-field-res .layui-table td:before {
+         content: " ";
+         position: absolute;
+         left: 0;
+         top: 0;
+         right: 0;
+         height: 1px;
+         border-top: 1px solid #D9D9D9;
+         color: #D9D9D9;
+         -webkit-transform-origin: 0 0;
+         transform-origin: 0 0;
+         -webkit-transform: scaleY(0.5);
+         transform: scaleY(0.5);
+     }
+ 
+     .layui-field-res .layui-table {
+         position: relative;
+     }
+ 
+     .layui-field-res .layui-table:after {
+         content: " ";
+         position: absolute;
+         left: 0;
+         right: 0;
+         height: 1px;
+         color: #d9d9d9;
+         bottom: 0;
+         border-bottom: 1px solid #d9d9d9;
+         -webkit-transform-origin: 0 100%;
+         transform-origin: 0 100%;
+         -webkit-transform: scaleY(.5);
+         transform: scaleY(.5);
+     }
+ 
+     .layui-field-res .layui-field-bd {
+         -webkit-box-flex: 1;
+         display: block;
+         text-align: right;
+     }
+ 
+ 
+     /* 导出，添加 按钮组 */
+     .layui-btn-group-res {
+         display: -webkit-box;
+         margin-left: 10px;
+     }
+ 
+     .layui-btn-group-res .layui-btn {
+         -webkit-box-flex: 1;
+         font-size: 16px;
+         display: block;
+         margin-right: 10px!important;
+         height: 38px;
+         line-height: 38px;
+     }
+ 
+ 
+ 
+ 
+    /* 搜索 */
+     .search-fix {
+         position: fixed;
+         top: 60px;
+         left: 0;
+         width: 100%;
+         z-index: 20;
+         background: #fff;
+         padding-top: 10px;
+         margin-top: 0;
+         -webkit-transition: all .5s;
+         transition: all .5s;
+         transform: translateY(-350px);
+         -webkit-transform: translateY(-350px);
+     }
+ 
+     .search-fix.cur {
+         transform: translateY(0);
+         -webkit-transform: translateY(0);
+     }
+ 
+     .search-res {
+         position: relative;
+     }
+ 
+     .search-res .layui-inline {
+         display: -webkit-box;
+     }
+ 
+     .search-res .layui-inline .layui-input-inline,.search-res .layui-inline .layui-btn {
+         -webkit-box-flex: 1;
+         display: block;
+     }
+ 
+     .search-res .layui-inline .layui-btn:last-child {
+         margin-right: 0;
+     }
+ 
+     .search-res .layui-form {
+         padding: 0 10px;
+     }
+ 
+     .search-res  .layui-form-select .layui-input {
+         padding-right: 0;
+         font-size: 14px;
+     }
+ 
+     .search-res .layui-form-label {
+         display: none;
+     }
+ 
+     .search-res-mask {
+         position: fixed;
+         width: 100%;
+         background-color: #000;
+         opacity: 0.3;
+         filter: alpha(opacity=30);
+         z-index: 10;
+         top: 0;
+         left: 0;
+         bottom: 0;
+         right: 0;
+         cursor: pointer;
+         display: none;
+     }
+ 
+     .search-res-btn {
+         display: block;
+         padding: 10px;
+     }
+ 
+     .search-res-btn .layui-btn {
+         margin-bottom: 0;
+         width: 100%;
+         font-size: 16px;
+     }
+ 
+     .search-res-btn .layui-btn .layui-icon {
+         margin-right: 8px;
+         position: relative;
+         top: 1px;
+     }
+
+     /*导出按钮隐藏*/
+    .tar .export {
+        display: none;
+    }
+ 
+ 
+     /* 日历 */
+     .layui-date {
+         background: url(../img/date.png) no-repeat 97% center;
+         background-size: 24px;
+     }
+
+     .layui-laydate-range .layui-laydate-main,.layui-laydate .layui-laydate-main{
+         display: block!important;
+     }
+
+     .layui-laydate-range,.layui-laydate-main,.layui-laydate-content table,.layui-laydate{
+         width: 100%!important;
+     }
+
+     .layui-laydate{
+         top: 0!important;left: 0!important;
+     }
+ 
+     /* .laydate_body .laydate_box {
+         width: calc(100% - 22px)!important;
+     }
+ 
+     .laydate_body .laydate_table td {
+         font-size: 13px!important;
+     }
+ 
+     .laydate_body .laydate_top {
+         padding: 10px!important;
+     }
+ 
+     .laydate_body .laydate_y,.laydate_body .laydate_m {
+         display: -webkit-box;
+         width: 60%!important;
+         margin-right: 10px;
+     }
+ 
+     .laydate_body .laydate_y input,.laydate_body .laydate_m input {
+         -webkit-box-flex: 1;
+         float: none!important;
+         width: auto!important;
+         display: block;
+     }
+ 
+     .laydate_body .laydate_choose {
+         float: none!important;
+     }
+ 
+     .laydate_body .laydate_m {
+         display: -webkit-box;
+         width: calc(40% - 10px)!important;
+     }
+ 
+     .laydate_body .laydate_ym .laydate_yms {
+         width: 100%!important;
+     }
+ 
+     .laydate_body .laydate_table {
+         margin: 0 10px!important;
+         width: calc(100% - 10px*2)!important;
+     }
+ 
+     .laydate_body .laydate_table td, .laydate_body .laydate_table thead {
+         padding: 5px 10px;
+     }
+ 
+     .laydate_body .laydate_bottom {
+         padding: 10px 10px 15px!important;
+         font-size: 14px;
+     }
+ 
+     .laydate_body .laydate_bottom .laydate_btn a {
+         padding: 5px 10px !important;
+     }
+ 
+     .laydate_body .laydate_bottom .laydate_btn {
+         right: 10px!important;
+     }
+ 
+     .laydate_body .laydate_y .laydate_yms ul li {
+         width: 50%!important;
+     }
+ 
+     .laydate_body .laydate_table thead th {
+         padding: 5px!important;
+         font-size: 13px!important;
+     }
+ 
+     .layui-laypage span {
+         background-color: #f4f4f4!important;
+     }
+ 
+     .layui-tab {
+         margin-top: 0;
+     }
+ 
+     .layui-tab-title {
+         display: -webkit-box;
+     }
+ 
+     .layui-tab-title li {
+         -webkit-box-flex: 1;
+         display: block;
+     }
+ 
+     .layui-tab-title .layui-this {
+         background: #fff;
+         color: #009688;
+     }
+  */
+ 
+ 
+     /* 提现记录详情 */
+     .layui-field-process .layui-table thead {
+         display: none;
+     }
+ 
+     .layui-field-process .layui-table {
+         padding: 10px;
+         width: auto;
+         display: block;
+     }
+ 
+     .layui-field-process .layui-table tbody {
+         border-left: 1px solid #e4e4e4;
+         padding: 20px 10px 20px 15px;
+         margin: 0 10px;
+         color: #a5a5a5;
+         display: block;
+     }
+ 
+     .layui-field-process .layui-table tr {
+         position: relative;
+         border-bottom: 1px solid #e3e3e3;
+         padding: 10px 0;
+         font-size: 15px;
+         display: -webkit-box;
+         -webkit-box-orient: vertical;
+     }
+ 
+     .layui-field-process .layui-table tr:before {
+         content: " ";
+         width: 10px;
+         height: 10px;
+         background: #e4e4e4;
+         border-radius: 50%;
+         display: inline-block;
+         position: absolute;
+         left: -21px;
+         top: 18px;
+     }
+ 
+     .layui-field-process .layui-table tr td {
+         display: block;
+         color: #a5a5a5;
+     }
+ 
+     .layui-field-process .layui-table tr .time {
+         font-size: 13px;
+         -webkit-box-ordinal-group: 3;
+     }
+ 
+     .layui-field-process .layui-table tr .detail {
+         -webkit-box-ordinal-group: 2;
+         font-size: 13px;
+         text-align: justify;
+     }
+ 
+     .layui-field-process .layui-table tr .status {
+         -webkit-box-ordinal-group: 1;
+     }
+ 
+     .layui-field-process .layui-table td:before {
+         border-top: 0;
+     }
+ 
+     .layui-field-process .layui-table td {
+         padding: 3px 15px;
+     }
+ 
+     .layui-field-process .layui-table tr.cur td {
+         color: #e3313d;
+     }
+ 
+     .layui-field-process .layui-table tr.cur:before {
+         background: #e2515a;
+     }
+    
+     /* 用户信息 */
+     .info {
+         color: #fff;
+         display: block;
+         background: #2b2e37;
+     }
+ 
+     .info .name {
+         padding: 15px 10px 5px;
+         text-align: center;
+         -webkit-box-sizing: border-box;
+     }
+ 
+     .info .oper {
+         text-align: center;
+     }
+ 
+     .info .oper a {
+         padding: 10px 0;
+         color: #fff;
+     }
+ 
+     .layui-side-scroll {
+         width: 200px;
+     }
+
+
+     .layui-laypage a, .layui-laypage span{
+         background:none;
+     }
+     .layui-laypage>a:first-child, .layui-laypage>a:first-child em,.layui-laypage .layui-laypage-next{
+         background:#fff;
+     }
+
+    /* 表格 */
+    .layui-table-content tr{
+        border-bottom:1px solid #e6e6e6;
+    }
+    .layui-table th{
+        text-align: left;
+        padding:10px 15px 0;
+    }
+    .layui-table td{
+        padding:10px 15px;
+    }
+    .layui-table th,.layui-table td{
+        display: block;
+    }
+    .width{
+        width: 100%;
+    }
+    .layui-button{
+        width: 100%;
+        padding:10px;
+        -webkit-box-sizing:border-box;
+        margin-left: 0;
+    }
+    .layui-button .layui-btn{
+        width: 100%;
+        height: 45px;
+        line-height: 45px;
+    }
+    .layui-field-hd{
+        min-width: auto;
+        display: inline-block;
+        text-align: left;
+        padding-right: 0;
+    }
+    .layui-table-content .box td{
+        text-align: right;
+        -webkit-box-flex:1
+    }
+    
+    /*查时间*/
+    .viewTime {
+        position: absolute;
+        right:10px;
+        top: 8px;
+    }
+
+
+     
+ }
+ 

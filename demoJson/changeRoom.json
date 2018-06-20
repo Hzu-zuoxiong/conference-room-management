@@ -1,0 +1,24 @@
+{
+  "pageBean": {
+    "start": 0,
+    "pageNum": 1,
+    "pageSize": 8,
+    "pageSum": 1,
+    "dataList": [{
+      "roomId": "asdasdasdas10",
+      "roomName": "5010",
+      "roomPassword": "1231231210",
+      "roomAddress": "惠州学院旭日大楼(1号楼)",
+      "longitude": null,
+      "latitude": null,
+      "roomPeople": 100,
+      "roomArea": 80,
+      "roomStatus": null,
+      "roomManager": "小五",
+      "roomExist": true
+    }],
+    "recordNum": 4
+  },
+  "status": 1
+
+}

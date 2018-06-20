@@ -1,0 +1,64 @@
+{
+  "userCustom": {
+    "userId": null,
+    "userPwd": null,
+    "userKey": null,
+    "userName": null,
+    "userTelephone": null,
+    "userEmail": null,
+    "userLoginPreTime": null,
+    "userLoginIp": null,
+    "userIsAuthorized": null,
+    "start": 0,
+    "pageSize": 8
+  },
+  "status": 1,
+  "pageBean": {
+    "start": 0,
+    "pageNum": 1,
+    "pageSize": 8,
+    "pageSum": 1,
+    "dataList": [{
+      "userId": "user1",
+      "userPwd": "12345",
+      "userKey": "admin",
+      "userName": "罗斯",
+      "userTelephone": "137923412",
+      "userEmail": "http://rose.email.qq.com",
+      "userLoginPreTime": null,
+      "userLoginIp": null,
+      "userIsAuthorized": 1
+    }, {
+      "userId": "user2",
+      "userPwd": "12345",
+      "userKey": "admin",
+      "userName": "朗多",
+      "userTelephone": "137923412",
+      "userEmail": "http://kobe.email.qq.com",
+      "userLoginPreTime": 700848000000,
+      "userLoginIp": "127.0.0.1",
+      "userIsAuthorized": 0
+    }, {
+      "userId": "user3",
+      "userPwd": "12345",
+      "userKey": "admin",
+      "userName": "C罗",
+      "userTelephone": "123123123",
+      "userEmail": "http://clonade.email.qq.com",
+      "userLoginPreTime": 1523284967000,
+      "userLoginIp": "127.0.0.1",
+      "userIsAuthorized": 1
+    }, {
+      "userId": "user4",
+      "userPwd": "12345",
+      "userKey": "admin",
+      "userName": "多啦A梦",
+      "userTelephone": "123123213",
+      "userEmail": "asdasdsadsad",
+      "userLoginPreTime": 1523371402000,
+      "userLoginIp": "129.0.0.0",
+      "userIsAuthorized": 0
+    }],
+    "recordNum": 4
+  }
+}
