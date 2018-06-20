@@ -13,4 +13,6 @@
 
 该系统使用了vue与layui框架进行搭建、使用E-charts进行统计图表的绘制
 
-效果如图：
+## 效果如图：
+![图片名称](/ReadMe/meetingRoomManagement.gif)
+![图片名称](/ReadMe/statisticsAndOperation.gif)
