@@ -1,6 +1,7 @@
 /**
  * Created by nole on 2018/4/21.
  */
+
 layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function () {
     var $ = layui.jquery,
         laydate = layui.laydate,

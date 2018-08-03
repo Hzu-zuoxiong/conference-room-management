@@ -12,30 +12,6 @@ layui.use(['jquery', 'laydate', 'layer', 'laypage', 'element', 'form'], function
     $(function () {
         FastClick.attach(document.body);
     });
-    //将后台传的时间转化为YYYY-MM-DD HH-MM-SS
-    Date.prototype.format = function (format) {
-        var args = {
-            "M+": this.getMonth() + 1,
-            "d+": this.getDate(),
-            "h+": this.getHours(),
-            "m+": this.getMinutes(),
-            "s+": this.getSeconds(),
-            "q+": Math.floor((this.getMonth() + 3) / 3),  //quarter
-            "S": this.getMilliseconds()
-        };
-        if (/(y+)/.test(format))
-            format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
-        for (var i in args) {
-            var n = args[i];
-            if (new RegExp("(" + i + ")").test(format))
-                format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? n : ("00" + n).substr(("" + n).length));
-        }
-        return format;
-    };
-
-    // // 用例
-    // var test1 = new Date(1523493958000).format("yyyy-MM-dd hh:mm:ss");
-    // console.log(test1);
 
     var vm = new Vue({
         el: '#app',
@@ -90,8 +66,8 @@ layui.use(['jquery', 'laydate', 'layer', 'laypage', 'element', 'form'], function
                                                             tempManager.ManagerName = manager[0];
                                                             tempManager.ManagerContact = manager[1];
                                                             that.items[i].Manager = tempManager;
-                                                            that.items[i].appointStart = new Date(that.items[i].appointStart).format("yyyy-MM-dd hh:mm:ss");
-                                                            that.items[i].appointEnd = new Date(that.items[i].appointEnd).format("yyyy-MM-dd hh:mm:ss");
+                                                            that.items[i].appointStart = dateFormate(that.items[i].appointStart, "yyyy-MM-dd hh:mm:ss");
+                                                            that.items[i].appointEnd = dateFormate(that.items[i].appointEnd, "yyyy-MM-dd hh:mm:ss");
                                                             // console.log(that.items[i].Manager);
                                                         } else {
 
@@ -121,8 +97,8 @@ layui.use(['jquery', 'laydate', 'layer', 'laypage', 'element', 'form'], function
                                                 tempManager.ManagerName = manager[0];
                                                 tempManager.ManagerContact = manager[1];
                                                 that.items[i].Manager = tempManager;
-                                                that.items[i].appointStart = new Date(that.items[i].appointStart).format("yyyy-MM-dd hh:mm:ss");
-                                                that.items[i].appointEnd = new Date(that.items[i].appointEnd).format("yyyy-MM-dd hh:mm:ss");
+                                                that.items[i].appointStart = dateFormate(that.items[i].appointStart, "yyyy-MM-dd hh:mm:ss");
+                                                that.items[i].appointEnd = dateFormate(that.items[i].appointEnd, "yyyy-MM-dd hh:mm:ss");
                                                 // console.log(that.items[i].Manager);
                                             } else {
 
@@ -139,7 +115,6 @@ layui.use(['jquery', 'laydate', 'layer', 'laypage', 'element', 'form'], function
             },
             getparameter: function () {
                 // 监听获取URL的属性
-
                 var name, value;
                 var str = location.href; //取得整个地址栏
                 var num = str.indexOf("?");
@@ -149,8 +124,8 @@ layui.use(['jquery', 'laydate', 'layer', 'laypage', 'element', 'form'], function
                 for(var i = 0; i < arr.length; i++){
                     num = arr[i].indexOf("=");
                     if(num>0){
-                        this.parameter.name.push(arr[i].substring(0,num));
-                        this.parameter.value.push(arr[i].substr(num+1));
+                        this.parameter.name.push(decodeURIComponent(arr[i].substring(0,num)));
+                        this.parameter.value.push(decodeURIComponent(arr[i].substr(num+1)));
                     }
                 }
 
@@ -204,8 +179,8 @@ layui.use(['jquery', 'laydate', 'layer', 'laypage', 'element', 'form'], function
                                                             tempManager.ManagerName = manager[0];
                                                             tempManager.ManagerContact = manager[1];
                                                             that.items[i].Manager = tempManager;
-                                                            that.items[i].appointStart = new Date(that.items[i].appointStart).format("yyyy-MM-dd hh:mm:ss");
-                                                            that.items[i].appointEnd = new Date(that.items[i].appointEnd).format("yyyy-MM-dd hh:mm:ss");
+                                                            that.items[i].appointStart = dateFormate(that.items[i].appointStart, "yyyy-MM-dd hh:mm:ss");
+                                                            that.items[i].appointEnd = dateFormate(that.items[i].appointEnd, "yyyy-MM-dd hh:mm:ss");
                                                             // console.log(that.items[i].Manager);
                                                         } else {
 
@@ -236,8 +211,8 @@ layui.use(['jquery', 'laydate', 'layer', 'laypage', 'element', 'form'], function
                                                 tempManager.ManagerName = manager[0];
                                                 tempManager.ManagerContact = manager[1];
                                                 that.items[i].Manager = tempManager;
-                                                that.items[i].appointStart = new Date(that.items[i].appointStart).format("yyyy-MM-dd hh:mm:ss");
-                                                that.items[i].appointEnd = new Date(that.items[i].appointEnd).format("yyyy-MM-dd hh:mm:ss");
+                                                that.items[i].appointStart = dateFormate(that.items[i].appointStart, "yyyy-MM-dd hh:mm:ss");
+                                                that.items[i].appointEnd = dateFormate(that.items[i].appointEnd, "yyyy-MM-dd hh:mm:ss");
                                                 // console.log(that.items[i].Manager);
                                             } else {
 
@@ -334,8 +309,8 @@ layui.use(['jquery', 'laydate', 'layer', 'laypage', 'element', 'form'], function
                                                     tempManager.ManagerName = manager[0];
                                                     tempManager.ManagerContact = manager[1];
                                                     vm.items[i].Manager = tempManager;
-                                                    vm.items[i].appointStart = new Date(vm.items[i].appointStart).format("yyyy-MM-dd hh:mm:ss");
-                                                    vm.items[i].appointEnd = new Date(vm.items[i].appointEnd).format("yyyy-MM-dd hh:mm:ss");
+                                                    vm.items[i].appointStart = dateFormate(vm.items[i].appointStart, "yyyy-MM-dd hh:mm:ss");
+                                                    vm.items[i].appointEnd = dateFormate(vm.items[i].appointEnd, "yyyy-MM-dd hh:mm:ss");
                                                     // console.log(that.items[i].Manager);
                                                 } else {
 
@@ -366,8 +341,8 @@ layui.use(['jquery', 'laydate', 'layer', 'laypage', 'element', 'form'], function
                                         tempManager.ManagerName = manager[0];
                                         tempManager.ManagerContact = manager[1];
                                         vm.items[i].Manager = tempManager;
-                                        vm.items[i].appointStart = new Date(vm.items[i].appointStart).format("yyyy-MM-dd hh:mm:ss");
-                                        vm.items[i].appointEnd = new Date(vm.items[i].appointEnd).format("yyyy-MM-dd hh:mm:ss");
+                                        vm.items[i].appointStart = dateFormate(vm.items[i].appointStart, "yyyy-MM-dd hh:mm:ss");
+                                        vm.items[i].appointEnd = dateFormate(vm.items[i].appointEnd, "yyyy-MM-dd hh:mm:ss");
                                         // console.log(that.items[i].Manager);
                                     } else {
 
@@ -383,7 +358,4 @@ layui.use(['jquery', 'laydate', 'layer', 'laypage', 'element', 'form'], function
             }
         });
     });
-
-
-
 });

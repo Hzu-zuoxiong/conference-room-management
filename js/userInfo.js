@@ -13,27 +13,6 @@ layui.use(['jquery', 'laydate', 'layer', 'laypage', 'element', 'form'], function
         FastClick.attach(document.body);
     });
 
-    //将后台传的时间转化为YYYY-MM-DD HH-MM-SS
-    Date.prototype.format = function (format) {
-        var args = {
-            "M+": this.getMonth() + 1,
-            "d+": this.getDate(),
-            "h+": this.getHours(),
-            "m+": this.getMinutes(),
-            "s+": this.getSeconds(),
-            "q+": Math.floor((this.getMonth() + 3) / 3),  //quarter
-            "S": this.getMilliseconds()
-        };
-        if (/(y+)/.test(format))
-            format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
-        for (var i in args) {
-            var n = args[i];
-            if (new RegExp("(" + i + ")").test(format))
-                format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? n : ("00" + n).substr(("" + n).length));
-        }
-        return format;
-    };
-
     //页面初始化请求数据
     setTimeout(function () {
         vm.initData();
@@ -78,7 +57,7 @@ layui.use(['jquery', 'laydate', 'layer', 'laypage', 'element', 'form'], function
                                                     that.items = data.pageBean.dataList;
                                                     //将管理员字段截取出管理员与管理员联系方式
                                                     for(var i = 0; i < that.items.length; i++) {
-                                                        that.items[i].userLoginPreTime = new Date(that.items[i].userLoginPreTime).format("yyyy-MM-dd hh:mm:ss");
+                                                        that.items[i].userLoginPreTime = dateFormate(that.items[i].userLoginPreTime, "yyyy-MM-dd hh:mm:ss");
                                                     }
                                                     $(".loading").css("display", "none");
                                                     $(".tac").css("display", "block");
@@ -90,7 +69,7 @@ layui.use(['jquery', 'laydate', 'layer', 'laypage', 'element', 'form'], function
                                     } else {
                                         that.items = result.pageBean.dataList;
                                         for(var i = 0; i < that.items.length; i++) {
-                                            that.items[i].userLoginPreTime = new Date(that.items[i].userLoginPreTime).format("yyyy-MM-dd hh:mm:ss");
+                                            that.items[i].userLoginPreTime = dateFormate(that.items[i].userLoginPreTime, "yyyy-MM-dd hh:mm:ss");
                                         }
                                     }
                                 }
@@ -108,7 +87,7 @@ layui.use(['jquery', 'laydate', 'layer', 'laypage', 'element', 'form'], function
                 // console.log(userId);
                 var that = this;
 
-                layer.confirm('您确认要修改该用户登陆权限？', {title: '更新操作'}, function (index) {
+                layer.confirm(`您确认要${that.items[btnIndex].userIsAuthorized? '关闭': '开启'}该用户登陆权限？`, {title: '更新操作'}, function (index) {
                     that.items[btnIndex].userIsAuthorized = !that.items[btnIndex].userIsAuthorized;
                     $.ajax({
                         data: {
@@ -166,7 +145,7 @@ layui.use(['jquery', 'laydate', 'layer', 'laypage', 'element', 'form'], function
                                         if (data.status == '1') {
                                             vm.items = data.pageBean.dataList;
                                             for(var i = 0; i < that.items.length; i++) {
-                                                vm.items[i].userLoginPreTime = new Date(vm.items[i].userLoginPreTime).format("yyyy-MM-dd hh:mm:ss");
+                                                vm.items[i].userLoginPreTime = dateFormate(vm.items[i].userLoginPreTime, "yyyy-MM-dd hh:mm:ss");
                                             }
                                             $(".loading").css("display", "none");
                                             $(".tac").css("display", "block");
@@ -178,7 +157,7 @@ layui.use(['jquery', 'laydate', 'layer', 'laypage', 'element', 'form'], function
                             } else {
                                 vm.items = result.pageBean.dataList;
                                 for(var i = 0; i < vm.items.length; i++) {
-                                    vm.items[i].userLoginPreTime = new Date(vm.items[i].userLoginPreTime).format("yyyy-MM-dd hh:mm:ss");
+                                    vm.items[i].userLoginPreTime = dateFormate(vm.items[i].userLoginPreTime, "yyyy-MM-dd hh:mm:ss");
                                 }
                             }
                         }

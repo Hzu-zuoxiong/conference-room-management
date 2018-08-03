@@ -16,7 +16,6 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
         FastClick.attach(document.body);
     });
 
-
     //渲染时间
     laydate.render({
         elem: '#operateTime'
@@ -25,28 +24,6 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
         }
         ,trigger: 'click'
     });
-
-
-    //将后台传的时间转化为YYYY-MM-DD HH-MM-SS
-    Date.prototype.format = function (format) {
-        var args = {
-            "M+": this.getMonth() + 1,
-            "d+": this.getDate(),
-            "h+": this.getHours(),
-            "m+": this.getMinutes(),
-            "s+": this.getSeconds(),
-            "q+": Math.floor((this.getMonth() + 3) / 3),  //quarter
-            "S": this.getMilliseconds()
-        };
-        if (/(y+)/.test(format))
-            format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
-        for (var i in args) {
-            var n = args[i];
-            if (new RegExp("(" + i + ")").test(format))
-            format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? n : ("00" + n).substr(("" + n).length));
-        }
-        return format;
-    };
 
     //查询操作
     form.on('submit(btnSearch)', function (data) {
@@ -77,7 +54,7 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
                                             var data = data.pageBean.dataList;
                                             // console.log(data);
                                             for(i in data) {
-                                                data[i].operateTime = new Date(data[i].operateTime).format("yyyy-MM-dd hh:mm:ss");
+                                                data[i].operateTime = dateFormate(data[i].operateTime, "yyyy-MM-dd hh:mm:ss");
                                                 str += "<tr>"+
                                                 "<td class='layui-table-first'><i class='layui-table-hd'>用户名</i><span class='layui-table-bd'>"+data[i].adminId+"</span></td>" +
                                                 "<td><i class='layui-table-hd'>操作时间</i><span class='layui-table-bd'>"+data[i].operateTime+"</span></td>" +
@@ -139,7 +116,7 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
 
                                             for(i in data) {
 
-                                                data[i].operateTime = new Date(data[i].operateTime).format("yyyy-MM-dd hh:mm:ss");
+                                                data[i].operateTime = dateFormate(data[i].operateTime, "yyyy-MM-dd hh:mm:ss");
                                                 str += "<tr>"+
                                                 "<td class='layui-table-first'><i class='layui-table-hd'>用户名</i><span class='layui-table-bd'>"+data[i].adminId+"</span></td>" +
                                                 "<td><i class='layui-table-hd'>操作时间</i><span class='layui-table-bd'>"+data[i].operateTime+"</span></td>" +
@@ -163,7 +140,7 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
                     var str = "";
                     var data = data.pageBean.dataList;
                     for(i in data) {
-                        data[i].operateTime = new Date(data[i].operateTime).format("yyyy-MM-dd hh:mm:ss");
+                        data[i].operateTime = dateFormate(data[i].operateTime, "yyyy-MM-dd hh:mm:ss");
 
                         str += "<tr>"+
                         "<td class='layui-table-first'><i class='layui-table-hd'>用户名</i><span class='layui-table-bd'>"+data[i].adminId+"</span></td>" +
