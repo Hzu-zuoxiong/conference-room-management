@@ -1,7 +1,6 @@
 /**
  * Created by nole on 2018/4/21.
  */
-
 layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function () {
     var $ = layui.jquery,
         laydate = layui.laydate,
@@ -56,7 +55,7 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
                                             for(i in data) {
 
                                                 str += "<tr>"+
-                                                "<td class='layui-table-first'><span class='layui-table-bd'><a href='visitorReserveInfo.html?guestName="+data[i].guestName+"&&guestId="+data[i].guestId+"' title='查看预约详情'>"+data[i].guestName+"</a></span></td>" +
+                                                "<td class='layui-table-first'><span class='layui-table-bd'><a style='color:blue;' href='visitorReserveInfo.html?guestName="+data[i].guestName+"&&guestId="+data[i].guestId+"' title='查看预约详情'>"+data[i].guestName+"</a></span></td>" +
                                                 // "<td><i class='layui-table-hd'>访客性别</i><span class='layui-table-bd'>"+data[i].guestSex+"</span></td>" +
                                                 "<td><span class='layui-table-bd'>"+data[i].guestId+"</span></td>" +
                                                 "<td><span class='layui-table-bd'>"+data[i].guestTelephone+"</span></td>" +
@@ -85,7 +84,7 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
                         //     data[i].guestSex = "男";
                         // }
                         str += "<tr>"+
-                        "<td class='layui-table-first'><span class='layui-table-bd'><a href='visitorReserveInfo.html?guestName="+data[i].guestName+"&&guestId="+data[i].guestId+"' title='查看预约详情'>"+data[i].guestName+"</a></span></td>" +
+                        "<td class='layui-table-first'><span class='layui-table-bd'><a style='color:blue;' href='visitorReserveInfo.html?guestName="+data[i].guestName+"&&guestId="+data[i].guestId+"' title='查看预约详情'>"+data[i].guestName+"</a></span></td>" +
                         // "<td><i class='layui-table-hd'>访客性别</i><span class='layui-table-bd'>"+data[i].guestSex+"</span></td>" +
                         "<td><span class='layui-table-bd'>"+data[i].guestId+"</span></td>" +
                         "<td><span class='layui-table-bd'>"+data[i].guestTelephone+"</span></td>" +
@@ -136,7 +135,7 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
 
                                             for(i in data) {
                                                 str += "<tr>"+
-                                                "<td class='layui-table-first'><span class='layui-table-bd'><a href='visitorReserveInfo.html?guestName="+data[i].guestName+"&&guestId="+data[i].guestId+"' title='查看预约详情'>"+data[i].guestName+"</a></span></td>" +
+                                                "<td class='layui-table-first'><span class='layui-table-bd'><a style='color:blue;' href='visitorReserveInfo.html?guestName="+data[i].guestName+"&&guestId="+data[i].guestId+"' title='查看预约详情'>"+data[i].guestName+"</a></span></td>" +
                                                 // "<td><i class='layui-table-hd'>访客性别</i><span class='layui-table-bd'>"+data[i].guestSex+"</span></td>" +
                                                 "<td><span class='layui-table-bd'>"+data[i].guestId+"</span></td>" +
                                                 "<td><span class='layui-table-bd'>"+data[i].guestTelephone+"</span></td>" +
@@ -167,7 +166,7 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
                         //     data[i].guestSex = "男";
                         // }
                         str += "<tr>"+
-                        "<td class='layui-table-first'><span class='layui-table-bd'><a href='visitorReserveInfo.html?guestName="+data[i].guestName+"&&guestId="+data[i].guestId+"' title='查看预约详情'>"+data[i].guestName+"</a></span></td>" +
+                        "<td class='layui-table-first'><span class='layui-table-bd'><a style='color:blue;' href='visitorReserveInfo.html?guestName="+data[i].guestName+"&&guestId="+data[i].guestId+"' title='查看预约详情'>"+data[i].guestName+"</a></span></td>" +
                         // "<td><i class='layui-table-hd'>访客性别</i><span class='layui-table-bd'>"+data[i].guestSex+"</span></td>" +
                         "<td><span class='layui-table-bd'>"+data[i].guestId+"</span></td>" +
                         "<td><span class='layui-table-bd'>"+data[i].guestTelephone+"</span></td>" +

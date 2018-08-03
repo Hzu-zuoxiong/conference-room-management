@@ -106,7 +106,7 @@
                             <i class="layui-table-hd">授权登陆</i>
                             <div class="switch">
                                 <div class="btn_fath clearfix on"  @click="changeAuthority(item.userId, index)">
-                                    <div class="move" v-bind:class="{ 'openON': item.userIsAuthorized, 'closeOFF': !item.userIsAuthorized }" :data-id="item.roomId" data-state="on"></div>
+                                    <div class="move" :class="{ 'openON': item.userIsAuthorized, 'closeOFF': !item.userIsAuthorized }" :data-id="item.roomId" data-state="on"></div>
                                     <div class="btnSwitch btn1" id="on">ON</div>
                                     <div class="btnSwitch btn2" id="off">OFF</div>
                                 </div>
