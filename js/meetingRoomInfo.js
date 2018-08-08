@@ -233,7 +233,7 @@ layui.use(['jquery', 'laydate', 'layer', 'laypage', 'element', 'form'], function
         $.ajax({
             data: {
                 "roomName": $("#roomName").val(),
-                "roomAddress": $("#roomAddress").val(),
+                // "roomAddress": $("#roomAddress").val(),
                 "roomPeople": $("#roomPeople").val(),
                 "roomManager": $("#roomManager").val()
             },

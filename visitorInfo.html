@@ -38,7 +38,7 @@
 		</div>
 
 		<!-- 主体 -->
-		<div class="layui-body">
+		<div class="layui-body" id="app">
 			<!-- 主要内容 -->
 			<div class="container">
                 <!-- 搜索条件 -->
@@ -61,22 +61,6 @@
                                     <input class="layui-input" name="guestCredit" placeholder="请输入访客信誉分" id ="guestCredit">
                                 </div>
                             </div>
-                            <!-- <div class="layui-inline">
-                                <label class="layui-form-label">访客性别</label>
-                                <div class="layui-input-inline">
-                                    <select lay-verify="" id="select-year" name="guestSex">
-                                        <option value="">请选择性别</option>
-                                        <option value="1">男</option>
-                                        <option value="0">女</option>
-                                    </select>
-                                </div>
-                            </div>  -->
-                            <!-- <div class="layui-inline">
-                                <label class="layui-form-label">时间段</label>
-                                <div class="layui-input-inline">
-                                    <input class="layui-input layui-date" skin="molv" placeholder="请选择时间段" id="time" readonly>
-                                </div>
-                            </div> -->
                             <div class="layui-inline">
                                 <button class="layui-btn" lay-submit="" id="btnSearch" lay-filter="btnSearch">查询</button>
                                 <button class="layui-btn layui-btn-primary hide-pc" id="search-close">关闭</button>
@@ -102,25 +86,16 @@
                             </tr>
                         </thead>
                         <tbody id="tableResult">
-                             <!-- <tr v-for="item in items">
-                                <td class="layui-table-first"><i class="layui-table-hd">访客姓名</i><span class="layui-table-bd">{{item.guestName}}</span></td>
-                                <td><i class="layui-table-hd">访客性别</i><span class="layui-table-bd">{{item.guestSex}}</span></td>
-                                <td><i class="layui-table-hd">访客身份证</i><span class="layui-table-bd">{{item.guestId}}</span></td>
-                                <td><i class="layui-table-hd">访客联系方式</i><span class="layui-table-bd">{{item.guestTelephone}}</span></td>
-                                <td><i class="layui-table-hd">访客邮箱</i><span class="layui-table-bd">{{item.guestEmail}}</span></td>
-                                <td><i class="layui-table-hd">访客所在公司</i><span class="layui-table-bd">{{item.guestCompany}}</span></td>
-                                <td><i class="layui-table-hd">访客信誉分</i><span class="layui-table-bd red">{{item.guestCredit}}</span></td>
-                            </tr> -->
-                               <!-- <tr>
-                                  <td class="layui-table-first"><i class="layui-table-hd">访客姓名</i><span class="layui-table-bd"><a href="visitorReserveInfo.html?guestName=12&&guestId=1212">肖佳亮</a></span></td> -->
-                                  <!-- <td><i class="layui-table-hd">访客性别</i><span class="layui-table-bd">男</span></td> -->
-                                  <!-- <td><i class="layui-table-hd">访客身份证</i><span class="layui-table-bd">440582XXXXXXXXXXXX</span></td>
-                                  <td><i class="layui-table-hd">访客联系方式</i><span class="layui-table-bd">13800138000</span></td>
-                                  <td><i class="layui-table-hd">访客邮箱</i><span class="layui-table-bd">619252632@qq.com</span></td>
-                                  <td><i class="layui-table-hd">访客所在公司</i><span class="layui-table-bd">广东省惠州市惠州学院</span></td>
-                                  <td><i class="layui-table-hd">访客信誉分</i><span class="layui-table-bd red">0分</span></td>
-                                  <td class='layui-table-btn'><button class='layui-btn  layui-btn-normal layui-btn-small' id="view">查询预约</button></td>
-                            </tr>   -->
+                             <tr v-for="item in items">
+                                 <td class="layui-table-first"><span class="layui-table-bd"><a style="color:blue;" :href="'visitorReserveInfo.html?guestName='+item.guestName+'&&guestId='+item.guestId" title="查看预约详情">{{item.guestName}}</a></span></td>
+                                 <!--<td><i class="layui-table-hd">访客性别</i><span class="layui-table-bd">{{item.guestSex}}</span></td>-->
+                                 <td><span class="layui-table-bd">{{item.guestId}}</span></td>
+                                 <td><span class="layui-table-bd">{{item.guestTelephone}}</span></td>
+                                 <td><span class="layui-table-bd">{{item.guestEmail}}</span></td>
+                                 <td><span class="layui-table-bd">{{item.guestCompany}}</span></td>
+                                 <td><span class="layui-table-bd">{{item.guestCredit}}</span></td>
+                             </tr>
+
                         </tbody>
                     </table>
                 <!-- 加载时候的效果 -->
@@ -179,6 +154,7 @@
         }  
         
         $("#exportExcel").click(function () {
+
             exportExcel('guestinfo','test');
         })
 </script>

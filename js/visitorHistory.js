@@ -26,6 +26,82 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
         }
     });
 
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            items: {}
+        },
+        methods: {
+            initData() {
+                var that = this;
+                $.ajax({
+                    url: "http://47.94.206.242/meet/admin/findVisitByCondition.action",
+                    dataType: 'JSON',
+                    type: 'GET',
+                    success: function (data) {
+                        if (data.status == '1') {
+                            //分页渲染
+                            laypage.render({
+                                elem: 'table-pages'
+                                , count: data.pageBean.recordNum,
+                                limit: 8
+                                , layout: ['prev', 'page', 'next', 'count', 'skip']
+                                , jump: function (obj, first) {
+                                    if (!first) {
+                                        $.ajax({
+                                            url: 'http://47.94.206.242/meet/admin/findVisitByCondition.action',//切分页的接口
+                                            dataType: 'json',
+                                            data: {
+                                                "guestName": $("#guestName").val(),
+                                                "tagName": $("select-type").val(),
+                                                "visitArriveTime": $("#visitTime").val().split(" - ")[0],
+                                                "visitLeaveTime": $("#visitTime").val().split(" - ")[1],
+                                                "pageNum": obj.curr
+                                            },
+                                            type: 'POST',
+                                            success: function (data) {
+                                                if (data.status == '1') {
+                                                    that.items = data.pageBean.dataList;
+                                                    //    if(data[i].guestSex == '0'){
+                                                    //        data[i].guestSex = "女";
+                                                    //    }else if(data[i].guestSex == '1'){
+                                                    //        data[i].guestSex = "男";
+                                                    //    }
+                                                    for (let item in that.items) {
+                                                        //修改值
+                                                        item.visitArriveTime = dateFormate(item.visitArriveTime, "yyyy-MM-dd hh:mm:ss");
+                                                        item.visitLeaveTime = dateFormate(item.visitLeaveTime, "yyyy-MM-dd hh:mm:ss");
+                                                    }
+                                                    $(".loading").css("display", "none");
+                                                    $(".tac").css("display", "block");
+                                                }
+                                            }
+                                        })
+                                    }
+                                }
+                            });
+                            //初始化渲染
+                            that.items = data.pageBean.dataList;
+                            for (let item in that.items) {
+                                item.visitArriveTime = dateFormate(item.visitArriveTime, "yyyy-MM-dd hh:mm:ss");
+                                item.visitLeaveTime = dateFormate(item.visitLeaveTime, "yyyy-MM-dd hh:mm:ss");
+                            }
+                            $(".loading").css("display", "none");
+                            $(".tac").css("display", "block");
+                        }
+
+                    }
+                })
+            }
+        }
+    });
+
+    //页面初始化
+    setTimeout(() => {
+        //加载表格数据
+        vm.initData();
+    }, 150);
+
     //渲染时间
     laydate.render({
         elem: '#visitTime'
@@ -35,95 +111,6 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
         }
         , trigger: 'click'
     });
-
-    //页面初始化
-    setTimeout(() => {
-        //加载表格数据
-        $.ajax({
-            url: "http://47.94.206.242/meet/admin/findVisitByCondition.action",
-            dataType: 'JSON',
-            type: 'GET',
-            success: function (data) {
-                if (data.status == '1') {
-                    //分页渲染
-                    laypage.render({
-                        elem: 'table-pages'
-                        , count: data.pageBean.recordNum,
-                        limit: 8
-                        , layout: ['prev', 'page', 'next', 'count', 'skip']
-                        , jump: function (obj, first) {
-                            if (!first) {
-                                $.ajax({
-                                    url: 'http://47.94.206.242/meet/admin/findVisitByCondition.action',//切分页的接口
-                                    dataType: 'json',
-                                    data: {
-                                        "guestName": $("#guestName").val(),
-                                        "tagName": $("select-type").val(),
-                                        "visitArriveTime": $("#visitTime").val().split(" - ")[0],
-                                        "visitLeaveTime": $("#visitTime").val().split(" - ")[1],
-                                        "pageNum": obj.curr
-                                    },
-                                    type: 'POST',
-                                    success: function (data) {
-                                        if (data.status == '1') {
-                                            var str = "";
-                                            var data = data.pageBean.dataList;
-                                            //    if(data[i].guestSex == '0'){
-                                            //        data[i].guestSex = "女";
-                                            //    }else if(data[i].guestSex == '1'){
-                                            //        data[i].guestSex = "男";
-                                            //    }
-                                            for (let i in data) {
-                                                //修改值
-                                                data[i].visitArriveTime = dateFormate(data[i].visitArriveTime, "yyyy-MM-dd hh:mm:ss");
-                                                data[i].visitLeaveTime = dateFormate(data[i].visitLeaveTime, "yyyy-MM-dd hh:mm:ss");
-
-                                                str += "<tr>" +
-                                                    "<td class='layui-table-first'><i class='layui-table-hd'>访客姓名</i><span class='layui-table-bd'>" + data[i].guestName + "</span></td>" +
-                                                    "<td><i class='layui-table-hd'>拜访会议室名称</i><span class='layui-table-bd'>" + data[i].roomName + "</span></td>" +
-                                                    "<td><i class='layui-table-hd'>拜访用途</i><span class='layui-table-bd'>" + data[i].tagName + "</span></td>" +
-                                                    "<td><i class='layui-table-hd'>拜访会议室容纳人数</i><span class='layui-table-bd'>" + data[i].roomPeople + "</span></td>" +
-                                                    "<td><i class='layui-table-hd'>拜访会议室占地面积</i><span class='layui-table-bd'>" + data[i].roomArea + "</span></td>" +
-                                                    "<td><i class='layui-table-hd'>开始拜访时间</i><span class='layui-table-bd'>" + data[i].visitArriveTime + "</span></td>" +
-                                                    "<td><i class='layui-table-hd'>结束拜访时间</i><span class='layui-table-bd'>" + data[i].visitLeaveTime + "</span></td>" +
-                                                    "</tr>";
-                                            }
-                                            tableResult.innerHTML = str;
-                                            $(".loading").css("display", "none");
-                                            $(".tac").css("display", "block");
-                                        }
-                                    }
-                                })
-                            }
-                        }
-                    });
-                    //初始化渲染
-                    var str = "";
-                    var data = data.pageBean.dataList;
-                    for (let i in data) {
-
-                        data[i].visitArriveTime = dateFormate(data[i].visitArriveTime, "yyyy-MM-dd hh:mm:ss");
-                        data[i].visitLeaveTime = dateFormate(data[i].visitLeaveTime, "yyyy-MM-dd hh:mm:ss");
-
-                        str += "<tr>" +
-                            "<td class='layui-table-first'><i class='layui-table-hd'>访客姓名</i><span class='layui-table-bd'>" + data[i].guestName + "</span></td>" +
-                            "<td><i class='layui-table-hd'>拜访会议室名称</i><span class='layui-table-bd'>" + data[i].roomName + "</span></td>" +
-                            "<td><i class='layui-table-hd'>拜访用途</i><span class='layui-table-bd'>" + data[i].tagName + "</span></td>" +
-                            "<td><i class='layui-table-hd'>拜访会议室容纳人数</i><span class='layui-table-bd'>" + data[i].roomPeople + "</span></td>" +
-                            "<td><i class='layui-table-hd'>拜访会议室占地面积</i><span class='layui-table-bd'>" + data[i].roomArea + "</span></td>" +
-                            "<td><i class='layui-table-hd'>开始拜访时间</i><span class='layui-table-bd'>" + data[i].visitArriveTime + "</span></td>" +
-                            "<td><i class='layui-table-hd'>结束拜访时间</i><span class='layui-table-bd'>" + data[i].visitLeaveTime + "</span></td>" +
-                            "</tr>";
-                    }
-                    tableResult.innerHTML = str;
-                    $(".loading").css("display", "none");
-                    $(".tac").css("display", "block");
-                }
-
-            }
-        })
-    }, 1500);
-
 
     //查询操作
     form.on('submit(btnSearch)', function (data) {
@@ -163,39 +150,24 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
                                 type: 'POST',
                                 success: function (data) {
                                     if (data.status == '1') {
-                                        var str = "";
-                                        var data = data.pageBean.dataList;
+                                        vm.items = data.pageBean.dataList;
                                         console.log(data);
-                                        for (let i in data) {
+                                        for (let item in vm.items) {
                                             //改值
                                             // if(data[i].guestSex == '0'){
                                             //     data[i].guestSex = "女";
                                             // }else if(data[i].guestSex == '1'){
                                             //     data[i].guestSex = "男";
                                             // }
-
                                             //改值
-                                            data[i].visitArriveTime = dateFormate(data[i].visitArriveTime, "yyyy-MM-dd hh:mm:ss");
-                                            data[i].visitLeaveTime = dateFormate(data[i].visitLeaveTime, "yyyy-MM-dd hh:mm:ss");
-
-
-                                            str += "<tr>" +
-                                                "<td class='layui-table-first'><i class='layui-table-hd'>访客姓名</i><span class='layui-table-bd'>" + data[i].guestName + "</span></td>" +
-                                                "<td><i class='layui-table-hd'>拜访会议室名称</i><span class='layui-table-bd'>" + data[i].roomName + "</span></td>" +
-                                                "<td><i class='layui-table-hd'>拜访用途</i><span class='layui-table-bd'>" + data[i].tagName + "</span></td>" +
-                                                "<td><i class='layui-table-hd'>拜访会议室容纳人数</i><span class='layui-table-bd'>" + data[i].roomPeople + "</span></td>" +
-                                                "<td><i class='layui-table-hd'>拜访会议室占地面积</i><span class='layui-table-bd'>" + data[i].roomArea + "</span></td>" +
-                                                "<td><i class='layui-table-hd'>开始拜访时间</i><span class='layui-table-bd'>" + data[i].visitArriveTime + "</span></td>" +
-                                                "<td><i class='layui-table-hd'>结束拜访时间</i><span class='layui-table-bd'>" + data[i].visitLeaveTime + "</span></td>" +
-                                                "</tr>";
+                                            item.visitArriveTime = dateFormate(item.visitArriveTime, "yyyy-MM-dd hh:mm:ss");
+                                            item.visitLeaveTime = dateFormate(item.visitLeaveTime, "yyyy-MM-dd hh:mm:ss");
                                         }
-                                        tableResult.innerHTML = str;
                                         $(".loading").css("display", "none");
                                         $(".tac").css("display", "block");
                                     }
                                 }
                             })
-
                         }
                     });
                 }

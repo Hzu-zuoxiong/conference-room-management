@@ -34,7 +34,7 @@
     </div>
 
     <!-- 主体 -->
-    <div class="layui-body">
+    <div class="layui-body" id="app">
         <!-- 主要内容 -->
         <div class="container">
             <!--搜索条件-->
@@ -54,6 +54,10 @@
                         <div class="layui-inline">
                                 <label class="layui-form-label">操作类型</label>
                                 <div class="layui-input-inline">
+                                    <!--<select name="interest" lay-filter="aihao">-->
+                                        <!--<option value="0">写作</option>-->
+                                        <!--<option value="1">阅读</option>-->
+                                    <!--</select>-->
                                     <select lay-verify="" id="operateKind" name="operateKind" >
                                         <option value="">请选择操作类型</option>
                                         <option value="更新">更新</option>
@@ -65,7 +69,7 @@
                         <div class="layui-inline">
                             <label class="layui-form-label">操作时间</label>
                             <div class="layui-input-inline">
-                                <input class="layui-input layui-date" skin="molv" name="beginTime" placeholder="请选择操作时间" id="operateTime" readonly>
+                                <input class="layui-input layui-date" skin="molv" name="beginTime" placeholder="请选择操作时间" id="beginTime" readonly>
                             </div>
                         </div>
                         <div class="layui-inline">
@@ -93,20 +97,13 @@
                     </tr>
                     </thead>
                     <tbody id="tableResult">
-                        <!-- <tr>
-                            <td class="layui-table-first"><i class="layui-table-hd">用户名</i><span class="layui-table-bd">administrator</span></td>
-                            <td><i class="layui-table-hd" style="display:none">操作时间</i><span class="layui-table-bd">2018-04-19 21:21</span></td>
-                            <td><i class="layui-table-hd">用户IP</i><span class="layui-table-bd">192.168.1.1</span></td>
-                            <td><i class="layui-table-hd">操作类型</i><span class="layui-table-bd">添加信息</span></td>
-                            <td><i class="layui-table-hd">说明</i><span class="layui-table-bd">新增一间会议室</span></td>
+                        <tr v-for="item in items">
+                            <td class='layui-table-first'><i class='layui-table-hd'>用户名</i><span class='layui-table-bd'>{{item.adminId}}</span></td>
+                            <td><i class='layui-table-hd'>操作时间</i><span class='layui-table-bd'>{{item.operateTime}}</span></td>
+                            <td><i class='layui-table-hd'>用户IP</i><span class='layui-table-bd'>{{item.operateIp}}</span></td>
+                            <td><i class='layui-table-hd'>操作类型</i><span class='layui-table-bd'>{{item.operateKind}}</span></td>
+                            <td><i class='layui-table-hd'>说明</i><span class='layui-table-bd'>{{item.operateState}}</span></td>
                         </tr>
-                        <tr>
-                            <td class="layui-table-first"><i class="layui-table-hd">用户名</i><span class="layui-table-bd">administrator</span></td>
-                            <td><i class="layui-table-hd">操作时间</i><span class="layui-table-bd">2018-04-19 21:21</span></td>
-                            <td><i class="layui-table-hd">用户IP</i><span class="layui-table-bd">192.168.1.1</span></td>
-                            <td><i class="layui-table-hd">操作类型</i><span class="layui-table-bd">添加信息</span></td>
-                            <td><i class="layui-table-hd">说明</i><span class="layui-table-bd">新增一间会议室</span></td>
-                        </tr> -->
                     </tbody>
                 </table>
             </div>
@@ -119,16 +116,15 @@
             <!-- 分页 -->
             <div id="table-pages" class="tac"></div>
 
-            
         </div>
     </div>
 </div>
     <!-- 可不引入 -->
-    <script type="text/javascript" src="js/vue.min.js"></script>
-    <script type="text/javascript" src="layui/layui.js"></script>
-    <script type="text/javascript" src="js/fastclick.js"></script>
-    <script type="text/javascript" src="js/admin.js"></script>
-    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script type="text/javascript" src="layui/layui.js"></script>
+<script type="text/javascript" src="js/fastclick.js"></script>
+<script type="text/javascript" src="js/admin.js"></script>
     <!-- <script type="text/javascript" src="js/jquery.tabletojson.min.js"></script> -->
     <script type="text/javascript" src="js/util.js"></script>
     <script type="text/javascript" src="js/optionlog.js"></script>

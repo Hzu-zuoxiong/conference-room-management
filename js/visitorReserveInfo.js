@@ -16,73 +16,6 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
         FastClick.attach(document.body);
     });
 
-    function searchFromUrl() {
-        $('#guestInfo').css("backgroundColor", "#282b33");
-        $('#guestInfo').css("color", "#bfc0c2");
-        $('#guestReservelInfo').css("backgroundColor", "#009688");
-        $('#guestReservelInfo').css("color", "#fff");
-        var guestId = getQueryString('guestId');
-        // console.log(urlObj.guestId);
-        if (guestId) {
-            $.ajax({
-                url: 'http://47.94.206.242/meet/admin/findAppointByCondition.action',//
-                type: 'POST',
-                data: {
-                    guestId: guestId
-                },
-                success: function (data) {
-                    if (data.status == '1') {
-                        laypage.render({
-                            elem: 'table-pages'
-                            , count: data.pageBean.recordNum,
-                            limit: 8
-                            , layout: ['prev', 'page', 'next', 'count', 'skip']
-                            , jump: function (obj, first) {
-                                $.ajax({
-                                    url: 'http://47.94.206.242/meet/admin/findAppointByCondition.action',//切分页的接口
-                                    dataType: 'json',
-                                    data: {
-                                        pageNum: obj.curr,
-                                        guestId: guestId
-                                    },
-                                    type: 'POST',
-                                    success: function (data) {
-                                        if (data.status == '1') {
-                                            var str = "";
-                                            var data = data.pageBean.dataList;
-                                            console.log(data);
-                                            for (let i in data) {
-                                                //修改时间
-                                                data[i].appointStart = dateFormate(data[i].appointStart, "yyyy-MM-dd hh:mm:ss");
-                                                data[i].appointEnd = dateFormate(data[i].appointEnd, "yyyy-MM-dd hh:mm:ss");
-                                                data[i].appointCreateDate = dateFormate(data[i].appointCreateDate, "yyyy-MM-dd hh:mm:ss");
-
-                                                str += "<tr>" +
-                                                    "<td class='layui-table-first'><i class='layui-table-hd'>访客姓名</i><span class='layui-table-bd'>" + data[i].guestName + "</span></td>" +
-                                                    "<td><i class='layui-table-hd'>预约会议室名称</i><span class='layui-table-bd'>" + data[i].room.roomName + "</span></td>" +
-                                                    "<td><i class='layui-table-hd'>预约用途</i><span class='layui-table-bd'>" + data[i].tagName + "</span></td>" +
-                                                    "<td><i class='layui-table-hd'>预约会议室容纳人数</i><span class='layui-table-bd'>" + data[i].room.roomPeople + "</span></td>" +
-                                                    "<td><i class='layui-table-hd'>预约会议室占地面积</i><span class='layui-table-bd'>" + data[i].room.roomArea + "</span></td>" +
-                                                    "<td><i class='layui-table-hd'>使用会议室时间</i><span class='layui-table-bd'>" + data[i].appointStart + "&nbsp;~&nbsp;" + data[i].appointEnd + "</span></td>" +
-                                                    "<td><i class='layui-table-hd'>预约时间</i><span class='layui-table-bd'>" + data[i].appointCreateDate + "</span></td>" +
-                                                    "</tr>";
-                                            }
-                                            tableResult.innerHTML = str;
-                                            $(".loading").css("display", "none");
-                                            $(".tac").css("display", "block");
-                                        }
-                                    },
-                                })
-                            }
-                        });
-
-                    }
-                }
-            })
-        }
-
-    }
-
     //渲染select
     $.get("http://47.94.206.242/meet/admin/findAllTag.action", function (data) {
         if (data.status == '1') {
@@ -93,9 +26,149 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
         }
     });
 
-    $("#select").click(function () {
-        console.log("1111");
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            items: {}
+        },
+        methods: {
+            initData(){
+                //声明name和id(guest)
+                var guestName = getQueryString('guestName');
+                var guestId = getQueryString('guestId');
+                var that = this;
+
+                if (guestName && guestId) {
+                    // url搜索
+                    $("#guestName").val(guestName);
+                    //拿Id进行搜索
+                    this.searchFromUrl();
+
+                } else {
+                    // 页面初始化
+                    $.ajax({
+                        url: "http://47.94.206.242/meet/admin/findAppointByCondition.action",
+                        dataType: 'JSON',
+                        type: 'GET',
+                        success: function (data) {
+                            console.log('init');
+                            if (data.status == '1') {
+                                //分页渲染
+                                laypage.render({
+                                    elem: 'table-pages'
+                                    , count: data.pageBean.recordNum,
+                                    limit: 8
+                                    , layout: ['prev', 'page', 'next', 'count', 'skip']
+                                    , jump: function (obj, first) {
+                                        if (!first) {
+                                            $.ajax({
+                                                url: 'http://47.94.206.242/meet/admin/findAppointByCondition.action',//切分页的接口
+                                                dataType: 'json',
+                                                data: {
+                                                    "guestName": $("#guestName").val(),
+                                                    "tagName": $("select-type").val(),
+                                                    "beginTime": $("#reserveltime").val().split(" - ")[0],
+                                                    "endTime": $("#reserveltime").val().split(" - ")[1],
+                                                    "useRoomBeginTime": $("#usetime").val().split(" - ")[0],
+                                                    "useRoomEndTime": $("#usetime").val().split(" - ")[1],
+                                                    "pageNum": obj.curr
+                                                },
+                                                type: 'POST',
+                                                success: function (data) {
+                                                    if (data.status == '1') {
+                                                        that.items = data.pageBean.dataList;
+                                                        for (let item of that.items) {
+                                                            // 修改时间
+                                                            item.appointStart = dateFormate(item.appointCreateDate, "yyyy-MM-dd hh:mm:ss");
+                                                            item.appointEnd = dateFormate(item.appointEnd, "yyyy-MM-dd hh:mm:ss");
+                                                            item.appointCreateDate = dateFormate(item.appointCreateDate, "yyyy-MM-dd hh:mm:ss");
+                                                        }
+                                                        $(".loading").css("display", "none");
+                                                        $(".tac").css("display", "block");
+                                                    }
+                                                },
+                                            })
+                                        }
+                                    }
+                                });
+                                that.items = data.pageBean.dataList;
+                                console.log(that.items);
+                                for (let item of that.items) {
+                                    //修改时间
+                                    item.appointStart = dateFormate(item.appointStart, "yyyy-MM-dd hh:mm:ss");
+                                    item.appointEnd = dateFormate(item.appointEnd, "yyyy-MM-dd hh:mm:ss");
+                                    item.appointCreateDate = dateFormate(item.appointCreateDate, "yyyy-MM-dd hh:mm:ss");
+                                }
+                                $(".loading").css("display", "none");
+                                $(".tac").css("display", "block");
+                            }
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            console.log('error');
+                            console.log(textStatus);
+                        }
+                    })
+                }
+            },
+            searchFromUrl() {
+                $('#guestInfo').css("backgroundColor", "#282b33");
+                $('#guestInfo').css("color", "#bfc0c2");
+                $('#guestReservelInfo').css("backgroundColor", "#009688");
+                $('#guestReservelInfo').css("color", "#fff");
+                var guestId = getQueryString('guestId');
+                // console.log(urlObj.guestId);
+                if (guestId) {
+                    $.ajax({
+                        url: 'http://47.94.206.242/meet/admin/findAppointByCondition.action',//
+                        type: 'POST',
+                        data: {
+                            guestId: guestId
+                        },
+                        success: function (data) {
+                            if (data.status == '1') {
+                                laypage.render({
+                                    elem: 'table-pages'
+                                    , count: data.pageBean.recordNum,
+                                    limit: 8
+                                    , layout: ['prev', 'page', 'next', 'count', 'skip']
+                                    , jump: function (obj, first) {
+                                        $.ajax({
+                                            url: 'http://47.94.206.242/meet/admin/findAppointByCondition.action',//切分页的接口
+                                            dataType: 'json',
+                                            data: {
+                                                pageNum: obj.curr,
+                                                guestId: guestId
+                                            },
+                                            type: 'POST',
+                                            success: function (data) {
+                                                if (data.status == '1') {
+                                                    vm.items = data.pageBean.dataList;
+                                                    for (let item of vm.items) {
+                                                        //修改时间
+                                                        item.appointStart = dateFormate(item.appointStart, "yyyy-MM-dd hh:mm:ss");
+                                                        item.appointEnd = dateFormate(item.appointEnd, "yyyy-MM-dd hh:mm:ss");
+                                                        item.appointCreateDate = dateFormate(item.appointCreateDate, "yyyy-MM-dd hh:mm:ss");
+                                                    }
+                                                    $(".loading").css("display", "none");
+                                                    $(".tac").css("display", "block");
+                                                }
+                                            }
+                                        })
+                                    }
+                                });
+
+                            }
+                        }
+                    })
+                }
+            }
+        }
     });
+
+    //页面初始化
+    setTimeout(() => {
+        vm.initData();
+    }, 1500);
 
     //两个日历组件渲染
     laydate.render({
@@ -115,107 +188,6 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
         }
         , trigger: 'click'
     });
-
-    //页面初始化
-    setTimeout(() => {
-        //声明name和id(guest)
-        var guestName = getQueryString('guestName');
-        var guestId = getQueryString('guestId');
-
-        //同时存在
-        if (guestName && guestId) {
-            //赋值
-            $("#guestName").val(guestName);
-            //拿Id进行搜索
-            searchFromUrl();
-
-        } else {
-            $.ajax({
-                url: "http://47.94.206.242/meet/admin/findAppointByCondition.action",
-                dataType: 'JSON',
-                type: 'GET',
-                success: function (data) {
-                    if (data.status == '1') {
-                        //分页渲染
-                        laypage.render({
-                            elem: 'table-pages'
-                            , count: data.pageBean.recordNum,
-                            limit: 8
-                            , layout: ['prev', 'page', 'next', 'count', 'skip']
-                            , jump: function (obj, first) {
-                                if (!first) {
-                                    $.ajax({
-                                        url: 'http://47.94.206.242/meet/admin/findAppointByCondition.action',//切分页的接口
-                                        dataType: 'json',
-                                        data: {
-                                            "guestName": $("#guestName").val(),
-                                            "tagName": $("select-type").val(),
-                                            "beginTime": $("#reserveltime").val().split(" - ")[0],
-                                            "endTime": $("#reserveltime").val().split(" - ")[1],
-                                            "useRoomBeginTime": $("#usetime").val().split(" - ")[0],
-                                            "useRoomEndTime": $("#usetime").val().split(" - ")[1],
-                                            "pageNum": obj.curr
-                                        },
-                                        type: 'POST',
-                                        success: function (data) {
-                                            if (data.status == '1') {
-                                                var str = "";
-                                                var data = data.pageBean.dataList;
-
-                                                for (let i in data) {
-                                                    // 修改时间
-                                                    data[i].appointStart = dateFormate(data[i].appointCreateDate, "yyyy-MM-dd hh:mm:ss");
-                                                    data[i].appointEnd = dateFormate(data[i].appointEnd, "yyyy-MM-dd hh:mm:ss");
-                                                    data[i].appointCreateDate = dateFormate(data[i].appointCreateDate, "yyyy-MM-dd hh:mm:ss");
-                                                    str += "<tr>" +
-                                                        "<td class='layui-table-first'><i class='layui-table-hd'>访客姓名</i><span class='layui-table-bd'>" + data[i].guestName + "</span></td>" +
-                                                        "<td><i class='layui-table-hd'>预约会议室名称</i><span class='layui-table-bd'>" + data[i].room.roomName + "</span></td>" +
-                                                        "<td><i class='layui-table-hd'>预约用途</i><span class='layui-table-bd'>" + data[i].tagName + "</span></td>" +
-                                                        "<td><i class='layui-table-hd'>预约会议室容纳人数</i><span class='layui-table-bd'>" + data[i].room.roomPeople + "</span></td>" +
-                                                        "<td><i class='layui-table-hd'>预约会议室占地面积</i><span class='layui-table-bd'>" + data[i].room.roomArea + "</span></td>" +
-                                                        "<td><i class='layui-table-hd'>使用会议室时间</i><span class='layui-table-bd'>" + data[i].appointStart + "&nbsp;&nbsp;～&nbsp;&nbsp;" + data[i].appointEnd + "</span></td>" +
-                                                        "<td><i class='layui-table-hd'>预约时间</i><span class='layui-table-bd'>" + data[i].appointCreateDate + "</span></td>" +
-                                                        "</tr>";
-                                                }
-                                                tableResult.innerHTML = str;
-                                                $(".loading").css("display", "none");
-                                                $(".tac").css("display", "block");
-                                            }
-                                        },
-                                    })
-                                }
-                            }
-                        });
-                        //初始化渲染
-                        var str = "";
-                        var data = data.pageBean.dataList;
-                        for (let i in data) {
-                            //修改时间
-                            data[i].appointStart = dateFormate(data[i].appointStart, "yyyy-MM-dd hh:mm:ss");
-                            data[i].appointEnd = dateFormate(data[i].appointEnd, "yyyy-MM-dd hh:mm:ss");
-                            data[i].appointCreateDate = dateFormate(data[i].appointCreateDate, "yyyy-MM-dd hh:mm:ss");
-
-                            str += "<tr>" +
-                                "<td class='layui-table-first'><i class='layui-table-hd'>访客姓名</i><span class='layui-table-bd'>" + data[i].guestName + "</span></td>" +
-                                "<td><i class='layui-table-hd'>预约会议室名称</i><span class='layui-table-bd'>" + data[i].room.roomName + "</span></td>" +
-                                "<td><i class='layui-table-hd'>预约用途</i><span class='layui-table-bd'>" + data[i].tagName + "</span></td>" +
-                                "<td><i class='layui-table-hd'>预约会议室容纳人数</i><span class='layui-table-bd'>" + data[i].room.roomPeople + "</span></td>" +
-                                "<td><i class='layui-table-hd'>预约会议室占地面积</i><span class='layui-table-bd'>" + data[i].room.roomArea + "</span></td>" +
-                                "<td><i class='layui-table-hd'>使用会议室时间</i><span class='layui-table-bd'>" + data[i].appointStart + "&nbsp;~&nbsp;" + data[i].appointEnd + "</span></td>" +
-                                "<td><i class='layui-table-hd'>预约时间</i><span class='layui-table-bd'>" + data[i].appointCreateDate + "</span></td>" +
-                                "</tr>";
-                        }
-                        tableResult.innerHTML = str;
-                        $(".loading").css("display", "none");
-                        $(".tac").css("display", "block");
-                    }
-
-                }
-            })
-        }
-
-    }, 1500);
-
 
     //查询操作
     form.on('submit(btnSearch)', function (data) {
@@ -262,29 +234,7 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
                                 type: 'POST',
                                 success: function (data) {
                                     if (data.status == '1') {
-                                        var str = "";
-                                        var data = data.pageBean.dataList;
-                                        console.log(data);
-                                        for (i in data) {
-                                            //修改时间
-                                            /*data[i].appointStart = new Date(data[i].appointStart).format("yyyy-MM-dd hh:mm:ss");
-                                             data[i].appointEnd = new Date(data[i].appointEnd).format("yyyy-MM-dd hh:mm:ss");
-                                             data[i].appointCreateDate = new Date(data[i].appointCreateDate).format("yyyy-MM-dd hh:mm:ss");*/
-                                            data[i].appointStart = dateFormate(data[i].appointStart, "yyyy-MM-dd hh:mm:ss");
-                                            data[i].appointEnd = dateFormate(data[i].appointEnd, "yyyy-MM-dd hh:mm:ss");
-                                            data[i].appointCreateDate = dateFormate(data[i].appointCreateDate, "yyyy-MM-dd hh:mm:ss");
-
-                                            str += "<tr>" +
-                                                "<td class='layui-table-first'><i class='layui-table-hd'>访客姓名</i><span class='layui-table-bd'>" + data[i].guestName + "</span></td>" +
-                                                "<td><i class='layui-table-hd'>预约会议室名称</i><span class='layui-table-bd'>" + data[i].room.roomName + "</span></td>" +
-                                                "<td><i class='layui-table-hd'>预约用途</i><span class='layui-table-bd'>" + data[i].tagName + "</span></td>" +
-                                                "<td><i class='layui-table-hd'>预约会议室容纳人数</i><span class='layui-table-bd'>" + data[i].room.roomPeople + "</span></td>" +
-                                                "<td><i class='layui-table-hd'>预约会议室占地面积</i><span class='layui-table-bd'>" + data[i].room.roomArea + "</span></td>" +
-                                                "<td><i class='layui-table-hd'>使用会议室时间</i><span class='layui-table-bd'>" + data[i].appointStart + "&nbsp;~&nbsp;" + data[i].appointEnd + "</span></td>" +
-                                                "<td><i class='layui-table-hd'>预约时间</i><span class='layui-table-bd'>" + data[i].appointCreateDate + "</span></td>" +
-                                                "</tr>";
-                                        }
-                                        tableResult.innerHTML = str;
+                                        vm.items = data.pageBean.dataList;
                                         $(".loading").css("display", "none");
                                         $(".tac").css("display", "block");
                                     }

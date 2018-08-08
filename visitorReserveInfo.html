@@ -33,7 +33,7 @@
 		</div>
 
 		<!-- 主体 -->
-		<div class="layui-body">
+		<div class="layui-body" id="app">
 			<!-- 主要内容 -->
 			<div class="container">
                 <!-- 搜索条件 -->
@@ -98,14 +98,19 @@
                                 <th>占地面积</th>
                                 <th>使用时间</th>
                                 <th>预约时间</th>
-                                <!-- <th>发布时间</th>
-                                <th>操作</th> -->
                             </tr>
                         </thead>
                         <!-- 表格 -->
                         <tbody id="tableResult">
-
-                        
+                            <tr v-for="item in items">
+                                <td class='layui-table-first'><i class='layui-table-hd'>访客姓名</i><span class='layui-table-bd'>{{item.guestName}} </span></td>
+                                <td><i class='layui-table-hd'>预约会议室名称</i><span class='layui-table-bd'>{{item.room.roomName}}</span></td>
+                                <td><i class='layui-table-hd'>预约用途</i><span class='layui-table-bd'>{{item.tagName}}</span></td>
+                                <td><i class='layui-table-hd'>预约会议室容纳人数</i><span class='layui-table-bd'>{{item.room.roomPeople}}</span></td>
+                                <td><i class='layui-table-hd'>预约会议室占地面积</i><span class='layui-table-bd'>{{item.room.roomArea}}</span></td>
+                                <td><i class='layui-table-hd'>使用会议室时间</i><span class='layui-table-bd'>{{item.appointStart}}&nbsp;&nbsp;～&nbsp;&nbsp;{{item.appointEnd}}</span></td>
+                                <td><i class='layui-table-hd'>预约时间</i><span class='layui-table-bd'>{{item.appointCreateDate}}</span></td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

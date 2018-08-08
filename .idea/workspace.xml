@@ -3,11 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="29c41811-56fc-428b-a14a-5f53df5daa15" name="默认的" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/forgetPassword.html" afterPath="$PROJECT_DIR$/forgetPassword.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/forgetPassword.js" afterPath="$PROJECT_DIR$/js/forgetPassword.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/meetingRoomInfo.js" afterPath="$PROJECT_DIR$/js/meetingRoomInfo.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/optionlog.js" afterPath="$PROJECT_DIR$/js/optionlog.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/visitorHistory.js" afterPath="$PROJECT_DIR$/js/visitorHistory.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/visitorInfo.js" afterPath="$PROJECT_DIR$/js/visitorInfo.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/login/css/style.css" afterPath="$PROJECT_DIR$/login/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/userInfo.html" afterPath="$PROJECT_DIR$/userInfo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/visitorReserveInfo.js" afterPath="$PROJECT_DIR$/js/visitorReserveInfo.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/meetingRoomInfo.html" afterPath="$PROJECT_DIR$/meetingRoomInfo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/optionLog.html" afterPath="$PROJECT_DIR$/optionLog.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/visitHistory.html" afterPath="$PROJECT_DIR$/visitHistory.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/visitorInfo.html" afterPath="$PROJECT_DIR$/visitorInfo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/visitorReserveInfo.html" afterPath="$PROJECT_DIR$/visitorReserveInfo.html" />
     </list>
     <ignored path="MeetingRoomManagementSystem.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,12 +32,121 @@
     <favorites_list name="MeetingRoomManagementSystem" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="forgetPassword.html" pinned="false" current-in-tab="true">
+    <leaf>
+      <file leaf-file-name="forgetPassword.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/forgetPassword.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="17" column="22" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
+            <state relative-caret-position="325">
+              <caret line="91" column="45" selection-start-line="91" selection-start-column="45" selection-end-line="91" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="optionLog.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/optionLog.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1571">
+              <caret line="72" column="34" selection-start-line="72" selection-start-column="34" selection-end-line="72" selection-end-column="34" />
+              <folding>
+                <element signature="n#style#0;n#i#0;n#div#4;n#div#0;n#div#3;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="meetingRoomReservelInfo.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/meetingRoomReservelInfo.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="812">
+              <caret line="67" column="34" selection-start-line="67" selection-start-column="28" selection-end-line="67" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="meetingRoomInfo.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/meetingRoomInfo.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1525">
+              <caret line="61" column="57" selection-start-line="61" selection-start-column="57" selection-end-line="61" selection-end-column="57" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="meetingRoomReservelInfo.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/meetingRoomReservelInfo.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="687">
+              <caret line="245" column="41" selection-start-line="245" selection-start-column="41" selection-end-line="245" selection-end-column="41" />
+              <folding>
+                <element signature="e#401#13359#0" expanded="false" />
+                <element signature="e#646#6422#0" expanded="false" />
+                <element signature="e#6462#7091#0" expanded="false" />
+                <element signature="e#7132#13343#0" expanded="false" />
+                <element signature="e#14067#19869#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="visitorReserveInfo.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/visitorReserveInfo.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="825">
+              <caret line="179" column="26" selection-start-line="179" selection-start-column="26" selection-end-line="179" selection-end-column="26" />
+              <folding>
+                <element signature="e#880#8786#0" expanded="false" />
+                <element signature="e#992#5741#0" expanded="false" />
+                <element signature="e#1875#4672#0" expanded="false" />
+                <element signature="e#5771#8770#0" expanded="false" />
+                <element signature="e#9379#11694#0" expanded="false" />
+                <element signature="e#10168#11686#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="meetingRoomInfo.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/meetingRoomInfo.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="528">
+              <caret line="235" column="58" selection-start-line="235" selection-start-column="58" selection-end-line="235" selection-end-column="58" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="visitorHistory.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/visitorHistory.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="765">
+              <caret line="109" column="49" selection-start-line="109" selection-start-column="49" selection-end-line="109" selection-end-column="49" />
+              <folding>
+                <element signature="e#553#855#0" expanded="false" />
+                <element signature="e#993#4741#0" expanded="false" />
+                <element signature="e#5141#7897#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="visitHistory.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/visitHistory.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="412">
+              <caret line="63" column="139" selection-start-line="63" selection-start-column="130" selection-end-line="63" selection-end-column="139" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="optionlog.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/optionlog.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="537">
+              <caret line="134" column="85" selection-start-line="134" selection-start-column="85" selection-end-line="134" selection-end-column="85" />
               <folding />
             </state>
           </provider>
@@ -54,23 +168,26 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/js/index.js" />
-        <option value="$PROJECT_DIR$/visitorReserveInfo.html" />
         <option value="$PROJECT_DIR$/js/util.js" />
-        <option value="$PROJECT_DIR$/js/visitorReserveInfo.js" />
-        <option value="$PROJECT_DIR$/visitHistory.html" />
-        <option value="$PROJECT_DIR$/js/visitorHistory.js" />
         <option value="$PROJECT_DIR$/meetingRoomReservelInfo.html" />
         <option value="$PROJECT_DIR$/js/meetingRoomReservelInfo.js" />
         <option value="$PROJECT_DIR$/meetingRoomUsedHistory.html" />
         <option value="$PROJECT_DIR$/js/meetingRoomUsedHistory.js" />
         <option value="$PROJECT_DIR$/js/userInfo.js" />
-        <option value="$PROJECT_DIR$/optionLog.html" />
-        <option value="$PROJECT_DIR$/js/optionlog.js" />
         <option value="$PROJECT_DIR$/userInfo.html" />
-        <option value="$PROJECT_DIR$/js/visitorInfo.js" />
         <option value="$PROJECT_DIR$/login/css/style.css" />
         <option value="$PROJECT_DIR$/js/forgetPassword.js" />
         <option value="$PROJECT_DIR$/forgetPassword.html" />
+        <option value="$PROJECT_DIR$/visitorInfo.html" />
+        <option value="$PROJECT_DIR$/visitorReserveInfo.html" />
+        <option value="$PROJECT_DIR$/visitHistory.html" />
+        <option value="$PROJECT_DIR$/js/visitorInfo.js" />
+        <option value="$PROJECT_DIR$/js/visitorReserveInfo.js" />
+        <option value="$PROJECT_DIR$/js/visitorHistory.js" />
+        <option value="$PROJECT_DIR$/optionLog.html" />
+        <option value="$PROJECT_DIR$/js/optionlog.js" />
+        <option value="$PROJECT_DIR$/js/meetingRoomInfo.js" />
+        <option value="$PROJECT_DIR$/meetingRoomInfo.html" />
       </list>
     </option>
   </component>
@@ -110,6 +227,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -145,7 +263,6 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -184,6 +301,12 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
@@ -222,17 +345,18 @@
       <updated>1533225043452</updated>
       <workItem from="1533225046285" duration="89000" />
       <workItem from="1533225304902" duration="12647000" />
+      <workItem from="1533625352828" duration="13950000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12736000" />
+    <option name="totallyTimeSpent" value="26686000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1578125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1609375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="版本控制" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="调试" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -241,7 +365,6 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="运行" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="找到" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -251,6 +374,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="找到" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -266,12 +390,12 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="4" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/forgetPassword.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -279,54 +403,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/visitorReserveInfo.html">
+    <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="653">
-          <caret line="128" column="50" selection-start-line="128" selection-start-column="50" selection-end-line="128" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/visitHistory.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="662">
-          <caret line="125" column="50" selection-start-line="125" selection-start-column="50" selection-end-line="125" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/visitorHistory.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="29" column="20" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/visitorReserveInfo.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="37">
-          <caret line="23" column="36" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/meetingRoomReservelInfo.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="628">
-          <caret line="118" column="46" selection-start-line="118" selection-start-column="46" selection-end-line="118" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/meetingRoomReservelInfo.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="15" column="22" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
-          <folding>
-            <element signature="e#6462#7091#0" expanded="false" />
-            <element signature="e#13803#14003#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -334,7 +414,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="653">
           <caret line="109" column="48" selection-start-line="109" selection-start-column="48" selection-end-line="109" selection-end-column="48" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -346,27 +425,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/optionlog.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2687">
-          <caret line="132" column="41" selection-start-line="132" selection-start-column="41" selection-end-line="132" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/optionLog.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="678">
-          <caret line="132" column="52" selection-start-line="132" selection-start-column="52" selection-end-line="132" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/userInfo.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="662">
           <caret line="107" column="90" selection-start-line="107" selection-start-column="75" selection-end-line="107" selection-end-column="90" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -390,52 +452,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/visitorInfo.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1425">
-          <caret line="57" column="130" selection-start-line="57" selection-start-column="130" selection-end-line="57" selection-end-column="130" />
-          <folding>
-            <marker date="1533269175031" expanded="true" signature="2343:2518" placeholder="..." />
-            <marker date="1533269175031" expanded="true" signature="2343:2549" placeholder="..." />
-            <marker date="1533269175031" expanded="true" signature="2343:2585" placeholder="..." />
-            <marker date="1533269175031" expanded="true" signature="2343:2745" placeholder="..." />
-            <marker date="1533269175031" expanded="true" signature="2343:2763" placeholder="..." />
-            <marker date="1533269175031" expanded="true" signature="2343:2863" placeholder="..." />
-            <marker date="1533269175031" expanded="true" signature="2343:3438" placeholder="..." />
-            <marker date="1533269175031" expanded="true" signature="2465:2476" placeholder="..." />
-            <marker date="1533269175031" expanded="true" signature="4563:4574" placeholder="..." />
-            <marker date="1533269175031" expanded="true" signature="7366:7377" placeholder="..." />
-            <marker date="1533269175031" expanded="true" signature="9494:9505" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="90" selection-end-column="7" />
-          <folding>
-            <element signature="n#div#3;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/meetingRoomInfo.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="15" selection-end-column="74" />
-          <folding>
-            <element signature="n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#a#0;n#span#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#3;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/visitorInfo.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1603">
-          <caret line="144" column="0" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -443,7 +463,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="9" column="15" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -451,9 +470,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1738">
           <caret line="12" column="81" selection-start-line="12" selection-start-column="60" selection-end-line="12" selection-end-column="81" />
-          <folding>
-            <element signature="e#3180#6443#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -483,10 +499,132 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/visitorInfo.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="56" column="34" selection-start-line="56" selection-start-column="34" selection-end-line="56" selection-end-column="34" />
+          <folding>
+            <element signature="n#style#0;n#a#0;n#span#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#3;n#div#0;n#div#3;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/visitorInfo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="16" column="7" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
+          <folding>
+            <element signature="e#546#2802#0" expanded="false" />
+            <element signature="e#2827#5572#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/visitorReserveInfo.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-465">
+          <caret line="39" column="51" selection-start-line="39" selection-start-column="51" selection-end-line="39" selection-end-column="51" />
+          <folding>
+            <element signature="e#2326#2720#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/visitHistory.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="412">
+          <caret line="63" column="139" selection-start-line="63" selection-start-column="130" selection-end-line="63" selection-end-column="139" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/visitorHistory.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="109" column="49" selection-start-line="109" selection-start-column="49" selection-end-line="109" selection-end-column="49" />
+          <folding>
+            <element signature="e#553#855#0" expanded="false" />
+            <element signature="e#993#4741#0" expanded="false" />
+            <element signature="e#5141#7897#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/optionlog.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="537">
+          <caret line="134" column="85" selection-start-line="134" selection-start-column="85" selection-end-line="134" selection-end-column="85" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/forgetPassword.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="17" column="22" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
+        <state relative-caret-position="325">
+          <caret line="91" column="45" selection-start-line="91" selection-start-column="45" selection-end-line="91" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/optionLog.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1571">
+          <caret line="72" column="34" selection-start-line="72" selection-start-column="34" selection-end-line="72" selection-end-column="34" />
+          <folding>
+            <element signature="n#style#0;n#i#0;n#div#4;n#div#0;n#div#3;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/meetingRoomReservelInfo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="687">
+          <caret line="245" column="41" selection-start-line="245" selection-start-column="41" selection-end-line="245" selection-end-column="41" />
+          <folding>
+            <element signature="e#401#13359#0" expanded="false" />
+            <element signature="e#646#6422#0" expanded="false" />
+            <element signature="e#6462#7091#0" expanded="false" />
+            <element signature="e#7132#13343#0" expanded="false" />
+            <element signature="e#14067#19869#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/visitorReserveInfo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="825">
+          <caret line="179" column="26" selection-start-line="179" selection-start-column="26" selection-end-line="179" selection-end-column="26" />
+          <folding>
+            <element signature="e#880#8786#0" expanded="false" />
+            <element signature="e#992#5741#0" expanded="false" />
+            <element signature="e#1875#4672#0" expanded="false" />
+            <element signature="e#5771#8770#0" expanded="false" />
+            <element signature="e#9379#11694#0" expanded="false" />
+            <element signature="e#10168#11686#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/meetingRoomInfo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="235" column="58" selection-start-line="235" selection-start-column="58" selection-end-line="235" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/meetingRoomReservelInfo.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="812">
+          <caret line="67" column="34" selection-start-line="67" selection-start-column="28" selection-end-line="67" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/meetingRoomInfo.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1525">
+          <caret line="61" column="57" selection-start-line="61" selection-start-column="57" selection-end-line="61" selection-end-column="57" />
           <folding />
         </state>
       </provider>

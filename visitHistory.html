@@ -33,7 +33,7 @@
 		</div>
 
 		<!-- 主体 -->
-		<div class="layui-body">
+		<div class="layui-body" id="app">
 			<!-- 主要内容 -->
 			<div class="container">
                 <!-- 搜索条件 -->
@@ -92,15 +92,15 @@
                             </tr>
                         </thead>
                         <tbody id="tableResult">
-                            <!-- <tr>
-                                <td class="layui-table-first"><i class="layui-table-hd">访客姓名</i><span class="layui-table-bd">肖佳亮</span></td>
-                                <td><i class="layui-table-hd">拜访用途</i><span class="layui-table-bd">学术报告</span></td>
-                                <td><i class="layui-table-hd">拜访会议室名称</i><span class="layui-table-bd">5-101</span></td>
-                                <td><i class="layui-table-hd">拜访会议室容纳人数</i><span class="layui-table-bd">33</span></td>
-                                <td><i class="layui-table-hd">拜访会议室占地面积</i><span class="layui-table-bd">12m²</span></td>
-                                <td><i class="layui-table-hd">开始拜访时间</i><span class="layui-table-bd">2018-04-14 13:33:33</span></td>
-                                <td><i class="layui-table-hd">结束拜访时间</i><span class="layui-table-bd">2018-04-14 23:33:33</span></td>
-                            </tr> -->
+                            <tr v-for="item in items">
+                                <td class='layui-table-first'><i class='layui-table-hd'>访客姓名</i><span class='layui-table-bd'>{{item.guestName}}</span></td>
+                                <td><i class='layui-table-hd'>拜访会议室名称</i><span class='layui-table-bd'>{{item.roomName}}</span></td>
+                                <td><i class='layui-table-hd'>拜访用途</i><span class='layui-table-bd'>{{item.tagName}}</span></td>
+                                <td><i class='layui-table-hd'>拜访会议室容纳人数</i><span class='layui-table-bd'>{{item.roomPeople}}</span></td>
+                                <td><i class='layui-table-hd'>拜访会议室占地面积</i><span class='layui-table-bd'>{{item.roomArea}}</span></td>
+                                <td><i class='layui-table-hd'>开始拜访时间</i><span class='layui-table-bd'>{{item.visitArriveTime}}</span></td>
+                                <td><i class='layui-table-hd'>结束拜访时间</i><span class='layui-table-bd'>{{item.visitLeaveTime}}</span></td>
+                            </tr>
 
                         </tbody>
                     </table>
