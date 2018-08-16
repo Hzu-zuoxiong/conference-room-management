@@ -6,8 +6,8 @@
     top: 50%;
     left: 50%;
     width: 500px;
-    height: 440px;
-    margin-top: -220px;
+    height: 390px;
+    margin-top: -195px;
     margin-left: -250px;
     border: 1px solid #eee;
     z-index: 1500;
@@ -30,17 +30,22 @@
     color: red;
 }
 
+.meetingRoom-form .layui-btn {
+    margin-left: 80px;
+    margin-top: 5px;
+}
+
 /*遮罩*/
 .meetingRoomMasked {
-    background-color: #000;
-    opacity: 0.7;
-    filter: alpha(opacity=70);
+    display: none;
     position: absolute;
-    width: 100%;
-    height: 100%;
+    z-index: 1200;
     top: 0;
     left: 0;
-    z-index: 1200;
-    display: none;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    filter: alpha(opacity=70);
+    opacity: 0.7;
     cursor: pointer;
 }

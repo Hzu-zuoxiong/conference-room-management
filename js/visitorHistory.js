@@ -67,7 +67,7 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
                                                     //    }else if(data[i].guestSex == '1'){
                                                     //        data[i].guestSex = "男";
                                                     //    }
-                                                    for (let item in that.items) {
+                                                    for (let item of that.items) {
                                                         //修改值
                                                         item.visitArriveTime = dateFormate(item.visitArriveTime, "yyyy-MM-dd hh:mm:ss");
                                                         item.visitLeaveTime = dateFormate(item.visitLeaveTime, "yyyy-MM-dd hh:mm:ss");
@@ -82,7 +82,7 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
                             });
                             //初始化渲染
                             that.items = data.pageBean.dataList;
-                            for (let item in that.items) {
+                            for (let item of that.items) {
                                 item.visitArriveTime = dateFormate(item.visitArriveTime, "yyyy-MM-dd hh:mm:ss");
                                 item.visitLeaveTime = dateFormate(item.visitLeaveTime, "yyyy-MM-dd hh:mm:ss");
                             }
