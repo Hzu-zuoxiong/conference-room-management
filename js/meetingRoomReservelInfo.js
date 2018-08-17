@@ -240,7 +240,6 @@ layui.use(['jquery', 'laydate', 'layer', 'laypage', 'element', 'form'], function
         } else {
             vm.initData();
         }
-
         // vm.initData();
         $(".loading").css("display","none");
         $(".tac").css("display","block");

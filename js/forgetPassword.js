@@ -60,7 +60,6 @@ layui.use(['jquery', 'layer', 'form'], function () {
                     popup('\<\div style="padding:20px;">密码更改成功！\<\/div>', function (index, layero) {
                         window.location.href = "login.jsp";
                     });
-
                 }
                 else if (data.status == "-1") {
                     //授权码错误

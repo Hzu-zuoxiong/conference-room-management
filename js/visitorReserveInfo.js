@@ -235,6 +235,11 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
                                 success: function (data) {
                                     if (data.status == '1') {
                                         vm.items = data.pageBean.dataList;
+                                        for (let item of vm.items) {
+                                            item.appointStart = dateFormate(item.appointStart, "yyyy-MM-dd hh:mm:ss");
+                                            item.appointEnd = dateFormate(item.appointEnd, "yyyy-MM-dd hh:mm:ss");
+                                            item.appointCreateDate = dateFormate(item.appointCreateDate, "yyyy-MM-dd hh:mm:ss");
+                                        }
                                         $(".loading").css("display", "none");
                                         $(".tac").css("display", "block");
                                     }

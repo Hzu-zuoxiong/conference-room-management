@@ -12,13 +12,6 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
         FastClick.attach(document.body);
     });
 
-    // element.on('tab(docDemoTabBrief)', function(data){
-    //     // console.log(this); //当前Tab标题所在的原始DOM元素
-    //     // console.log(data.index); //得到当前Tab的所在下标
-    //     // console.log(data.elem); //得到当前的Tab大容器
-    //     // document.getElementById("all").selected=true;
-    // });
-
     // 防抖函数
     function debounce(fn, delay) {
         let timer;

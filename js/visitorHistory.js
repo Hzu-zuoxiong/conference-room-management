@@ -152,7 +152,7 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
                                     if (data.status == '1') {
                                         vm.items = data.pageBean.dataList;
                                         console.log(data);
-                                        for (let item in vm.items) {
+                                        for (let item of vm.items) {
                                             //改值
                                             // if(data[i].guestSex == '0'){
                                             //     data[i].guestSex = "女";

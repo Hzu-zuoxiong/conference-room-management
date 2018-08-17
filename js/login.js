@@ -1,74 +1,79 @@
-
 layui.use(['jquery', 'layer'], function () {
     var $ = layui.jquery,
         layer = layui.layer;
-    //弹框
-    var popup = function(str, func) {
+    // 弹框
+    function popup(str, func) {
         layer.open({
             title: '提示',
-            btn: ['确认'],
-            yes: func,
+            success: func,
             closeBtn: 0,
             shade: 0.5,
+            time: 1000,
             anim: 5,
-            move:false,
+            move: false,
             area: ['250px', '160px'],
             type: 1,
             content: str
         });
-    };
-    
-    $('#login').click(function() {
+    }
+
+    function login() {
         var username = $('#username').val();
         var password = $('#password').val();
-        
-        if(username !== "" && password !== "") {
+
+        if (username !== "" && password !== "") {
             $.ajax({
                 type: "POST",
                 url: "http://47.94.206.242/meet/admin/login.action", //登录接口
                 dataType: "JSON",
                 data: {
                     "adminId": username,
-                    "adminPassword": password,
+                    "adminPassword": password
                     // "keyId":1,
                 },
-                success:function(data) {
-                    switch(data.status) {
+                success: function (data) {
+                    switch (data.status) {
                         case 1://账号密码正确
-                            popup('\<\div style="padding:20px;">登录成功\<\/div>',function (index,layero) {
-                            	//TODO
-                                window.location.href = "index.html";
-                            });
+                            // popup('\<\div style="padding:20px;">登录成功\<\/div>', function (index, layero) {
+                            window.location.href = "index.html";
+                            // });
                             break;
                         case 0://
                             popup('\<\div style="padding:20px;">用户不存在！\<\/div>');
                             break;
                         case -1://
-                             popup('\<\div style="padding:20px;">授权码过期！\<\/div>');
-                             break;
+                            popup('\<\div style="padding:20px;">授权码过期！\<\/div>');
+                            break;
                         case -2:
                             popup('\<\div style="padding:20px;">用户密码错误！\<\/div>');
-                            break;  
+                            break;
                     }
                 }
             });
         } else {
             layer.open({
                 title: '提示',
-                btn: ['确认'],
                 closeBtn: 0,
-                shade: 0.5,
-                time: 2500,
+                shade: 0.7,
+                time: 1000,
                 anim: 5,
-                move:false,
+                move: false,
                 area: ['250px', '160px'],
                 type: 1,
                 content: '\<\div style="padding:20px;">请输入你的账号密码！\<\/div>'
             });
         }
-    });
-});
+    }
 
+    // 点击登录
+    $('#login').click(login);
+});
+// 回车登录
+function enterLogin() {
+    if (event.keyCode === 13) {
+        document.getElementById('login').click();
+    }
+}
 //Canvas背景
 particlesJS('particles-js',
     {

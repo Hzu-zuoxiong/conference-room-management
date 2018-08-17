@@ -78,12 +78,23 @@ textarea{
 	text-align: right;
 }
 
+
+
 .body_bj{
+    /*此部分支持chrome，也支持firefox*/
+    background: url(../img/bj.jpg) no-repeat center fixed;
+    background-attachment: fixed;
+    background-size: cover;
+    /*以下是IE部分，使用滤镜*/
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/bj.jpg',sizingMethod='scale');
+    background-repeat: no-repeat;
+    background-positon: 100% 100%;
     margin: 0;
     padding: 0;
     overflow: hidden;
     height: 100%;
 }
+
 
 .login{
 	width: 400px;

@@ -69,30 +69,33 @@
                     </div>
                     <div class="layui-tab-item">
                         <div>
-                            <div id="meetingRoomCapacity" class="layui-col-md6 layui-col-lg6" style="height: 400px; margin-top: 30px;"></div>
+                            <div id="meetingRoomCapacity" class="layui-col-md6 layui-col-lg6" style="height: 400px; padding-top: 30px;"></div>
                             <div class="layui-col-md6 layui-col-lg6">
-                                <div class="layui-inline CapacityAnalysicTime">
-                                    <label class="layui-form-label">时间段</label>
-                                    <div class="layui-input-inline">
-                                        <input class="layui-input layui-date" name="reservelTime" skin="molv" placeholder="起始年月" id="CapacityAnalysicTime" readonly>
+                                <div class="time-wrap" style="height: 50px;">
+                                    <div class="layui-inline CapacityAnalysicTime">
+                                        <label class="layui-form-label">时间段</label>
+                                        <div class="layui-input-inline">
+                                            <input class="layui-input layui-date" name="reservelTime" skin="molv" placeholder="起始年月" id="CapacityAnalysicTime" readonly>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="CapacityAnalysicRadioBox" id="CapacityAnalysicRadioBox">
-                                    <label class="demo--label">
-                                        <input class="demo--radio" type="radio" name="time" value="季度">
-                                        <span class="demo--checkbox demo--radioInput"></span>季度
-                                    </label>
-                                    <label class="demo--label">
-                                        <input class="demo--radio" type="radio" name="time" value="月">
-                                        <span class="demo--checkbox demo--radioInput"></span>月
-                                    </label>
-                                    <label class="demo--label">
-                                        <input class="demo--radio" type="radio" name="time" value="周" checked="">
-                                        <span class="demo--checkbox demo--radioInput"></span>周
-                                    </label>
+                                    <div class="CapacityAnalysicRadioBox" id="CapacityAnalysicRadioBox">
+                                        <label class="demo--label">
+                                            <input class="demo--radio" type="radio" name="time" value="季度">
+                                            <span class="demo--checkbox demo--radioInput"></span>季度
+                                        </label>
+                                        <label class="demo--label">
+                                            <input class="demo--radio" type="radio" name="time" value="月">
+                                            <span class="demo--checkbox demo--radioInput"></span>月
+                                        </label>
+                                        <label class="demo--label">
+                                            <input class="demo--radio" type="radio" name="time" value="周" checked="">
+                                            <span class="demo--checkbox demo--radioInput"></span>周
+                                        </label>
+                                    </div>
                                 </div>
                                 <div id="meetingRoomCapacityAnalysic" style="height: 350px;"></div>
                             </div>
+                            <!-- 加载 -->
                             <div class="loadingContent2">
                                 <div class="loader">
                                     <div class="loader__bar"></div>
@@ -103,12 +106,9 @@
                                     <div class="loader__ball"></div>
                                 </div>
                             </div>
-                            <div id="meetingRoomCapacityUsedNumber" class="layui-col-md12 layui-col-lg12" style="height: 300px; margin-top: 2%;"></div>
-                            <!--<div id="meetingRoomUsed" class="layui-col-md12 layui-col-lg12" style="height: 350px;margin-top: 5%;"></div>-->
+                            <div id="meetingRoomCapacityUsedNumber" class="layui-col-md12 layui-col-lg12" style="height: 350px;"></div>
                         </div>
                     </div>
-                    <!--<div class="layui-tab-item" id="meetingRoomUseNumber"></div>-->
-                    <!--<div class="layui-tab-item" id="meetingRoomAreaUseNumber"></div>-->
                 </div>
 
 
@@ -128,6 +128,7 @@
 <script type="text/javascript" src="js/echarts.common.min.js"></script>
 <script type="text/javascript" src="js/fastclick.js"></script>
 <script type="text/javascript" src="js/admin.js"></script>
+<script type="text/javascript" src="js/util.js"></script>
 <script type="text/javascript" src="js/meetingRoomAnalysic.js"></script>
 <script type="text/javascript" src="js/macarons.js"></script>
 <!--<script type="text/javascript" src="js/shine.js"></script>-->

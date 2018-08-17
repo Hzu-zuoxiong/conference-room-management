@@ -11,27 +11,6 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
         FastClick.attach(document.body);
     });
 
-    //将后台传的时间转化为YYYY-MM-DD HH-MM-SS
-    Date.prototype.format = function (format) {
-        var args = {
-            "M+": this.getMonth() + 1,
-            "d+": this.getDate(),
-            "h+": this.getHours(),
-            "m+": this.getMinutes(),
-            "s+": this.getSeconds(),
-            "q+": Math.floor((this.getMonth() + 3) / 3),  //quarter
-            "S": this.getMilliseconds()
-        };
-        if (/(y+)/.test(format))
-            format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
-        for (var i in args) {
-            var n = args[i];
-            if (new RegExp("(" + i + ")").test(format))
-                format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? n : ("00" + n).substr(("" + n).length));
-        }
-        return format;
-    };
-
     //会议室容量圆饼图数据
     var roundPieChart = [];
     //会议室容量折线图数据
@@ -39,22 +18,17 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
     var foldLindeDataNumber = [];
 
     //会议室容量时间段选择
-    var searchTime = $('#CapacityAnalysicTime').val();
+    var beginTime = '';
+    var endTime = '';
+    /*var searchTime = $('#CapacityAnalysicTime').val();
     var beginTime = searchTime.split(' - ')[0];
-    var endTime = searchTime.split(' - ')[1];
+    var endTime = searchTime.split(' - ')[1];*/
 
     //会议室容量单选框
     //圆饼图扇片index
     var fanIndex = 0;
     //圆饼图扇片值
     var fanValue = '小型（20人）';
-
-
-    //页面加载绘制会议室容量圆饼图
-    setTimeout(function () {
-        drawMeetingRoomUsedAll();
-        drawmeetingRoomUsedNear();
-    }, 500);
     //tab选项转换
     $(".tabToggle").click(function () {
         if($(this).val()==1){
@@ -62,17 +36,6 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
             meetingRoomCapacityUsedNumber();
         }
     });
-    
-    //日历组件渲染
-    laydate.render({
-        elem: '#CapacityAnalysicTime'
-        , range : true
-        , type: 'date'  // 'month'  'date' 'datetime'
-        , done: function (value, date, endDate) {
-        }
-        ,trigger: 'click'
-    });
-
     
     //会议室时间统计，总折线图
     var drawMeetingRoomUsedAll = function () {
@@ -138,7 +101,7 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
             url: "http://47.94.206.242/meet/admin/statVisitByDayRange.action",
             success: function (data) {
                 for (var i = 0; i < data.length; i++) {
-                    TimeRoundPieKey.push(new Date(data[i].key).format("yyyy-MM-dd"));
+                    TimeRoundPieKey.push(dateFormate(data[i].key, "yyyy-MM-dd"));
                     TimeRoundPieValue.push(data[i].value)
                 }
                 var option = {
@@ -244,7 +207,6 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
             myChart.resize();
         });
     };
-    
 
     //会议室容量，圆饼图
     var drawMeetingRoomCapacity = function () {
@@ -298,7 +260,7 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
                     myChart1.on('mouseover', function (params) {
                         fanIndex = params.dataIndex;
                         fanValue = params.name;
-                        drawMetingRoomAreaAnalysic(params.dataIndex, params.name);
+                        drawMetingRoomAreaAnalysic(beginTime, endTime, params.name, params.dataIndex);
                     });
                 }
             }
@@ -309,24 +271,27 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
         });
     };
     //会议室容量，折线图
-    var drawMetingRoomAreaAnalysic = function (index = 0, name) {
+    var drawMetingRoomAreaAnalysic = function (beginTime, endTime, name, index = 0) {
         $('.loadingContent2').fadeOut();
-
         var myChart = echarts.init(document.getElementById('meetingRoomCapacityAnalysic'));
+        const quarter = ['第一季度', '第二季度', '第三季度', '第四季度'];
+        const month = ['1号', '2号', '3号', '4号', '5号', '6号', '7号', '8号', '9号', '10号', '11号', '12号', '13号', '14号', '15号', '16号',
+            '17号', '18号','19号', '20号', '21号', '22号', '23号', '24号', '25号', '26号', '27号', '28号', '29号', '30号', '31号'];
+        const weekend = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
 
-        //判断选择年、月、周
+        //判断选择季度、月、周
         var radioNum = document.getElementsByName('time');
-        var xAx = ['第一季度', '第二季度', '第三季度', '第四季度'];
+        // 默认季度
+        var xAx = quarter;
         var queryKind = 2;
         if(radioNum[1].checked) {
             queryKind = 1;
-            xAx = ['1号', '2号', '3号', '4号', '5号', '6号', '7号', '8号', '9号', '10号', '11号', '12号', '13号', '14号', '15号', '16号',
-                 '17号', '18号','19号', '20号', '21号', '22号', '23号', '24号', '25号', '26号', '27号', '28号', '29号', '30号', '31号'];
+            xAx = month;
         } else if(radioNum[2].checked) {
             queryKind = 0;
-            xAx = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
+            xAx = weekend;
         }
-        
+
         //判断选择的容量
         var maxPeople = 0;
         if(index === 0) {
@@ -340,7 +305,6 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
         } else if(index === 4) {
             maxPeople = 100;
         }
-
 
         $.ajax({
             data: {
@@ -387,12 +351,21 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
             }
         });
     };
+
     //会议室容量折线图，季度年月选项事件
     $(".demo--radio:radio").click(function(){
-        drawMetingRoomAreaAnalysic(fanIndex, fanValue);
+        drawMetingRoomAreaAnalysic(beginTime, endTime, fanIndex, fanValue);
     });
-    //会议室容量折线图，时间段选择改变
-    // $('#CapacityAnalysicTime').change(drawMetingRoomAreaAnalysic(fanIndex, fanValue));
+    //日历组件渲染
+    laydate.render({
+        elem: '#CapacityAnalysicTime'
+        , range : true
+        , type: 'date'  // 'month'  'date' 'datetime'
+        , done: function (value, endDate) {
+            drawMetingRoomAreaAnalysic(value, endDate, fanIndex, fanValue);
+        }
+        ,trigger: 'click'
+    });
 
     //会议室容量，柱状图
     var meetingRoomCapacityUsedNumber = function (cancelReservation, breakReservation) {
@@ -453,5 +426,10 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
         });
     }
 
+    //页面加载绘制会议室容量圆饼图
+    setTimeout(function () {
+        drawMeetingRoomUsedAll();
+        drawmeetingRoomUsedNear();
+    }, 500);
 });
 
