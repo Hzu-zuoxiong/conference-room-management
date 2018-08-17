@@ -3,16 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="29c41811-56fc-428b-a14a-5f53df5daa15" name="默认的" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/forgetPassword.js" afterPath="$PROJECT_DIR$/js/forgetPassword.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/login.js" afterPath="$PROJECT_DIR$/js/login.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/meetingRoomAnalysic.js" afterPath="$PROJECT_DIR$/js/meetingRoomAnalysic.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/meetingRoomReservelInfo.js" afterPath="$PROJECT_DIR$/js/meetingRoomReservelInfo.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/visitorBehave.js" afterPath="$PROJECT_DIR$/js/visitorBehave.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/visitorHistory.js" afterPath="$PROJECT_DIR$/js/visitorHistory.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/visitorReserveInfo.js" afterPath="$PROJECT_DIR$/js/visitorReserveInfo.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/login.jsp" afterPath="$PROJECT_DIR$/login.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/login/css/style.css" afterPath="$PROJECT_DIR$/login/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/meetingRoomAnalysic.html" afterPath="$PROJECT_DIR$/meetingRoomAnalysic.html" />
     </list>
     <ignored path="MeetingRoomManagementSystem.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -276,15 +266,15 @@
       <workItem from="1533225304902" duration="12647000" />
       <workItem from="1533625352828" duration="24498000" />
       <workItem from="1534435986368" duration="2898000" />
-      <workItem from="1534483756108" duration="9599000" />
+      <workItem from="1534483756108" duration="9858000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49731000" />
+    <option name="totallyTimeSpent" value="49990000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16145833" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
