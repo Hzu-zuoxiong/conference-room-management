@@ -1,26 +1,31 @@
-.switch{
+.switch {
     width: 70px;
     margin: 5px 0;
 }
-.btn_fath{
+
+.btn_fath {
     position: relative;
     border-radius: 20px;
 }
-.btn1{
+
+.btn1 {
     float: left;
 }
-.btn2{
+
+.btn2 {
     float: right;
 }
-.btnSwitch{
+
+.btnSwitch {
     height: 30px;
     width: 30px;
-    border:none;
+    border: none;
     color: #fff;
     line-height: 30px;
     font-size: 12px;
     text-align: center;
     z-index: 1;
+    cursor: pointer;
 }
 
 .btnSwitch .btn2 {
@@ -28,7 +33,7 @@
     text-align: left;
 }
 
-.move{
+.move {
     z-index: 100;
     width: 30px;
     border-radius: 15px;
@@ -37,10 +42,10 @@
     cursor: pointer;
     border: 1px solid #828282;
     background-color: #f1eff0;
-    box-shadow:0 0 5px 1px #999;
+    box-shadow: 0 0 5px 1px #999;
 }
 
-.openON{
+.openON {
     left: 40px;
 }
 
@@ -48,9 +53,10 @@
     left: 0;
 }
 
-.on.btn_fath{
+.on.btn_fath {
     background-color: #5281cd;
 }
-.off.btn_fath{
+
+.off.btn_fath {
     background-color: #828282;
 }
