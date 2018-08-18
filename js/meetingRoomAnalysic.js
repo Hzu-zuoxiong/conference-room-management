@@ -21,8 +21,8 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
     var beginTime = '';
     var endTime = '';
     /*var searchTime = $('#CapacityAnalysicTime').val();
-    var beginTime = searchTime.split(' - ')[0];
-    var endTime = searchTime.split(' - ')[1];*/
+     var beginTime = searchTime.split(' - ')[0];
+     var endTime = searchTime.split(' - ')[1];*/
 
     //会议室容量单选框
     //圆饼图扇片index
@@ -31,12 +31,12 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
     var fanValue = '小型（20人）';
     //tab选项转换
     $(".tabToggle").click(function () {
-        if($(this).val()==1){
+        if ($(this).val() == 1) {
             drawMeetingRoomCapacity();
             meetingRoomCapacityUsedNumber();
         }
     });
-    
+
     //会议室时间统计，总折线图
     var drawMeetingRoomUsedAll = function () {
         var myChart1 = echarts.init(document.getElementById('meetingRoomUsedAll'));
@@ -57,7 +57,7 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
                     xAxis: {
                         type: 'category',
                         boundaryGap: false,
-                        data: ['8:00-10:00','10:00-12:00','12:00-14:00','14:00-16:00','16:00-18:00','18:00-20:00','20:00-22:00']
+                        data: ['8:00-10:00', '10:00-12:00', '12:00-14:00', '14:00-16:00', '16:00-18:00', '18:00-20:00', '20:00-22:00']
                     },
                     yAxis: {
                         type: 'value'
@@ -67,13 +67,13 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
                             name: '会议室使用次数',
                             type: 'line',
                             data: [
-                                {value:data[0], name:' 8:00-10:00'},
-                                {value:data[1], name:'10:00-12:00'},
-                                {value:data[2], name:'12:00-14:00'},
-                                {value:data[3], name:'14:00-16:00'},
-                                {value:data[4], name:'16:00-18:00'},
-                                {value:data[5], name:'18:00-20:00'},
-                                {value:data[6], name:'20:00-22:00'}
+                                {value: data[0], name: ' 8:00-10:00'},
+                                {value: data[1], name: '10:00-12:00'},
+                                {value: data[2], name: '12:00-14:00'},
+                                {value: data[3], name: '14:00-16:00'},
+                                {value: data[4], name: '16:00-18:00'},
+                                {value: data[5], name: '18:00-20:00'},
+                                {value: data[6], name: '20:00-22:00'}
                             ]
                         }]
                 };
@@ -86,7 +86,7 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
         });
 
         // console.log(myChart1);
-        window.addEventListener("resize",function(){
+        window.addEventListener("resize", function () {
             myChart1.resize();
         });
     };
@@ -105,11 +105,11 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
                     TimeRoundPieValue.push(data[i].value)
                 }
                 var option = {
-                    title : {
+                    title: {
                         text: '会议室近期时间统计',
-                        x:'center'
+                        x: 'center'
                     },
-                    tooltip : {
+                    tooltip: {
                         trigger: 'item',
                         formatter: "{a} <br/>{b} : {c} ({d}%)"
                     },
@@ -118,20 +118,20 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
                         left: 'left',
                         data: TimeRoundPieKey
                     },
-                    series : [
+                    series: [
                         {
                             name: '数量',
                             type: 'pie',
-                            radius : '55%',
+                            radius: '55%',
                             center: ['50%', '60%'],
-                            data:[
-                                {value:TimeRoundPieValue[0], name:TimeRoundPieKey[0]},
-                                {value:TimeRoundPieValue[1], name:TimeRoundPieKey[1]},
-                                {value:TimeRoundPieValue[2], name:TimeRoundPieKey[2]},
-                                {value:TimeRoundPieValue[3], name:TimeRoundPieKey[3]},
-                                {value:TimeRoundPieValue[4], name:TimeRoundPieKey[4]},
-                                {value:TimeRoundPieValue[5], name:TimeRoundPieKey[5]},
-                                {value:TimeRoundPieValue[6], name:TimeRoundPieKey[6]}
+                            data: [
+                                {value: TimeRoundPieValue[0], name: TimeRoundPieKey[0]},
+                                {value: TimeRoundPieValue[1], name: TimeRoundPieKey[1]},
+                                {value: TimeRoundPieValue[2], name: TimeRoundPieKey[2]},
+                                {value: TimeRoundPieValue[3], name: TimeRoundPieKey[3]},
+                                {value: TimeRoundPieValue[4], name: TimeRoundPieKey[4]},
+                                {value: TimeRoundPieValue[5], name: TimeRoundPieKey[5]},
+                                {value: TimeRoundPieValue[6], name: TimeRoundPieKey[6]}
                             ],
                             itemStyle: {
                                 emphasis: {
@@ -154,7 +154,7 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
         });
 
         // console.log(myChart1);
-        window.addEventListener("resize",function(){
+        window.addEventListener("resize", function () {
             myChart1.resize();
         });
     };
@@ -203,7 +203,7 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
         });
 
         //随窗口大小自适应
-        window.addEventListener("resize",function(){
+        window.addEventListener("resize", function () {
             myChart.resize();
         });
     };
@@ -220,31 +220,31 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
                     roundPieChart = data.dataList;
                     // console.log(roundPieChart);
                     var option = {
-                        title : {
+                        title: {
                             text: '会议室容量分布',
-                            x:'center'
+                            x: 'center'
                         },
-                        tooltip : {
+                        tooltip: {
                             trigger: 'item',
                             formatter: "{a} <br/>{b} : {c} ({d}%)"
                         },
                         legend: {
                             orient: 'vertical',
                             left: 'left',
-                            data: ['小型（20人）','中型（40人）','偏大型（60人）','大型（80人）','豪华（100人）']
+                            data: ['小型（20人）', '中型（40人）', '偏大型（60人）', '大型（80人）', '豪华（100人）']
                         },
-                        series : [
+                        series: [
                             {
                                 name: '数量',
                                 type: 'pie',
-                                radius : '55%',
+                                radius: '55%',
                                 center: ['50%', '60%'],
-                                data:[
-                                    {value:roundPieChart[0], name:'小型（20人）'},
-                                    {value:roundPieChart[1], name:'中型（40人）'},
-                                    {value:roundPieChart[2], name:'偏大型（60人）'},
-                                    {value:roundPieChart[3], name:'大型（80人）'},
-                                    {value:roundPieChart[4], name:'豪华（100人）'}
+                                data: [
+                                    {value: roundPieChart[0], name: '小型（20人）'},
+                                    {value: roundPieChart[1], name: '中型（40人）'},
+                                    {value: roundPieChart[2], name: '偏大型（60人）'},
+                                    {value: roundPieChart[3], name: '大型（80人）'},
+                                    {value: roundPieChart[4], name: '豪华（100人）'}
                                 ],
                                 itemStyle: {
                                     emphasis: {
@@ -266,17 +266,17 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
             }
         });
         // console.log(myChart1);
-        window.addEventListener("resize",function(){
+        window.addEventListener("resize", function () {
             myChart1.resize();
         });
     };
     //会议室容量，折线图
-    var drawMetingRoomAreaAnalysic = function (beginTime, endTime, name, index = 0) {
+    var drawMetingRoomAreaAnalysic = function (beginTime, endTime, name, index=0) {
         $('.loadingContent2').fadeOut();
         var myChart = echarts.init(document.getElementById('meetingRoomCapacityAnalysic'));
         const quarter = ['第一季度', '第二季度', '第三季度', '第四季度'];
         const month = ['1号', '2号', '3号', '4号', '5号', '6号', '7号', '8号', '9号', '10号', '11号', '12号', '13号', '14号', '15号', '16号',
-            '17号', '18号','19号', '20号', '21号', '22号', '23号', '24号', '25号', '26号', '27号', '28号', '29号', '30号', '31号'];
+            '17号', '18号', '19号', '20号', '21号', '22号', '23号', '24号', '25号', '26号', '27号', '28号', '29号', '30号', '31号'];
         const weekend = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
 
         //判断选择季度、月、周
@@ -284,25 +284,25 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
         // 默认季度
         var xAx = quarter;
         var queryKind = 2;
-        if(radioNum[1].checked) {
+        if (radioNum[1].checked) {
             queryKind = 1;
             xAx = month;
-        } else if(radioNum[2].checked) {
+        } else if (radioNum[2].checked) {
             queryKind = 0;
             xAx = weekend;
         }
 
         //判断选择的容量
         var maxPeople = 0;
-        if(index === 0) {
+        if (index === 0) {
             maxPeople = 20;
-        } else if(index === 1) {
+        } else if (index === 1) {
             maxPeople = 40;
-        } else if(index === 2) {
+        } else if (index === 2) {
             maxPeople = 60;
-        } else if(index === 3) {
+        } else if (index === 3) {
             maxPeople = 80;
-        } else if(index === 4) {
+        } else if (index === 4) {
             maxPeople = 100;
         }
 
@@ -345,7 +345,7 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
                         }]
                 };
                 myChart.setOption(option, true);
-                window.addEventListener("resize",function(){
+                window.addEventListener("resize", function () {
                     myChart.resize();
                 });
             }
@@ -353,18 +353,21 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
     };
 
     //会议室容量折线图，季度年月选项事件
-    $(".demo--radio:radio").click(function(){
+    $(".demo--radio:radio").click(function () {
         drawMetingRoomAreaAnalysic(beginTime, endTime, fanIndex, fanValue);
     });
     //日历组件渲染
     laydate.render({
         elem: '#CapacityAnalysicTime'
-        , range : true
+        , range: true
         , type: 'date'  // 'month'  'date' 'datetime'
         , done: function (value, endDate) {
+            beginTime = value;
+            endTime = endDate;
+            console.log('日历：' + beginTime + ' ' + endDate);
             drawMetingRoomAreaAnalysic(value, endDate, fanIndex, fanValue);
         }
-        ,trigger: 'click'
+        , trigger: 'click'
     });
 
     //会议室容量，柱状图
@@ -393,13 +396,13 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
                         bottom: '3%',
                         containLabel: true
                     },
-                    title : {
+                    title: {
                         text: '不同容量会议室的使用次数',
                         left: 'center'
                     },
                     xAxis: {
                         type: 'category',
-                        data: ['小型（20人）','中型（40人）','偏大型（60人）','大型（80人）','豪华（100人）']
+                        data: ['小型（20人）', '中型（40人）', '偏大型（60人）', '大型（80人）', '豪华（100人）']
                     },
                     yAxis: {
                         type: 'value'
@@ -408,7 +411,7 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
                         {
                             name: '使用次数',
                             type: 'bar',
-                            barCategoryGap:'75%',
+                            barCategoryGap: '75%',
                             data: data,
                             markPoint: {
                                 data: [
@@ -419,7 +422,7 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
                         }]
                 };
                 myChart.setOption(option, true);
-                window.addEventListener("resize",function(){
+                window.addEventListener("resize", function () {
                     myChart.resize();
                 });
             }
