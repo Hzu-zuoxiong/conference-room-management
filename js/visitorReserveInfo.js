@@ -29,7 +29,8 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
     var vm = new Vue({
         el: '#app',
         data: {
-            items: {}
+            items: {},
+            excelJson: []
         },
         methods: {
             initData(){
@@ -66,7 +67,7 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
                                                 dataType: 'json',
                                                 data: {
                                                     "guestName": $("#guestName").val(),
-                                                    "tagName": $("select-type").val(),
+                                                    "tagId": $("#select-type").val(),
                                                     "beginTime": $("#reserveltime").val().split(" - ")[0],
                                                     "endTime": $("#reserveltime").val().split(" - ")[1],
                                                     "useRoomBeginTime": $("#usetime").val().split(" - ")[0],
@@ -86,7 +87,7 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
                                                         $(".loading").css("display", "none");
                                                         $(".tac").css("display", "block");
                                                     }
-                                                },
+                                                }
                                             })
                                         }
                                     }
@@ -161,6 +162,44 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
                         }
                     })
                 }
+            },
+            exportExcel() {
+                $.ajax({
+                    data: {
+                        "pageNum": -1,
+                        "guestName": $("#guestName").val(),
+                        "tagId": $("#select-type").val(),
+                        "beginTime": $("#reserveltime").val().split(" - ")[0],
+                        "endTime": $("#reserveltime").val().split(" - ")[1],
+                        "useRoomBeginTime": $("#usetime").val().split(" - ")[0],
+                        "useRoomEndTime": $("#usetime").val().split(" - ")[1]
+                    },
+                    url: "http://47.94.206.242/meet/admin/findAppointByCondition.action",
+                    dataType: 'JSON',
+                    type: 'POST',
+                    success(data) {
+                        this.excelJson = data.pageBean.dataList;
+                        console.log(this.excelJson);
+                        let fileName = 'visitorReserveInfo';
+                        let headers = '姓名,会议室名称,用途,容纳人数,占地面积,使用时间,预约时间,';
+                        let json = [];
+                        console.log(this.excelJson);
+                        for (let i in this.excelJson) {
+                            let temp = {};
+                            temp['姓名'] = this.excelJson[i].guestName;
+                            temp['会议室名称'] = this.excelJson[i].room.roomName;
+                            temp['用途'] = this.excelJson[i].tagName;
+                            temp['容纳人数'] = this.excelJson[i].room.roomPeople;
+                            temp['占地面积'] = this.excelJson[i].room.roomArea;
+                            temp['使用时间'] = ""+dateFormate(this.excelJson[i].appointStart,  "yyyy-MM-dd hh:mm:ss")+" -- "+dateFormate(this.excelJson[i].appointEnd,  "yyyy-MM-dd hh:mm:ss");
+                            temp['预约时间'] = ""+dateFormate(this.excelJson[i].appointCreateDate,  "yyyy-MM-dd hh:mm:ss");
+                            json.push(temp);
+                        }
+                        json = JSON.stringify(json);
+                        console.log(json);
+                        Excelpost('http://47.94.206.242/meet/admin/getExcel.action', {fileName: fileName, headers: headers, json: json});
+                    }
+                });
             }
         }
     });

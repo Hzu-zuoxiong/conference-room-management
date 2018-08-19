@@ -16,8 +16,8 @@ layui.use(['jquery', 'laydate', 'layer', 'laypage', 'element', 'form'], function
     //页面初始化请求数据
     setTimeout(function () {
         vm.initData();
-        $(".loading").css("display","none");
-        $(".tac").css("display","block");
+        $(".loading").css("display", "none");
+        $(".tac").css("display", "block");
     }, 500);
 
     var vm = new Vue({
@@ -55,8 +55,7 @@ layui.use(['jquery', 'laydate', 'layer', 'laypage', 'element', 'form'], function
                                                 console.log(data);
                                                 if (data.status == '1') {
                                                     that.items = data.pageBean.dataList;
-                                                    //将管理员字段截取出管理员与管理员联系方式
-                                                    for(var i = 0; i < that.items.length; i++) {
+                                                    for (var i = 0; i < that.items.length; i++) {
                                                         that.items[i].userLoginPreTime = dateFormate(that.items[i].userLoginPreTime, "yyyy-MM-dd hh:mm:ss");
                                                     }
                                                     $(".loading").css("display", "none");
@@ -68,7 +67,7 @@ layui.use(['jquery', 'laydate', 'layer', 'laypage', 'element', 'form'], function
                                         });
                                     } else {
                                         that.items = result.pageBean.dataList;
-                                        for(var i = 0; i < that.items.length; i++) {
+                                        for (var i = 0; i < that.items.length; i++) {
                                             that.items[i].userLoginPreTime = dateFormate(that.items[i].userLoginPreTime, "yyyy-MM-dd hh:mm:ss");
                                         }
                                     }
@@ -87,7 +86,7 @@ layui.use(['jquery', 'laydate', 'layer', 'laypage', 'element', 'form'], function
                 // console.log(userId);
                 var that = this;
 
-                layer.confirm(`您确认要${that.items[btnIndex].userIsAuthorized? '关闭': '开启'}该用户登陆权限？`, {title: '更新操作'}, function (index) {
+                layer.confirm(`您确认要${that.items[btnIndex].userIsAuthorized ? '关闭' : '开启'}该用户登陆权限？`, {title: '更新操作'}, function (index) {
                     that.items[btnIndex].userIsAuthorized = !that.items[btnIndex].userIsAuthorized;
                     $.ajax({
                         data: {
@@ -104,10 +103,46 @@ layui.use(['jquery', 'laydate', 'layer', 'laypage', 'element', 'form'], function
                         }
                     });
                 });
+            },
+            exportExcel() {
+                $.ajax({
+                    data: {
+                        pageNum: -1,
+                        "userId": $("#userId").val(),
+                        "userName": $("#userName").val(),
+                        "userEmail": $("#userEmail").val()
+                    },
+                    url: "http://47.94.206.242/meet/admin/findUserByCondition.action",
+                    dataType: 'JSON',
+                    type: 'POST',
+                    success(data) {
+                        this.excelJson = data.pageBean.dataList;
+                        let fileName = 'userInfo';
+                        let headers = 'ID,真实姓名,邮箱,联系方式,上次登陆时间,上次登陆IP,授权登陆,';
+                        let json = [];
+                        for (let i in this.excelJson) {
+                            let temp = {};
+                            temp['ID'] = this.excelJson[i].userId;
+                            temp['真实姓名'] = this.excelJson[i].userName;
+                            temp['邮箱'] = this.excelJson[i].userEmail;
+                            temp['联系方式'] = this.excelJson[i].userTelephone;
+                            temp['上次登陆时间'] = this.excelJson[i].userLoginPreTime;
+                            temp['上次登陆IP'] = this.excelJson[i].userLoginIp;
+                            temp['授权登陆'] = this.excelJson[i].userIsAuthorized ? '是' : '否';
+                            json.push(temp);
+                        }
+                        json = JSON.stringify(json);
+                        Excelpost('http://47.94.206.242/meet/admin/getExcel.action', {
+                            fileName: fileName,
+                            headers: headers,
+                            json: json
+                        });
+                    }
+                });
             }
         }
     });
-    
+
     //查询操作
     form.on('submit(btnSearch)', function (data) {
 
@@ -122,7 +157,7 @@ layui.use(['jquery', 'laydate', 'layer', 'laypage', 'element', 'form'], function
             url: "http://47.94.206.242/meet/admin/findUserByCondition.action",
             success: function (result) {
                 console.log(result);
-                if(result.status == '1') {
+                if (result.status == '1') {
                     laypage.render({
                         elem: 'table-pages'
                         , count: result.pageBean.recordNum
@@ -144,7 +179,7 @@ layui.use(['jquery', 'laydate', 'layer', 'laypage', 'element', 'form'], function
                                         console.log(data);
                                         if (data.status == '1') {
                                             vm.items = data.pageBean.dataList;
-                                            for(var i = 0; i < that.items.length; i++) {
+                                            for (var i = 0; i < that.items.length; i++) {
                                                 vm.items[i].userLoginPreTime = dateFormate(vm.items[i].userLoginPreTime, "yyyy-MM-dd hh:mm:ss");
                                             }
                                             $(".loading").css("display", "none");
@@ -156,13 +191,13 @@ layui.use(['jquery', 'laydate', 'layer', 'laypage', 'element', 'form'], function
                                 });
                             } else {
                                 vm.items = result.pageBean.dataList;
-                                for(var i = 0; i < vm.items.length; i++) {
+                                for (var i = 0; i < vm.items.length; i++) {
                                     vm.items[i].userLoginPreTime = dateFormate(vm.items[i].userLoginPreTime, "yyyy-MM-dd hh:mm:ss");
                                 }
                             }
                         }
                     });
-                }else {
+                } else {
                     layer.msg("数据加载出错");
                 }
             }

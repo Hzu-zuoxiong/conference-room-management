@@ -110,6 +110,38 @@ layui.use(['jquery', 'laydate', 'layer', 'laypage', 'element', 'form'], function
                         }
                     }
                 })
+            },
+            exportExcel() {
+                $.ajax({
+                    data: {
+                        pageNum: -1,
+                        "roomName": $("#roomName").val(),
+                        "roomManager": $("#roomManager").val(),
+                        "visitArriveTime": $("#reservelTime").val().split(' - ')[0],
+                        "visitLeaveTime": $("#reservelTime").val().split(' - ')[1]
+                    },
+                    url: "http://47.94.206.242/meet/admin/findRoomUsingByCondition.action",
+                    dataType: 'JSON',
+                    type: 'POST',
+                    success(data) {
+                        this.excelJson = data.pageBean.dataList;
+                        let fileName = 'meetingRoomUsedHistory';
+                        let headers = '会议室名称,管理员,管理员联系方式,开始时间,结束时间,';
+                        let json = [];
+                        for (let i in this.excelJson) {
+                            let temp = {};
+                            let roomManager = this.excelJson[i].roomManager.split("#");
+                            temp['会议室名称'] = this.excelJson[i].guestName;
+                            temp['管理员'] = roomManager[0];
+                            temp['管理员联系方式'] = roomManager[1];
+                            temp['开始时间'] = dateFormate(this.excelJson[i].visitArriveTime, "yyyy-MM-dd hh:mm:ss");
+                            temp['结束时间'] = dateFormate(this.excelJson[i].visitLeaveTime, "yyyy-MM-dd hh:mm:ss");
+                            json.push(temp);
+                        }
+                        json = JSON.stringify(json);
+                        Excelpost('http://47.94.206.242/meet/admin/getExcel.action', {fileName: fileName, headers: headers, json: json});
+                    }
+                });
             }
         }
     });

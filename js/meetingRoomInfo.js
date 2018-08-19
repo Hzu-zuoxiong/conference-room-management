@@ -18,6 +18,7 @@ layui.use(['jquery', 'laydate', 'layer', 'laypage', 'element', 'form'], function
         data: {
             items: {},
             changeItems: {},
+            excelJson: [],
             Manager: {
                 ManagerName: "",
                 ManagerContact: ""
@@ -213,8 +214,40 @@ layui.use(['jquery', 'laydate', 'layer', 'laypage', 'element', 'form'], function
                         }
                     });
                 });
+            },
+            // 导出excel
+            exportExcel() {
+                $.ajax({
+                    data: {
+                        pageNum: -1,
+                        "roomName": $("#roomName").val(),
+                        "roomAddress": $("#roomAddress").val(),
+                        "roomPeople": $("#roomPeople").val(),
+                        "roomManager": $("#roomManager").val()
+                    },
+                    url: "http://47.94.206.242/meet/admin/findRoomByCondition.action",
+                    dataType: 'JSON',
+                    type: 'POST',
+                    success(data) {
+                        this.excelJson = data.pageBean.dataList;
+                        let fileName = 'meetingRoomInfo';
+                        let headers = '会议室名称,容纳人数,占地面积,会议室管理员,管理员联系方式,';
+                        let json = [];
+                        for (let i in this.excelJson) {
+                            let temp = {};
+                            let roomManager = this.excelJson[i].roomManager.split("#");
+                            temp['会议室名称'] = this.excelJson[i].roomName;
+                            temp['容纳人数'] = this.excelJson[i].roomPeople;
+                            temp['占地面积'] = this.excelJson[i].roomArea;
+                            temp['会议室管理员'] = roomManager[0];
+                            temp['管理员联系方式'] = roomManager[1];
+                            json.push(temp);
+                        }
+                        json = JSON.stringify(json);
+                        Excelpost('http://47.94.206.242/meet/admin/getExcel.action', {fileName: fileName, headers: headers, json: json});
+                    }
+                });
             }
-
         }
     });
 

@@ -19,7 +19,8 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
     var vm = new Vue({
         el: '#app',
         data: {
-            items: {}
+            items: {},
+            exportJson: []
         },
         methods: {
             initData() {
@@ -78,6 +79,41 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
 
                     }
                 })
+            },
+            exportExcel() {
+                $.ajax({
+                    data: {
+                        pageNum: -1,
+                        "adminId": $("#adminId").val(),
+                        "beginTime": $("#operateTime").val(),
+                        "operateKind": $("#operateKind").val(),
+                    },
+                    url: "http://47.94.206.242/meet/admin/findOperationByCondition.action",
+                    dataType: 'JSON',
+                    type: 'POST',
+                    success(data) {
+                        this.excelJson = data.pageBean.dataList;
+                        console.log(this.excelJson);
+                        let fileName = 'optionLog';
+                        let headers = '用户名,操作时间,IP,操作类型,说明,';
+                        let json = [];
+                        for (let i in this.excelJson) {
+                            let temp = {};
+                            temp['用户名'] = this.excelJson[i].adminId;
+                            temp['操作时间'] = "" + dateFormate(this.excelJson[i].operateTime, "yyyy-MM-dd hh:mm:ss");
+                            temp['IP'] = this.excelJson[i].operateIp;
+                            temp['操作类型'] = this.excelJson[i].operateKind;
+                            temp['说明'] = this.excelJson[i].operateState;
+                            json.push(temp);
+                        }
+                        json = JSON.stringify(json);
+                        Excelpost('http://47.94.206.242/meet/admin/getExcel.action', {
+                            fileName: fileName,
+                            headers: headers,
+                            json: json
+                        });
+                    }
+                });
             }
         }
     });
@@ -113,10 +149,10 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
                     laypage.render({
                             elem: 'table-pages'
                             , count: data.pageBean.recordNum
-                            ,limit: 8
+                            , limit: 8
                             , layout: ['prev', 'page', 'next', 'count', 'skip']
                             , jump: function (obj, first) {
-                                if(!first) {
+                                if (!first) {
                                     formData.pageNum = obj.curr;
                                     $.ajax({
                                         url: 'http://47.94.206.242/meet/admin/findOperationByCondition.action',//切分页的接口

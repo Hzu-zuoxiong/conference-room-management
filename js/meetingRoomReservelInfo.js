@@ -18,6 +18,7 @@ layui.use(['jquery', 'laydate', 'layer', 'laypage', 'element', 'form'], function
         data: {
             items: [],
             changeItems: {},
+            exportJson: [],
             parameter: {
                 name: [],
                 value: []
@@ -59,9 +60,9 @@ layui.use(['jquery', 'laydate', 'layer', 'laypage', 'element', 'form'], function
                                                         ManagerContact: ""
                                                     };
                                                     //将管理员字段截取出管理员与管理员联系方式
-                                                    for(var i = 0; i < that.items.length; i++) {
+                                                    for (var i = 0; i < that.items.length; i++) {
                                                         // console.log(that.items[i].roomManager);
-                                                        if(that.items[i].roomManager !== null) {
+                                                        if (that.items[i].roomManager !== null) {
                                                             var manager = that.items[i].room.roomManager.split("#");
                                                             tempManager.ManagerName = manager[0];
                                                             tempManager.ManagerContact = manager[1];
@@ -90,9 +91,9 @@ layui.use(['jquery', 'laydate', 'layer', 'laypage', 'element', 'form'], function
                                             ManagerContact: ""
                                         };
                                         //将管理员字段截取出管理员与管理员联系方式
-                                        for(var i = 0; i < that.items.length; i++) {
+                                        for (var i = 0; i < that.items.length; i++) {
                                             // console.log(that.items[i].roomManager);
-                                            if(that.items[i].roomManager !== null) {
+                                            if (that.items[i].roomManager !== null) {
                                                 var manager = that.items[i].room.roomManager.split("#");
                                                 tempManager.ManagerName = manager[0];
                                                 tempManager.ManagerContact = manager[1];
@@ -118,23 +119,23 @@ layui.use(['jquery', 'laydate', 'layer', 'laypage', 'element', 'form'], function
                 var name, value;
                 var str = location.href; //取得整个地址栏
                 var num = str.indexOf("?");
-                str = str.substr(num+1);
+                str = str.substr(num + 1);
 
                 var arr = str.split("&"); //各个参数放到数组里
-                for(var i = 0; i < arr.length; i++){
+                for (var i = 0; i < arr.length; i++) {
                     num = arr[i].indexOf("=");
-                    if(num>0){
-                        this.parameter.name.push(decodeURIComponent(arr[i].substring(0,num)));
-                        this.parameter.value.push(decodeURIComponent(arr[i].substr(num+1)));
+                    if (num > 0) {
+                        this.parameter.name.push(decodeURIComponent(arr[i].substring(0, num)));
+                        this.parameter.value.push(decodeURIComponent(arr[i].substr(num + 1)));
                     }
                 }
 
             },
             searchFromUrl: function () {
-                $('#meetingRoomInfo').css("backgroundColor","#282b33");
-                $('#meetingRoomInfo').css("color","#bfc0c2");
-                $('#meetingRoomReservelInfo').css("backgroundColor","#009688");
-                $('#meetingRoomReservelInfo').css("color","#fff");
+                $('#meetingRoomInfo').css("backgroundColor", "#282b33");
+                $('#meetingRoomInfo').css("color", "#bfc0c2");
+                $('#meetingRoomReservelInfo').css("backgroundColor", "#009688");
+                $('#meetingRoomReservelInfo').css("color", "#fff");
                 var that = this;
                 $.ajax({
                     type: "GET",
@@ -172,9 +173,9 @@ layui.use(['jquery', 'laydate', 'layer', 'laypage', 'element', 'form'], function
                                                         ManagerContact: ""
                                                     };
                                                     //将管理员字段截取出管理员与管理员联系方式
-                                                    for(var i = 0; i < that.items.length; i++) {
+                                                    for (var i = 0; i < that.items.length; i++) {
                                                         // console.log(that.items[i].roomManager);
-                                                        if(that.items[i].roomManager !== null) {
+                                                        if (that.items[i].roomManager !== null) {
                                                             var manager = that.items[i].room.roomManager.split("#");
                                                             tempManager.ManagerName = manager[0];
                                                             tempManager.ManagerContact = manager[1];
@@ -204,9 +205,9 @@ layui.use(['jquery', 'laydate', 'layer', 'laypage', 'element', 'form'], function
                                             ManagerContact: ""
                                         };
                                         //将管理员字段截取出管理员与管理员联系方式
-                                        for(var i = 0; i < that.items.length; i++) {
+                                        for (var i = 0; i < that.items.length; i++) {
                                             // console.log(that.items[i].roomManager);
-                                            if(that.items[i].roomManager !== null) {
+                                            if (that.items[i].roomManager !== null) {
                                                 var manager = that.items[i].room.roomManager.split("#");
                                                 tempManager.ManagerName = manager[0];
                                                 tempManager.ManagerContact = manager[1];
@@ -226,6 +227,43 @@ layui.use(['jquery', 'laydate', 'layer', 'laypage', 'element', 'form'], function
                         }
                     }
                 });
+            },
+            exportExcel() {
+                $.ajax({
+                    data: {
+                        pageNum: -1,
+                        "room.roomName": $("#roomName").val(),
+                        "guestName": $("#guestName").val(),
+                        "useRoomBeginTime": $("#reservelTime").val().split(' - ')[0],
+                        "useRoomEndTime": $("#reservelTime").val().split(' - ')[1]
+                    },
+                    url: "http://47.94.206.242/meet/admin/findRoomAppointByCondition.action",
+                    dataType: 'JSON',
+                    type: 'POST',
+                    success(data) {
+                        this.excelJson = data.pageBean.dataList;
+                        let fileName = 'meetingRoomReservelInfo';
+                        let headers = '会议室名称,预约时间,预约者,预约者联系方式,管理员,管理员联系方式,';
+                        let json = [];
+                        for (let i in this.excelJson) {
+                            let temp = {};
+                            let roomManager = this.excelJson[i].room.roomManager.split("#");
+                            temp['会议室名称'] = this.excelJson[i].room.roomName;
+                            temp['预约时间'] = "" + dateFormate(this.excelJson[i].appointStart, "yyyy-MM-dd hh:mm:ss") + " -- " + dateFormate(this.excelJson[i].appointEnd, "yyyy-MM-dd hh:mm:ss");
+                            temp['预约者'] = this.excelJson[i].guestName;
+                            temp['预约者联系方式'] = this.excelJson[i].guestTelephone;
+                            temp['管理员'] = roomManager[0];
+                            temp['管理员联系方式'] = roomManager[1];
+                            json.push(temp);
+                        }
+                        json = JSON.stringify(json);
+                        Excelpost('http://47.94.206.242/meet/admin/getExcel.action', {
+                            fileName: fileName,
+                            headers: headers,
+                            json: json
+                        });
+                    }
+                });
             }
         }
     });
@@ -235,24 +273,24 @@ layui.use(['jquery', 'laydate', 'layer', 'laypage', 'element', 'form'], function
         vm.getparameter();
         console.log(vm.parameter);
         //如果从信息页跳转过来，则进行roomId查询，如果不是则进行页面初始化
-        if(vm.parameter !== undefined) {
+        if (vm.parameter !== undefined) {
             vm.searchFromUrl();
         } else {
             vm.initData();
         }
         // vm.initData();
-        $(".loading").css("display","none");
-        $(".tac").css("display","block");
+        $(".loading").css("display", "none");
+        $(".tac").css("display", "block");
     }, 500);
 
     //日历组件渲染
     laydate.render({
         elem: '#reservelTime'
-        , range : true
+        , range: true
         , type: 'date'  // 'month'  'date' 'datetime'
         , done: function (value, date, endDate) {
         }
-        ,trigger: 'click'
+        , trigger: 'click'
     });
 
     //查询操作
@@ -273,7 +311,7 @@ layui.use(['jquery', 'laydate', 'layer', 'laypage', 'element', 'form'], function
                 console.log($("#reservelTime").val().split(' - ')[0]);
                 console.log($("#reservelTime").val().split(' - ')[1]);
                 console.log("查询成功之后返回的总数据：\n" + result);
-                if(result.status == '1') {
+                if (result.status == '1') {
                     laypage.render({
                         elem: 'table-pages'
                         , count: result.pageBean.recordNum
@@ -301,9 +339,9 @@ layui.use(['jquery', 'laydate', 'layer', 'laypage', 'element', 'form'], function
                                                 ManagerContact: ""
                                             };
                                             //将管理员字段截取出管理员与管理员联系方式
-                                            for(var i = 0; i < vm.items.length; i++) {
+                                            for (var i = 0; i < vm.items.length; i++) {
                                                 // console.log(that.items[i].roomManager);
-                                                if(vm.items[i].roomManager !== null) {
+                                                if (vm.items[i].roomManager !== null) {
                                                     var manager = vm.items[i].room.roomManager.split("#");
                                                     tempManager.ManagerName = manager[0];
                                                     tempManager.ManagerContact = manager[1];
@@ -333,9 +371,9 @@ layui.use(['jquery', 'laydate', 'layer', 'laypage', 'element', 'form'], function
                                     ManagerContact: ""
                                 };
                                 //将管理员字段截取出管理员与管理员联系方式
-                                for(var i = 0; i < vm.items.length; i++) {
+                                for (var i = 0; i < vm.items.length; i++) {
                                     // console.log(that.items[i].roomManager);
-                                    if(vm.items[i].roomManager !== null) {
+                                    if (vm.items[i].roomManager !== null) {
                                         var manager = vm.items[i].room.roomManager.split("#");
                                         tempManager.ManagerName = manager[0];
                                         tempManager.ManagerContact = manager[1];
@@ -351,7 +389,7 @@ layui.use(['jquery', 'laydate', 'layer', 'laypage', 'element', 'form'], function
                             }
                         }
                     });
-                }else {
+                } else {
                     layer.msg("数据加载出错");
                 }
             }

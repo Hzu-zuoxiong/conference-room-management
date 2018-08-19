@@ -86,7 +86,7 @@
                 </div>
             </div>
             <div class="tar mt10">
-                <button class="layui-btn layui-btn-normal layui-btn-small export">导出</button>
+                <button class="layui-btn layui-btn-normal layui-btn-small export" @click="exportExcel">导出</button>
             </div>
 
             <!-- 表格列表 -->
@@ -96,7 +96,7 @@
                     <tr>
                         <th>会议室名称</th>
                         <!--  <th>会议室地址</th> -->
-                        <th>最少容纳人数</th>
+                        <th>容纳人数</th>
                         <th>占地面积</th>
                         <th>会议室管理员</th>
                         <th>管理员联系方式</th>
@@ -229,6 +229,7 @@
 <script type="text/javascript" src="layui/layui.js"></script>
 <script type="text/javascript" src="js/fastclick.js"></script>
 <script type="text/javascript" src="js/admin.js"></script>
+<script type="text/javascript" src="js/util.js"></script>
 <script type="text/javascript" src="js/meetingRoomInfo.js"></script>
 
 

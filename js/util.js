@@ -44,3 +44,20 @@ function getQueryString(key) {
     var result = window.location.search.substr(1).match(reg);
     return result ? decodeURIComponent(result[2]) : null;
 }
+
+// 导出excel,利用表单提交数据
+function Excelpost(url, params) {
+    var temp = document.createElement("form");
+    temp.action = url;
+    temp.method = "post";
+    temp.style.display = "none";
+    for (var i in params) {
+        var opt = document.createElement("input");
+        opt.name = i;
+        opt.value = params[i];
+        temp.appendChild(opt);
+    }
+    document.body.appendChild(temp);
+    temp.submit();
+    return temp;
+}

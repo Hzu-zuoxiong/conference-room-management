@@ -76,14 +76,14 @@
             </div>
             <div class="tar mt10">
                 <!-- <a class="layui-btn layui-btn-normal layui-btn-small" href="">+发布商品</a> -->
-                <button class="layui-btn layui-btn-normal layui-btn-small export">导出</button>
+                <button class="layui-btn layui-btn-normal layui-btn-small export" @click="exportExcel">导出</button>
             </div>
             <!-- 表格列表 -->
             <div class="table-list">
                 <table class="layui-table layui-list-table" lay-skin="line">
                     <thead>
                         <tr>
-                            <th>名称</th>
+                            <th>会议室名称</th>
                             <th>预约时间</th>
                             <th>预约者</th>
                             <th>预约者联系方式</th>
@@ -97,7 +97,7 @@
                         <td class="layui-table-first"><i class="layui-table-hd">会议室名称</i><span class="layui-table-bd">{{item.room.roomName}}</span></td>
                         <td><i class="layui-table-hd">会议室使用时间</i><span class="layui-table-bd">{{item.appointStart}} ---  {{item.appointEnd}}</span></td>
                         <td><i class="layui-table-hd">预约者</i><span class="layui-table-bd">{{item.guestName}}</span></td>
-                        <td><i class="layui-table-hd">预约者联系方式</i><span class="layui-table-bd">13843838438</span></td>
+                        <td><i class="layui-table-hd">预约者联系方式</i><span class="layui-table-bd">{{item.guestTelephone}}</span></td>
                         <td><i class="layui-table-hd">会议室管理员</i><span class="layui-table-bd">{{item.Manager.ManagerName}}</span></td>
                         <td><i class="layui-table-hd">管理员联系方式</i><span class="layui-table-bd">{{item.Manager.ManagerContact}}</span></td>
                     </tr>

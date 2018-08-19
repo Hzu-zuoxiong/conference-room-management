@@ -47,7 +47,7 @@
                             <div class="layui-inline">
                                 <label class="layui-form-label">姓名</label>
                                 <div class="layui-input-inline">
-                                    <input class="layui-input" name="guestName" placeholder="请输入访客姓名">
+                                    <input class="layui-input" name="guestName" id="guestName" placeholder="请输入访客姓名">
                                 </div>
                             </div>
                             <div class="layui-inline">
@@ -72,7 +72,7 @@
                     </div>
                 </div>
                 <div class="tar mt10">
-                    <button class="layui-btn layui-btn-normal layui-btn-small export">导出</button>
+                    <button class="layui-btn layui-btn-normal layui-btn-small export" @click="exportExcel">导出</button>
                 </div>
                 <!-- 表格列表 -->
                 <div class="table-list">
@@ -94,8 +94,8 @@
                         <tbody id="tableResult">
                             <tr v-for="item in items">
                                 <td class='layui-table-first'><i class='layui-table-hd'>访客姓名</i><span class='layui-table-bd'>{{item.guestName}}</span></td>
-                                <td><i class='layui-table-hd'>拜访会议室名称</i><span class='layui-table-bd'>{{item.roomName}}</span></td>
-                                <td><i class='layui-table-hd'>拜访用途</i><span class='layui-table-bd'>{{item.tagName}}</span></td>
+                                <td><i class='layui-table-hd'>拜访用途</i><span class='layui-table-bd'>{{item.roomName}}</span></td>
+                                <td><i class='layui-table-hd'>拜访会议室名称</i><span class='layui-table-bd'>{{item.tagName}}</span></td>
                                 <td><i class='layui-table-hd'>拜访会议室容纳人数</i><span class='layui-table-bd'>{{item.roomPeople}}</span></td>
                                 <td><i class='layui-table-hd'>拜访会议室占地面积</i><span class='layui-table-bd'>{{item.roomArea}}</span></td>
                                 <td><i class='layui-table-hd'>开始拜访时间</i><span class='layui-table-bd'>{{item.visitArriveTime}}</span></td>

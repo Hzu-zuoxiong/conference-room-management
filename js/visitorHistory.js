@@ -29,7 +29,8 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
     var vm = new Vue({
         el: '#app',
         data: {
-            items: {}
+            items: {},
+            excelJson: []
         },
         methods: {
             initData() {
@@ -49,11 +50,11 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
                                 , jump: function (obj, first) {
                                     if (!first) {
                                         $.ajax({
-                                            url: 'http://47.94.206.242/meet/admin/findVisitByCondition.action',//切分页的接口
+                                            url: 'http://47.94.206.242/meet/admin/findVisitByCondition.action',
                                             dataType: 'json',
                                             data: {
                                                 "guestName": $("#guestName").val(),
-                                                "tagName": $("select-type").val(),
+                                                "tagId": $("#select-type").val(),
                                                 "visitArriveTime": $("#visitTime").val().split(" - ")[0],
                                                 "visitLeaveTime": $("#visitTime").val().split(" - ")[1],
                                                 "pageNum": obj.curr
@@ -92,6 +93,43 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
 
                     }
                 })
+            },
+            exportExcel() {
+                $.ajax({
+                    data: {
+                        "pageNum": -1,
+                        "guestName": $("#guestName").val(),
+                        "tagId": $("#select-type").val(),
+                        "visitArriveTime": $("#visitTime").val().split(" - ")[0],
+                        "visitLeaveTime": $("#visitTime").val().split(" - ")[1],
+                    },
+                    url: "http://47.94.206.242/meet/admin/findVisitByCondition.action",
+                    dataType: 'JSON',
+                    type: 'POST',
+                    success(data) {
+                        console.log(data);
+                        this.excelJson = data.pageBean.dataList;
+                        console.log(this.excelJson);
+                        let fileName = 'visitHistory';
+                        let headers = '姓名,会议室名称,用途,容纳人数,占地面积,开始时间,结束时间,';
+                        let json = [];
+                        console.log(this.excelJson);
+                        for (let i in this.excelJson) {
+                            let temp = {};
+                            temp['姓名'] = this.excelJson[i].guestName;
+                            temp['用途'] = this.excelJson[i].tagName;
+                            temp['会议室名称'] = this.excelJson[i].roomName;
+                            temp['容纳人数'] = this.excelJson[i].roomPeople;
+                            temp['占地面积'] = this.excelJson[i].roomArea;
+                            temp['开始时间'] = ""+dateFormate(this.excelJson[i].visitArriveTime,  "yyyy-MM-dd hh:mm:ss");
+                            temp['结束时间'] = ""+dateFormate(this.excelJson[i].visitLeaveTime,  "yyyy-MM-dd hh:mm:ss");
+                            json.push(temp);
+                        }
+                        json = JSON.stringify(json);
+                        console.log(json);
+                        Excelpost('http://47.94.206.242/meet/admin/getExcel.action', {fileName: fileName, headers: headers, json: json});
+                    }
+                });
             }
         }
     });
