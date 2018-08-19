@@ -30,7 +30,7 @@ layui.use(['jquery', 'laydate', 'layer', 'laypage', 'element', 'form'], function
                 console.log("initData");
                 var that = this;
                 $.ajax({
-                    type: "GET",
+                    type: "POST",
                     url: "http://47.94.206.242/meet/admin/findUserByCondition.action",
                     dataType: "json",
                     success: function (result) {
@@ -48,7 +48,8 @@ layui.use(['jquery', 'laydate', 'layer', 'laypage', 'element', 'form'], function
                                             data: {
                                                 "userId": $("#userId").val(),
                                                 "userName": $("#userName").val(),
-                                                "userEmail": $("#userEmail").val()
+                                                "userEmail": $("#userEmail").val(),
+                                                pageNum: obj.curr
                                             },
                                             type: 'POST',
                                             success: function (data) {
@@ -67,6 +68,7 @@ layui.use(['jquery', 'laydate', 'layer', 'laypage', 'element', 'form'], function
                                         });
                                     } else {
                                         that.items = result.pageBean.dataList;
+                                        console.log(that.items);
                                         for (var i = 0; i < that.items.length; i++) {
                                             that.items[i].userLoginPreTime = dateFormate(that.items[i].userLoginPreTime, "yyyy-MM-dd hh:mm:ss");
                                         }
