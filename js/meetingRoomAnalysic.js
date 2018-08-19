@@ -271,25 +271,25 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
         });
     };
     //会议室容量，折线图
-    var drawMetingRoomAreaAnalysic = function (beginTime, endTime, name, index=0) {
+    var drawMetingRoomAreaAnalysic = function (beginTime, endTime, name, index = 0) {
         $('.loadingContent2').fadeOut();
         var myChart = echarts.init(document.getElementById('meetingRoomCapacityAnalysic'));
         const quarter = ['第一季度', '第二季度', '第三季度', '第四季度'];
-        const month = ['1号', '2号', '3号', '4号', '5号', '6号', '7号', '8号', '9号', '10号', '11号', '12号', '13号', '14号', '15号', '16号',
-            '17号', '18号', '19号', '20号', '21号', '22号', '23号', '24号', '25号', '26号', '27号', '28号', '29号', '30号', '31号'];
+        const month = ['1号', '2号', '3号', '4号', '5号', '6号', '7号', '8号', '9号', '10号', '11号', '12号', '13号', '14号', '15号', '16号', '17号', '18号', '19号', '20号', '21号', '22号', '23号', '24号', '25号', '26号', '27号', '28号', '29号', '30号', '31号'];
         const weekend = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
 
         //判断选择季度、月、周
         var radioNum = document.getElementsByName('time');
-        // 默认季度
-        var xAx = quarter;
-        var queryKind = 2;
+        console.log(radioNum);
         if (radioNum[1].checked) {
             queryKind = 1;
             xAx = month;
         } else if (radioNum[2].checked) {
             queryKind = 0;
             xAx = weekend;
+        } else if (radioNum[0].checked) {
+            var xAx = quarter;
+            var queryKind = 2;
         }
 
         //判断选择的容量
@@ -354,7 +354,7 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
 
     //会议室容量折线图，季度年月选项事件
     $(".demo--radio:radio").click(function () {
-        drawMetingRoomAreaAnalysic(beginTime, endTime, fanIndex, fanValue);
+        drawMetingRoomAreaAnalysic(beginTime, endTime, fanValue, fanIndex);
     });
     //日历组件渲染
     laydate.render({
@@ -365,7 +365,7 @@ layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function
             beginTime = value;
             endTime = endDate;
             console.log('日历：' + beginTime + ' ' + endDate);
-            drawMetingRoomAreaAnalysic(value, endDate, fanIndex, fanValue);
+            drawMetingRoomAreaAnalysic(value, endDate, fanValue, fanIndex);
         }
         , trigger: 'click'
     });

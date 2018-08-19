@@ -5,10 +5,10 @@ layui.use(['jquery', 'layer'], function () {
     function popup(str, func) {
         layer.open({
             title: '提示',
+            btn: ['确定'],
             success: func,
             closeBtn: 0,
             shade: 0.5,
-            time: 1000,
             anim: 5,
             move: false,
             area: ['250px', '160px'],

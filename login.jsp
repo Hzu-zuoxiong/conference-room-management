@@ -28,7 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <li><input id="username" type="text" placeholder="请输入账号"></li>
                 <li><input id="password" type="password" placeholder="请输入密码"></li>
                 <li><a id="login" class="btn">登 录</a></li>
-                <li class="tar"><a href="forgetPassword.html">忘记密码？</a></li>
+                <li class="tar"><a href="forgetPass.html">忘记密码？</a></li>
             </ul>
         </div>
 </div>

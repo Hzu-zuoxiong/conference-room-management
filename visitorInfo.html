@@ -39,7 +39,7 @@
     </div>
 
     <!-- 主体 -->
-    <div class="layui-body" id="app">
+    <div class="layui-body">
         <!-- 主要内容 -->
         <div class="container">
             <!-- 搜索条件 -->
@@ -74,7 +74,7 @@
                 <button class="layui-btn layui-btn-normal layui-btn-small export" id="exportExcel">导出</button>
             </div>
             <!-- 表格列表 -->
-            <div class="table-list" id="content">
+            <div class="table-list" id="app">
                 <table class="layui-table layui-list-table" lay-skin="line" id="test">
                     <thead>
                     <tr>
@@ -114,19 +114,20 @@
             </div>
         </div>
     </div>
-    <!-- 可不引入 -->
-    <script type="text/javascript" src="js/vue.min.js"></script>
-    <script type="text/javascript" src="layui/layui.js"></script>
-    <script type="text/javascript" src="js/fastclick.js"></script>
-    <script type="text/javascript" src="js/admin.js"></script>
-    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
-    <script type="text/javascript" src="js/jquery.tabletojson.min.js"></script>
-    <script type="text/javascript" src="js/visitorInfo.js"></script>
+</div>
+<!-- 可不引入 -->
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script type="text/javascript" src="layui/layui.js"></script>
+<script type="text/javascript" src="js/fastclick.js"></script>
+<script type="text/javascript" src="js/admin.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/jquery.tabletojson.min.js"></script>
+<script type="text/javascript" src="js/visitorInfo.js"></script>
 
 </body>
 <script type="text/javascript">
-//    var table = $("#test").tableToJSON();
-//    console.log(table);
+    //    var table = $("#test").tableToJSON();
+    //    console.log(table);
     //导出excel
     function exportExcel(fileName, tableId) {
         var table = $("#" + tableId).tableToJSON();
@@ -148,10 +149,10 @@
         temp.action = url;
         temp.method = "post";
         temp.style.display = "none";
-        for (var x in params) {
+        for (var i in params) {
             var opt = document.createElement("input");
-            opt.name = x;
-            opt.value = params[x];
+            opt.name = i;
+            opt.value = params[i];
             temp.appendChild(opt);
         }
         document.body.appendChild(temp);

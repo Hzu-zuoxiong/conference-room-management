@@ -67,7 +67,8 @@ layui.use(['jquery', 'layer', 'form'], function () {
                     popup('\<\div style="padding:20px;">授权码过期\<\/div>');
                 }
                 else if (data.status == "-2") {
-                    //服务器出错
+                    // 用户与授权码不对应
+                    popup('\<\div style="padding:20px;">用户与授权码不对应\<\/div>');
                 } else if (data.statue == "0") {
                     //用户不存在 
                     popup('\<\div style="padding:20px;">用户不存在\<\/div>');
