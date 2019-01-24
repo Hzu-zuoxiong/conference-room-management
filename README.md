@@ -11,7 +11,14 @@
 管理员账号：admin
 管理员密码：admin-123
 
-该系统使用了vue与layui框架进行搭建、使用E-charts进行统计图表的绘制
+该系统原先使用渐进式vue与layui框架进行搭建（git版本 3bce2f3bf88855312890e1b2e1c8e5e7cd5ea4a0）
+现如今的文件目录列表为: [文件目录](/oldProjectMddir.md "文件目录")
+```
+// 可使用git回退到原版本查看
+git reset --hard 3bce2f3bf88855312890e1b2e1c8e5e7cd5ea4a0
+```
+现在已经对该系统进行重构，使用vue-cli3.0和ElementUI进行搭建,项目尚未完成，正在努力完善当中
+现如今的文件目录列表为: [文件目录](/newProjectMddir.md "文件目录")
 
 ## 效果如图：
 ![图片名称](/ReadMe/meetingRoomManagement.gif)
