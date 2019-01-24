@@ -47,6 +47,12 @@ export default {
     return {};
   },
   mixins: [Fetch],
+  mounted() {
+    window.addEventListener("enter", this.login);
+  },
+  destroyed() {
+    window.removeEventListener("enter", this.login);
+  },
   methods: {
     // 登陆
     login() {
@@ -55,13 +61,33 @@ export default {
       console.log(userName);
       console.log(password);
       if (userName !== "" && password !== "") {
-        this.$_fetch_login(this.$qs.stringify({ userName, password }))
-          .then(res => {
-            console.log(res);
-          })
-          .then(() => {
-            this.$router.push("/");
-          });
+        this.$_fetch_login(this.$qs.stringify({ userName, password })).then(
+          res => {
+            if (res.status === 1) {
+              this.$router.push("/");
+            } else if (res.status === 0) {
+              this.$message({
+                message: "用户不存在！",
+                type: "error"
+              });
+            } else if (res.status === -1) {
+              this.$message({
+                message: "授权码过期！",
+                type: "error"
+              });
+            } else if (res.status === 2) {
+              this.$message({
+                message: "用户密码错误！",
+                type: "error"
+              });
+            }
+          }
+        );
+      } else {
+        this.$message({
+          message: "账号密码不能为空！",
+          type: "warning"
+        });
       }
     }
   }
