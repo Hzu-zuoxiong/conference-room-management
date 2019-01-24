@@ -1,0 +1,123 @@
+body {
+  margin:0;
+  font-family:'Microsoft YaHei','Avenir', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+}
+
+ul {
+  padding: 0;
+  margin:0;
+  list-style: none;
+}
+a {
+  color: #e60012;
+}
+a:link,a:hover,a:visited,a:active {
+  text-decoration: none;
+}
+* {
+  box-sizing: border-box;
+}
+img {
+  max-height: 100%;
+  max-width: 100%;
+  vertical-align: middle;
+}
+button,input{
+  font-family:'Microsoft YaHei','Avenir', Helvetica, Arial, sans-serif;
+}
+label { display: inline-block; }
+.hidden {
+  display: none;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.pr {
+  position: relative;
+}
+.dib {
+  display: inline-block;
+}
+.ovh {
+  overflow: hidden;
+}
+.clearfix:before,.clearfix:after {
+  content: " ";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+.f-tal {
+  text-align: left;
+}
+.f-tac {
+  text-align: center;
+}
+.f-tar {
+  text-align: right;
+}
+.bold {
+  font-weight: bold;
+}
+.btl-red {
+  color: #e60012;
+}
+.btl-yellow {
+  color: yellow;
+}
+.btl-brown {
+  color: #ff9001;
+}
+.btl-gray {
+  color: #666;
+}
+.btl-bg-gray {
+  background: #f5f5f5;
+}
+.fs12 {
+  font-size: 12px;
+}
+.fs13 {
+  font-size: 13px;
+}
+.fs14 {
+  font-size: 14px;
+}
+.fs16 {
+  font-size: 16px;
+}
+.fs18 {
+  font-size: 18px;
+}
+.fs20 {
+  font-size: 20px;
+}
+.w100p {
+  width: 100%;
+}
+.w50p {
+  width: 50%;
+}
+
+
+.el-dialog__header {
+  background-color: #f5f5f5;
+}
+
+.el-checkbox__circle .el-checkbox__inner {
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  &::after {
+    left: 7px;
+    top: 2px;
+    width: 5px;
+    height: 11px;
+    border-width: 2px;
+  }
+}

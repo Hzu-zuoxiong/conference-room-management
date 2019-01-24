@@ -1,0 +1,67 @@
+.main--step {
+  margin-top: 40px;
+  padding: 40px 120px;
+  border: solid 1px #ccc;
+  border-top: solid 3px #E04147;
+}
+
+.icon_down {
+  transition: transform 0.3s;
+}
+
+.icon_up {
+  transform: rotate(-180deg);
+}
+
+.f-cb {
+  *zoom: 1;
+}
+
+.f-cb:after,
+.f-cb:before {
+  content: '';
+  display: table;
+}
+
+.f-cb:after {
+  clear: both;
+}
+.f-fl {
+  float: left;
+}
+.f-fr {
+  float: right;
+}
+
+.f-cp {
+  cursor: pointer;
+}
+
+.ml5 {
+  margin-left: 5px;
+}
+.ml10 {
+  margin-left: 10px;
+}
+.ml15 {
+  margin-left: 15px;
+}
+.ml20 {
+  margin-left: 20px;
+}
+.mr5 {
+  margin-right: 5px;
+}
+.mr10 {
+  margin-right: 10px;
+}
+.mr15 {
+  margin-right: 15px;
+}
+.mr20 {
+  margin-right: 20px;
+}
+
+.s-fc-red {
+  color: #e60012;
+}
