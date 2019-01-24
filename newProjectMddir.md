@@ -8,25 +8,23 @@
     |-- package.json
     |-- postcss.config.js
     |-- README.md
-    |-- vue.config.js
+    |-- vue.config.js              // webpack配置文件
     |-- public
     |   |-- favicon.ico
     |   |-- index.html
-    |-- ReadMe
+    |-- ReadMe                     // 存放readme.md的图片文件 
     |   |-- meetingRoomManagement.gif
     |   |-- statisticsAndOperation.gif
     |-- src
         |-- App.vue
         |-- main.js
-        |-- router.js
-        |-- store.js
-        |-- utils.js
-        |-- assets
+        |-- router.js              // 路由文件
+        |-- store.js               // vuex
+        |-- utils.js               // 常用工具
+        |-- assets                 // 静态资源
         |   |-- logo.png
         |   |-- css
         |   |   |-- common.scss
-        |   |   |-- layui.css
-        |   |   |-- layui.mobile.css
         |   |   |-- reset.scss
         |   |   |-- variables.scss
         |   |-- images
@@ -34,34 +32,34 @@
         |       |-- closeX.png
         |       |-- nav.png
         |-- components
-        |   |-- common
-        |   |   |-- InfoSearch.vue
-        |   |   |-- vAside.vue
-        |   |   |-- vHeader.vue
-        |   |-- councilRoomManage
+        |   |-- common               // 公共组件
+        |   |   |-- InfoSearch.vue   // 搜索组件
+        |   |   |-- vAside.vue       // 侧边栏组件
+        |   |   |-- vHeader.vue      // 头部组件
+        |   |-- councilRoomManage    // 会议室管理组件
         |   |   |-- appointmentInfo.vue
         |   |   |-- councilRoomInfo.vue
         |   |   |-- usedRecord.vue
-        |   |-- IndexPage
+        |   |-- IndexPage            // 首页组件
         |   |   |-- indexPage.vue
-        |   |-- statisticalAnalysis
-        |   |   |-- roomAnalysis
+        |   |-- statisticalAnalysis  // 统计分析组件
+        |   |   |-- roomAnalysis     // 会议室统计分析
         |   |   |   |-- capacityAnalysis.vue
         |   |   |   |-- councilRoomAnalysis.vue
         |   |   |   |-- timeAnalysis.vue
-        |   |   |-- visitorAnalysis
+        |   |   |-- visitorAnalysis  // 访客统计分析
         |   |       |-- visitorActionAnalysis.vue
-        |   |-- systemSetting
+        |   |-- systemSetting        // 系统日志组件
         |   |   |-- systemLog.vue
-        |   |-- userManage
+        |   |-- userManage           // 用户信息组件
         |   |   |-- userInfo.vue
-        |   |-- visitorManage
+        |   |-- visitorManage        // 访客管理组件
         |       |-- accessRecord.vue
         |       |-- appointmentInfo.vue
         |       |-- visitorInfo.vue
-        |-- mixins
+        |-- mixins                   // 接口文件
         |   |-- ajax.js
         |   |-- fetch.js
-        |-- pages
+        |-- pages                    
             |-- index.vue
             |-- login.vue

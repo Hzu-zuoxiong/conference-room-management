@@ -162,6 +162,39 @@ export default {
         url: baseUrl + 'statDirRoomAllVisit.action'
       });
     },
+    // 访客统计分析图
+    // 访客行为统计，圆饼图
+    $_fetch_drawGuestBehave(day) {
+      return Ajax({
+        params: day,
+        method: 'GET',
+        url: baseUrl + 'statGuestRoomTag.action'
+      });
+    },
+    // 访客行为统计，柱形图
+    $_fetch_drawGuestBehaveAnalysic(guestBehaveAnalysicOptin) {
+      return Ajax({
+        params: guestBehaveAnalysicOptin,
+        method: 'GET',
+        url: baseUrl + 'statVisitByTagNameAndDay.action'
+      });
+    },
+    // 访客考勤情况，圆饼图
+    $_fetch_drawGuestAttendance(day) {
+      return Ajax({
+        params: day,
+        method: 'GET',
+        url: baseUrl + 'statAttendance.action'
+      });
+    },
+    // 访客考勤分析, 柱状图
+    $_fetch_drawGuestAttendanceAnalysic(guestAttendanceOptin) {
+      return Ajax({
+        params: guestAttendanceOptin,
+        method: 'GET',
+        url: baseUrl + 'statDifAttendanceAndGuestName.action'
+      });
+    },
     // 获取用户信息数据
     $_fetch_userInfo(userInfo) {
       return Ajax({

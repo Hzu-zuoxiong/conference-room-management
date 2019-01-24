@@ -86,7 +86,24 @@ export default new Router({
           name: 'visitorActionAnalysis',
           meta: { title: 'visitorActionAnalysis' },
           component: () =>
-            import('cmpt/statisticalAnalysis/visitorAnalysis/visitorActionAnalysis.vue')
+            import('cmpt/statisticalAnalysis/visitorAnalysis/visitorActionAnalysis.vue'),
+          redirect: '/behaviorAnalysis',
+          children: [
+            {
+              path: '/behaviorAnalysis',
+              name: 'behaviorAnalysis',
+              meta: { title: 'behaviorAnalysis' },
+              component: () =>
+                import('cmpt/statisticalAnalysis/visitorAnalysis/behaviorAnalysis.vue')
+            },
+            {
+              path: '/attendanceAnalysis',
+              name: 'attendanceAnalysis',
+              meta: { title: 'attendanceAnalysis' },
+              component: () =>
+                import('cmpt/statisticalAnalysis/visitorAnalysis/attendanceAnalysis.vue')
+            }
+          ]
         },
         // 用户管理路由
         {
