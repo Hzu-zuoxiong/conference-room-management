@@ -61,9 +61,12 @@ export default {
       console.log(userName);
       console.log(password);
       if (userName !== "" && password !== "") {
-        this.$_fetch_login(this.$qs.stringify({ userName, password })).then(
+        this.$_fetch_login(this.$qs.stringify({ adminId:userName, adminPassword:password })).then(
           res => {
             if (res.status === 1) {
+              sessionStorage.setItem('userInfo', JSON.stringify({
+                admin: userName,
+              }));
               this.$router.push("/");
             } else if (res.status === 0) {
               this.$message({
