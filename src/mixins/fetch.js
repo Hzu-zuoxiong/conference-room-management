@@ -4,12 +4,19 @@ const baseUrl = 'http://47.94.206.242/meet/admin/';
 
 export default {
   methods: {
-    // 登陆接口
+    // 登陆
     $_fetch_login(loginParams) {
       return Ajax({
         method: 'POST',
         url: baseUrl + 'login.action',
         data: loginParams
+      });
+    },
+    // 退出登陆
+    $_fetch_exitLogin() {
+      return Ajax({
+        method: 'GET',
+        url: baseUrl + 'logout.action'
       });
     },
     // 导出excel

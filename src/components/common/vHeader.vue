@@ -3,7 +3,6 @@
     <el-menu
       class="el-menu"
       mode="horizontal"
-      @select="handleSelect"
       background-color="#23262E"
       text-color="#fff"
       active-text-color="#fff"
@@ -14,26 +13,29 @@
       <h1 class="title">掌上智能访客及会议室管理系统</h1>
       <el-submenu index="2" class="right">
         <template slot="title">系统管理员</template>
-        <el-menu-item index="2-1">修改密码</el-menu-item>
-        <el-menu-item index="2-2">退出登陆</el-menu-item>
+        <el-menu-item index="2-1">账户管理</el-menu-item>
+        <el-menu-item index="2-2" @click="exitLogin">退出登陆</el-menu-item>
       </el-submenu>
     </el-menu>
   </div>
 </template>
 
 <script>
+import Fetch from "mixins/fetch";
+
 export default {
   name: "vHeader",
-  data() {
-    return {};
-  },
+  mixins: [Fetch],
   methods: {
-    handleSelect(key, keyPath) {
-      console.log(key, keyPath);
-    },
     // 显示隐藏侧边栏
     toggleSide() {
       this.$bus.$emit("sideVisible");
+    },
+    exitLogin() {
+      sessionStorage.removeItem("userInfo");
+      this.$_fetch_exitLogin().then(() => {
+        this.$router.push("/login");
+      });
     }
   }
 };
