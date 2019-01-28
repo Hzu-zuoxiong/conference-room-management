@@ -2,17 +2,52 @@
   <div class="capacityAnalysis-wrapper">
     <div class="top">
       <div id="meetingRoomCapacity" class="meetingRoomCapacity"></div>
-      <div class="meetingRoomAreaAnalysic">
-        <div id="meetingRoomAreaAnalysic" class="draw" v-loading="loading"></div>
+      <div class="meetingRoomAreaAnalysic" v-loading="loading">
+        <el-button
+          type="primary"
+          class="meetingRoomAreaSelect"
+          size="small"
+          @click="visible = true"
+          plain
+        >参数选择</el-button>
+        <div id="meetingRoomAreaAnalysic" class="draw"></div>
       </div>
     </div>
     <div id="meetingRoomCapacityUsedNumber" class="meetingRoomCapacityUsedNumber"></div>
+    <!-- 折线图参数 -->
+    <div class="mask" v-show="visible">
+      <div class="selectParams">
+        <div class="closeX" @click="visible = false">×</div>
+        <el-form class="selectForm" label-position="left" label-width="80px" :model="selectParams">
+          <el-form-item label="时间段">
+            <el-date-picker
+              v-model="selectParams.meetingRoomAreaTime"
+              type="daterange"
+              align="right"
+              unlink-panels
+              start-placeholder="开始日期"
+              range-separator="至"
+              end-placeholder="结束日期"
+            ></el-date-picker>
+          </el-form-item>
+          <el-form-item label="时间单位">
+            <el-radio-group v-model="selectParams.meetingRoomAreaKind">
+              <el-radio :label="2" border>季度</el-radio>
+              <el-radio :label="1" border>月</el-radio>
+              <el-radio :label="0" border>周</el-radio>
+            </el-radio-group>
+          </el-form-item>
+          <el-button type="primary" class="ensureSelect" @click="ensureSelect">确认选择</el-button>
+        </el-form>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import Echarts from "echarts";
 import Fetch from "mixins/fetch";
+import { dateFormate } from "@/utils";
 
 export default {
   components: {},
@@ -20,7 +55,16 @@ export default {
   data() {
     return {
       loading: true,
-      selectTime: ""
+      selectTime: "",
+      visible: false,
+      selectParams: {
+        meetingRoomAreaTime: "",
+        beginTime: "",
+        endTime: "",
+        meetingRoomAreaKind: 2,
+        name: "",
+        index: 0
+      }
     };
   },
   created() {
@@ -85,18 +129,16 @@ export default {
         drawMeetingRoomCapacity.setOption(meetingRoomCapacityOption);
         drawMeetingRoomCapacity.on("mouseover", params => {
           this.loading = false;
-          this.drawMeetingRoomAreaAnalysic(
-            "",
-            "",
-            params.name,
-            params.dataIndex
-          );
+          this.selectParams.name = params.name;
+          this.selectParams.index = params.dataIndex;
+          this.drawMeetingRoomAreaAnalysic(this.selectParams);
         });
       });
     },
     //会议室容量，折线图
-    drawMeetingRoomAreaAnalysic(beginTime, endTime, name, index = 0) {
-      // const quarter = ["第一季度", "第二季度", "第三季度", "第四季度"];
+    drawMeetingRoomAreaAnalysic(selectParams) {
+      const { beginTime, endTime, name, index } = selectParams;
+      const quarter = ["第一季度", "第二季度", "第三季度", "第四季度"];
       const month = [
         "1号",
         "2号",
@@ -130,7 +172,17 @@ export default {
         "30号",
         "31号"
       ];
-      // const weekend = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"];
+      const weekend = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"];
+      let xAx;
+      const queryKind = this.selectParams.meetingRoomAreaKind;
+      if (queryKind === 0) {
+        xAx = weekend;
+      } else if (queryKind === 1) {
+        xAx = month;
+      } else if (queryKind === 2) {
+        xAx = quarter;
+      }
+
       //判断选择的容量
       let maxPeople = 0;
       if (index === 0) {
@@ -147,7 +199,7 @@ export default {
       this.$_fetch_drawMeetingRoomAreaAnalysic({
         beginTime: beginTime,
         endTime: endTime,
-        queryKind: 1,
+        queryKind,
         maxPeople: maxPeople
       }).then(res => {
         var meetingRoomAreaAnalysicOption = {
@@ -162,7 +214,7 @@ export default {
           xAxis: {
             type: "category",
             boundaryGap: false,
-            data: month
+            data: xAx
           },
           yAxis: {
             type: "value"
@@ -237,16 +289,32 @@ export default {
           meetingRoomCapacityUsedNumberOption
         );
       });
+    },
+    // 折线图参数
+    ensureSelect() {
+      this.visible = false;
+      this.drawMeetingRoomAreaAnalysic(this.selectParams);
     }
   },
-  watch: {}
+  watch: {
+    "selectParams.meetingRoomAreaTime"() {
+      this.selectParams.beginTime = dateFormate(
+        this.selectParams.meetingRoomAreaTime[0].getTime(),
+        "yyyy-MM-dd"
+      );
+      this.selectParams.endTime = dateFormate(
+        this.selectParams.meetingRoomAreaTime[1].getTime(),
+        "yyyy-MM-dd"
+      );
+    }
+  }
 };
 </script>
 
 <style lang="scss" scoped>
 .capacityAnalysis-wrapper {
   margin: 10px;
-  height: 100%;
+  width: 100%;
   .top {
     margin-top: 20px;
     width: 100%;
@@ -257,9 +325,20 @@ export default {
     }
     .meetingRoomAreaAnalysic {
       display: inline-block;
+      position: relative;
+      z-index: 100;
+      padding: 10px;
       width: 50%;
+      text-align: center;
+      .meetingRoomAreaSelect {
+        position: absolute;
+        top: 0;
+        left: 60px;
+        z-index: 200;
+        cursor: pointer;
+      }
       .draw {
-        height: 300px;
+        height: 350px;
       }
     }
   }
@@ -267,6 +346,44 @@ export default {
     margin-top: 20px;
     width: 100%;
     height: 350px;
+  }
+  .mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.7);
+    .selectParams {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 500px;
+      height: 250px;
+      margin-left: -250px;
+      margin-top: -125px;
+      background-color: #fff;
+      border: 1px solid #333;
+      .closeX {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        width: 20px;
+        height: 20px;
+        text-align: center;
+        font-size: 38px;
+        color: #f56c6c;
+        cursor: pointer;
+      }
+      .selectForm {
+        margin-top: 55px;
+        padding-left: 25px;
+        .ensureSelect {
+          margin-left: 180px;
+        }
+      }
+    }
   }
 }
 </style>
