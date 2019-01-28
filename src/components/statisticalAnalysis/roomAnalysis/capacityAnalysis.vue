@@ -4,7 +4,7 @@
       <div id="meetingRoomCapacity" class="meetingRoomCapacity"></div>
       <div class="meetingRoomAreaAnalysic" v-loading="loading">
         <el-button
-          type="primary"
+          type="success"
           class="meetingRoomAreaSelect"
           size="small"
           @click="visible = true"
@@ -14,6 +14,7 @@
       </div>
     </div>
     <div id="meetingRoomCapacityUsedNumber" class="meetingRoomCapacityUsedNumber"></div>
+
     <!-- 折线图参数 -->
     <div class="mask" v-show="visible">
       <div class="selectParams">

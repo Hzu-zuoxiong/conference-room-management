@@ -61,24 +61,7 @@ const router = new Router({
           name: 'councilRoomAnalysis',
           meta: { title: '会议室统计', requireLogin: true },
           component: () =>
-            import('cmpt/statisticalAnalysis/roomAnalysis/councilRoomAnalysis.vue'),
-          redirect: '/timeAnalysis',
-          children: [
-            {
-              path: '/timeAnalysis',
-              name: 'timeAnalysis',
-              meta: { title: '会议室时间统计', requireLogin: true },
-              component: () =>
-                import('cmpt/statisticalAnalysis/roomAnalysis/timeAnalysis.vue')
-            },
-            {
-              path: '/capacityAnalysis',
-              name: 'capacityAnalysis',
-              meta: { title: '会议室容量统计', requireLogin: true },
-              component: () =>
-                import('cmpt/statisticalAnalysis/roomAnalysis/capacityAnalysis.vue')
-            }
-          ]
+            import('cmpt/statisticalAnalysis/roomAnalysis/councilRoomAnalysis.vue')
         },
         {
           path: '/visitorActionAnalysis',
