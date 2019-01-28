@@ -13,8 +13,7 @@ export default {
   components: {},
   props: {
     visitorTime: {
-      type: Number,
-      default: -1
+      type: String
     }
   },
   data() {
@@ -32,7 +31,7 @@ export default {
   methods: {
     // 访客行为统计，圆饼图
     drawGuestBehave() {
-      this.$_fetch_drawGuestBehave({ day: this.visitorTime }).then(res => {
+      this.$_fetch_drawGuestBehave({ day: +this.visitorTime }).then(res => {
         let guestBehaveOption = {
           title: {
             text: "访客访问情况统计",
@@ -85,7 +84,7 @@ export default {
       this.loading = false;
       this.$_fetch_drawGuestBehaveAnalysic({
         tagName: name,
-        day: this.visitorTime
+        day: +this.visitorTime
       }).then(res => {
         let guestName = [];
         let guestTimes = [];
@@ -162,7 +161,12 @@ export default {
       });
     }
   },
-  watch: {}
+  watch: {
+    visitorTime() {
+      this.drawGuestBehave();
+      this.loading = true;
+    }
+  }
 };
 </script>
 

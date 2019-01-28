@@ -85,24 +85,7 @@ const router = new Router({
           name: 'visitorActionAnalysis',
           meta: { title: '访客统计', requireLogin: true },
           component: () =>
-            import('cmpt/statisticalAnalysis/visitorAnalysis/visitorActionAnalysis.vue'),
-          redirect: '/behaviorAnalysis',
-          children: [
-            {
-              path: '/behaviorAnalysis',
-              name: 'behaviorAnalysis',
-              meta: { title: '访客行为统计', requireLogin: true },
-              component: () =>
-                import('cmpt/statisticalAnalysis/visitorAnalysis/behaviorAnalysis.vue')
-            },
-            {
-              path: '/attendanceAnalysis',
-              name: 'attendanceAnalysis',
-              meta: { title: '访客考勤统计', requireLogin: true },
-              component: () =>
-                import('cmpt/statisticalAnalysis/visitorAnalysis/attendanceAnalysis.vue')
-            }
-          ]
+            import('cmpt/statisticalAnalysis/visitorAnalysis/visitorActionAnalysis.vue')
         },
         // 用户管理路由
         {

@@ -24,12 +24,11 @@ git reset --hard 3bce2f3bf88855312890e1b2e1c8e5e7cd5ea4a0
 
 现在已经对该系统进行重构，使用 vue-cli3.0 和 ElementUI 进行搭建,项目尚未完成，正在努力完善当中
 
-现如今的文件目录列表为: [文件目录](/newProjectMddir.md '文件目录'
+现如今的文件目录列表为: [文件目录](/newProjectMddir.md '文件目录')
 
 目前重构后还存在的 bug 有：
 
 - 会议室与访客的详细信息跳转到预约信息的 bug
-- 未实现访客统计日期条件限制
 - 退出登陆功能(需修改后台接口)
 - 未实现修改密码功能
 - 部分接口报 Provisional headers are shown 错误

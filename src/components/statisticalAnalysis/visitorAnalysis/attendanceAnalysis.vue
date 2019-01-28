@@ -10,11 +10,9 @@ import Echarts from "echarts";
 import Fetch from "mixins/fetch";
 
 export default {
-  components: {},
   props: {
     visitorTime: {
-      type: Number,
-      default: -1
+      type: String
     }
   },
   data() {
@@ -32,7 +30,7 @@ export default {
   methods: {
     // 访客考勤情况，圆饼图
     drawGuestAttendance() {
-      this.$_fetch_drawGuestAttendance({ day: this.visitorTime }).then(res => {
+      this.$_fetch_drawGuestAttendance({ day: +this.visitorTime }).then(res => {
         let guestAttendanceOption = {
           title: {
             text: "访客考勤统计情况",
@@ -84,7 +82,7 @@ export default {
       this.loading = false;
       this.$_fetch_drawGuestAttendanceAnalysic({
         status: index,
-        day: this.visitorTime
+        day: +this.visitorTime
       }).then(res => {
         let guestName = [];
         let guestTimes = [];
@@ -162,7 +160,12 @@ export default {
       });
     }
   },
-  watch: {}
+  watch: {
+    visitorTime() {
+      this.drawGuestAttendance();
+      this.loading = true;
+    }
+  }
 };
 </script>
 
