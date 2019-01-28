@@ -13,7 +13,7 @@
       <h1 class="title">掌上智能访客及会议室管理系统</h1>
       <el-submenu index="2" class="right">
         <template slot="title">系统管理员</template>
-        <el-menu-item index="2-1">账户管理</el-menu-item>
+        <el-menu-item index="2-1" @click="$emit('updateAccount');">修改密码</el-menu-item>
         <el-menu-item index="2-2" @click="exitLogin">退出登陆</el-menu-item>
       </el-submenu>
     </el-menu>

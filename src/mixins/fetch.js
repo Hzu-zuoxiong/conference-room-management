@@ -19,6 +19,14 @@ export default {
         url: baseUrl + 'logout.action'
       });
     },
+    // 修改密码
+    $_fetch_forgetPassWord(forgetParams) {
+      return Ajax({
+        data: forgetParams,
+        method: 'POST',
+        url: baseUrl + 'findBackPassword.action'
+      });
+    },
     // 导出excel
     $_fetch_exportExcel(excelParams) {
       return Ajax({

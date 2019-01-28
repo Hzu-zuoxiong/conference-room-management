@@ -30,7 +30,6 @@ git reset --hard 3bce2f3bf88855312890e1b2e1c8e5e7cd5ea4a0
 
 - 会议室与访客的详细信息跳转到预约信息的 bug
 - 退出登陆功能(需修改后台接口)
-- 未实现修改密码功能
 - 部分接口报 Provisional headers are shown 错误
 
 项目运行
