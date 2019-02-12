@@ -32,7 +32,10 @@ export default {
       return Ajax({
         method: 'POST',
         url: baseUrl + 'getExcel.action',
-        data: excelParams
+        data: excelParams,
+        header: {
+          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+        }
       });
     },
     // 首页--近七年使用情况图表数据接口

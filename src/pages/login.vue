@@ -61,31 +61,34 @@ export default {
       console.log(userName);
       console.log(password);
       if (userName !== "" && password !== "") {
-        this.$_fetch_login(this.$qs.stringify({ adminId:userName, adminPassword:password })).then(
-          res => {
-            if (res.status === 1) {
-              sessionStorage.setItem('userInfo', JSON.stringify({
-                admin: userName,
-              }));
-              this.$router.push("/");
-            } else if (res.status === 0) {
-              this.$message({
-                message: "用户不存在！",
-                type: "error"
-              });
-            } else if (res.status === -1) {
-              this.$message({
-                message: "授权码过期！",
-                type: "error"
-              });
-            } else if (res.status === 2) {
-              this.$message({
-                message: "用户密码错误！",
-                type: "error"
-              });
-            }
+        this.$_fetch_login(
+          this.$qs.stringify({ adminId: userName, adminPassword: password })
+        ).then(res => {
+          if (res.status === 1) {
+            sessionStorage.setItem(
+              "userInfo",
+              JSON.stringify({
+                admin: userName
+              })
+            );
+            this.$router.push("/");
+          } else if (res.status === 0) {
+            this.$message({
+              message: "用户不存在！",
+              type: "error"
+            });
+          } else if (res.status === -1) {
+            this.$message({
+              message: "授权码过期！",
+              type: "error"
+            });
+          } else if (res.status === 2) {
+            this.$message({
+              message: "用户密码错误！",
+              type: "error"
+            });
           }
-        );
+        });
       } else {
         this.$message({
           message: "账号密码不能为空！",

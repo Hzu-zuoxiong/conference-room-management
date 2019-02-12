@@ -117,7 +117,9 @@ export default {
           json.push(temp);
         }
         json = JSON.stringify(json);
-        this.$_fetch_exportExcel({ fileName, headers, json });
+        this.$_fetch_exportExcel(
+          this.$qs.stringify({ fileName, headers, json })
+        );
       });
     },
     // 分页

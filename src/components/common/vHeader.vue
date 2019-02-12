@@ -21,21 +21,20 @@
 </template>
 
 <script>
-import Fetch from "mixins/fetch";
+import Fetch from 'mixins/fetch';
 
 export default {
-  name: "vHeader",
+  name: 'vHeader',
   mixins: [Fetch],
   methods: {
     // 显示隐藏侧边栏
     toggleSide() {
-      this.$bus.$emit("sideVisible");
+      this.$bus.$emit('sideVisible');
     },
     exitLogin() {
-      sessionStorage.removeItem("userInfo");
-      this.$_fetch_exitLogin().then(() => {
-        this.$router.push("/login");
-      });
+      sessionStorage.removeItem('userInfo');
+      this.$_fetch_exitLogin();
+      this.$router.push('/login');
     }
   }
 };
