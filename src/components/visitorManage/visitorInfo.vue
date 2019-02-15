@@ -29,7 +29,7 @@
           :data="visiInfo"
           stripe
           :cell-style="guestNameCellStyle"
-          @cell-click="jumpToAppointmentInfo">
+          @row-click="jumpToAppointmentInfo">
           <el-table-column prop="guestName" label="姓名" header-align="center"></el-table-column>
           <el-table-column prop="guestCredit" label="身份证" header-align="center"></el-table-column>
           <el-table-column prop="guestTelephone" label="联系方式" header-align="center"></el-table-column>
@@ -89,11 +89,13 @@ export default {
       return textCenter;
     },
     // 跳转到对应访客预约信息
-    jumpToAppointmentInfo(data) {
-      this.$router.push({
-        name: "VisitorAppointmentInfo",
-        params: { guestId: data.guestId }
-      });
+    jumpToAppointmentInfo(row, event, column) {
+      if(column.label === '姓名') {
+        this.$router.push({
+          name: "VisitorAppointmentInfo",
+          params: { guestId: row.guestId }
+        });
+      }
     },
     // 导出excel
     exportExcel() {

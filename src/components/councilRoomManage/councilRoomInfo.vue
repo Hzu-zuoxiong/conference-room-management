@@ -23,7 +23,7 @@
           :data="councilRoomInfo"
           stripe
           :cell-style="roomNameCellStyle"
-          @cell-click="jumpToAppointmentInfo"
+          @row-click="jumpToAppointmentInfo"
         >
           <el-table-column prop="roomName" label="会议室名称" header-align="center" align="center"></el-table-column>
           <el-table-column prop="roomPeople" label="容纳人数" header-align="center" align="center"></el-table-column>
@@ -126,11 +126,13 @@ export default {
       return textCenter;
     },
     // 跳转到对应访客预约信息
-    jumpToAppointmentInfo(data) {
-      this.$router.push({
-        name: "councilRoomAppointmentInfo",
-        params: { roomId: data.roomId }
-      });
+    jumpToAppointmentInfo(row, event, column) {
+      if(column.label === '会议室名称') {
+        this.$router.push({
+          name: "councilRoomAppointmentInfo",
+          params: { roomId: row.roomId }
+        });
+      }
     },
     // 条件查询
     councilRoomSearch() {
