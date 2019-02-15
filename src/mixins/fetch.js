@@ -1,14 +1,19 @@
 import Ajax from './ajax.js';
 
-const baseUrl = 'http://47.94.206.242/meet/admin/';
-
 export default {
   methods: {
+    // 获取账户信息
+    $_fetch_account() {
+      return Ajax({
+        method: 'GET',
+        url: 'getAccount.action.action'
+      });
+    },
     // 登陆
     $_fetch_login(loginParams) {
       return Ajax({
         method: 'POST',
-        url: baseUrl + 'login.action',
+        url: 'login.action',
         data: loginParams
       });
     },
@@ -16,7 +21,7 @@ export default {
     $_fetch_exitLogin() {
       return Ajax({
         method: 'GET',
-        url: baseUrl + 'logout.action'
+        url: 'logout.action'
       });
     },
     // 修改密码
@@ -24,14 +29,14 @@ export default {
       return Ajax({
         data: forgetParams,
         method: 'POST',
-        url: baseUrl + 'findBackPassword.action'
+        url: 'findBackPassword.action'
       });
     },
     // 导出excel
     $_fetch_exportExcel(excelParams) {
       return Ajax({
         method: 'POST',
-        url: baseUrl + 'getExcel.action',
+        url: 'getExcel.action',
         data: excelParams,
         header: {
           'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
@@ -43,21 +48,21 @@ export default {
     $_fetch_visitReservation() {
       return Ajax({
         method: 'GET',
-        url: baseUrl + 'statVisitByYearRange.action'
+        url: 'statVisitByYearRange.action'
       });
     },
     // 近七年会议室取消数据
     $_fetch_cancelReservation() {
       return Ajax({
         method: 'GET',
-        url: baseUrl + 'statAppintmentByYearRangeByStatus.action?status=-1'
+        url: 'statAppintmentByYearRangeByStatus.action?status=-1'
       });
     },
     // 近七年会议室爽约数据
     $_fetch_breakReservation() {
       return Ajax({
         method: 'GET',
-        url: baseUrl + 'statAppintmentByYearRangeByStatus.action?status=-2'
+        url: 'statAppintmentByYearRangeByStatus.action?status=-2'
       });
     },
     // 访客管理页
@@ -66,14 +71,14 @@ export default {
       return Ajax({
         params: visitorInfoParams,
         method: 'GET',
-        url: baseUrl + 'findGuestByCondition.action'
+        url: 'findGuestByCondition.action'
       });
     },
     // 预约用途数据
     $_fetch_appointPurpose() {
       return Ajax({
         method: 'GET',
-        url: baseUrl + 'findAllTag.action'
+        url: 'findAllTag.action'
       });
     },
     // 访客预约数据
@@ -81,7 +86,7 @@ export default {
       return Ajax({
         params: AppointInfoParams,
         method: 'GET',
-        url: baseUrl + 'findAppointByCondition.action'
+        url: 'findAppointByCondition.action'
       });
     },
     // 访客访问记录
@@ -89,7 +94,7 @@ export default {
       return Ajax({
         params: useRecordParams,
         method: 'GET',
-        url: baseUrl + 'findVisitByCondition.action'
+        url: 'findVisitByCondition.action'
       });
     },
     // 会议室管理页
@@ -98,7 +103,7 @@ export default {
       return Ajax({
         params: roomInfoParams,
         method: 'GET',
-        url: baseUrl + 'findRoomByCondition.action'
+        url: 'findRoomByCondition.action'
       });
     },
     // 删除会议室信息
@@ -106,7 +111,7 @@ export default {
       return Ajax({
         params: roomId,
         method: 'GET',
-        url: baseUrl + 'deleteRoomByRoomId.action'
+        url: 'deleteRoomByRoomId.action'
       });
     },
     // 更新会议室信息
@@ -114,7 +119,7 @@ export default {
       return Ajax({
         params: councilRoomInfo,
         method: 'GET',
-        url: baseUrl + 'updateRoom.action'
+        url: 'updateRoom.action'
       });
     },
     // 会议室预订信息数据
@@ -122,7 +127,7 @@ export default {
       return Ajax({
         params: AppointmentInfo,
         method: 'GET',
-        url: baseUrl + 'findRoomAppointByCondition.action'
+        url: 'findRoomAppointByCondition.action'
       });
     },
     // 会议室使用记录数据
@@ -130,7 +135,7 @@ export default {
       return Ajax({
         params: usedRecordInfo,
         method: 'GET',
-        url: baseUrl + 'findRoomUsingByCondition.action'
+        url: 'findRoomUsingByCondition.action'
       });
     },
     // 会议室统计分析页
@@ -139,14 +144,14 @@ export default {
     $_fetch_drawMeetingRoomUsedAll() {
       return Ajax({
         method: 'GET',
-        url: baseUrl + 'statAllVistByHoursRange.action'
+        url: 'statAllVistByHoursRange.action'
       });
     },
     // 会议室时间统计，近期圆饼图
     $_fetch_drawMeetingRoomUsedNear() {
       return Ajax({
         method: 'GET',
-        url: baseUrl + 'statVisitByDayRange.action'
+        url: 'statVisitByDayRange.action'
       });
     },
     // 会议室时间统计，近期折线图
@@ -154,7 +159,7 @@ export default {
       return Ajax({
         params: dateTime,
         method: 'GET',
-        url: baseUrl + 'statVisitByTimeSpan.action'
+        url: 'statVisitByTimeSpan.action'
       });
     },
     // 容量分布统计
@@ -162,7 +167,7 @@ export default {
     $_fetch_drawMeetingRoomCapacity() {
       return Ajax({
         method: 'GET',
-        url: baseUrl + 'statRoomByPeople.action'
+        url: 'statRoomByPeople.action'
       });
     },
     //会议室容量，折线图
@@ -170,14 +175,14 @@ export default {
       return Ajax({
         params: RoomAreaInfo,
         method: 'GET',
-        url: baseUrl + 'statDirVisitByRoomPeopleAndQueryKindAndDate.action'
+        url: 'statDirVisitByRoomPeopleAndQueryKindAndDate.action'
       });
     },
     // 会议室容量，柱状图
     $_fetch_drawMeetingRoomCapacityUsedNumber() {
       return Ajax({
         method: 'GET',
-        url: baseUrl + 'statDirRoomAllVisit.action'
+        url: 'statDirRoomAllVisit.action'
       });
     },
     // 访客统计分析图
@@ -186,7 +191,7 @@ export default {
       return Ajax({
         params: day,
         method: 'GET',
-        url: baseUrl + 'statGuestRoomTag.action'
+        url: 'statGuestRoomTag.action'
       });
     },
     // 访客行为统计，柱形图
@@ -194,7 +199,7 @@ export default {
       return Ajax({
         params: guestBehaveAnalysicOptin,
         method: 'GET',
-        url: baseUrl + 'statVisitByTagNameAndDay.action'
+        url: 'statVisitByTagNameAndDay.action'
       });
     },
     // 访客考勤情况，圆饼图
@@ -202,7 +207,7 @@ export default {
       return Ajax({
         params: day,
         method: 'GET',
-        url: baseUrl + 'statAttendance.action'
+        url: 'statAttendance.action'
       });
     },
     // 访客考勤分析, 柱状图
@@ -210,7 +215,7 @@ export default {
       return Ajax({
         params: guestAttendanceOptin,
         method: 'GET',
-        url: baseUrl + 'statDifAttendanceAndGuestName.action'
+        url: 'statDifAttendanceAndGuestName.action'
       });
     },
     // 获取用户信息数据
@@ -218,7 +223,7 @@ export default {
       return Ajax({
         params: userInfo,
         method: 'GET',
-        url: baseUrl + 'findUserByCondition.action'
+        url: 'findUserByCondition.action'
       });
     },
     // 更改用户权限
@@ -226,7 +231,7 @@ export default {
       return Ajax({
         params: userId,
         method: 'GET',
-        url: baseUrl + 'updateUserAuthority.action'
+        url: 'updateUserAuthority.action'
       });
     },
     // 操作日志信息数据
@@ -234,7 +239,7 @@ export default {
       return Ajax({
         params: systemLogInfo,
         method: 'GET',
-        url: baseUrl + 'findOperationByCondition.action'
+        url: 'findOperationByCondition.action'
       });
     }
   }

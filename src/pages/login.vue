@@ -47,6 +47,9 @@ export default {
     return {};
   },
   mixins: [Fetch],
+  created() {
+    this.$_fetch_account().then(res => console.table(res));
+  },
   mounted() {
     window.addEventListener("enter", this.login);
   },
