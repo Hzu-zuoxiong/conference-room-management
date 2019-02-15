@@ -28,7 +28,6 @@ git reset --hard 3bce2f3bf88855312890e1b2e1c8e5e7cd5ea4a0
 
 目前重构后还存在的 bug 有：
 
-- 会议室与访客的详细信息跳转到预约信息的 bug
 - excel 导出接口出错
 
 项目运行
