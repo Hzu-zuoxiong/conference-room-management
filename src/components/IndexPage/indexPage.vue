@@ -19,7 +19,12 @@ export default {
   props: {},
   data() {
     return {
-      theLastSevenYearsData: {}
+      theLastSevenYearsData: {
+        sevenYears: [],
+        sevenYearsData: [],
+        cancelReservation: [],
+        breakReservation: []
+      }
     };
   },
   mixins: [Fetch],
@@ -30,26 +35,19 @@ export default {
       document.getElementById("useOfTheLastSevenYears")
     );
     // 获取近七年会议室使用数据
-    this.$_fetch_visitReservation()
+    Promise.all([
+      this.$_fetch_visitReservation(),
+      this.$_fetch_cancelReservation(),
+      this.$_fetch_breakReservation()
+    ])
       .then(res => {
-        this.theLastSevenYearsData.sevenYears = [];
-        this.theLastSevenYearsData.sevenYearsData = [];
-        for (let i = 0; i < res.length; i++) {
-          this.theLastSevenYearsData.sevenYears.push(res[i].key);
-          this.theLastSevenYearsData.sevenYearsData.push(res[i].value);
+        console.log(res);
+        for (let i = 0; i < res[0].length; i++) {
+          this.theLastSevenYearsData.sevenYears.push(res[0][i].key);
         }
-      })
-      // 获取近七年取消会议室数据
-      .then(this.$_fetch_cancelReservation)
-      .then(res => {
-        this.theLastSevenYearsData.cancelReservation = res;
-      })
-      // 获取近七年会议室爽约数据
-      .then(this.$_fetch_breakReservation)
-      .then(res => {
-        this.theLastSevenYearsData.breakReservation = res;
-      })
-      .then(() => {
+        this.theLastSevenYearsData.sevenYearsData = res[0];
+        this.theLastSevenYearsData.cancelReservation = res[1];
+        this.theLastSevenYearsData.breakReservation = res[2];
         let lastSevenYearsOption = {
           color: ["#003366", "#4cabce", "#e5323e"],
           tooltip: {
@@ -117,6 +115,9 @@ export default {
           ]
         };
         useOfTheLastSevenYears.setOption(lastSevenYearsOption);
+      })
+      .catch(err => {
+        console.log(err);
       });
   },
   destroyed() {},
