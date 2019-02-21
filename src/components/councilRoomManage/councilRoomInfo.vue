@@ -58,7 +58,7 @@
           class="changeForm"
           :label-position="labelPosition"
           label-width="90px"
-          :model="councilRoomInfo[0]"
+          :model="singleRoom"
         >
           <el-form-item label="会议室名称">
             <el-input v-model="singleRoom.roomName" :disabled="true"></el-input>
@@ -76,7 +76,7 @@
             <el-input v-model="singleRoom.adminContact"></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" class="changeBtn" @click="changeCouncilRoom">立即修改</el-button>
+            <el-button type="primary" class="changeBtn" @click="changeCouncilRoom()">立即修改</el-button>
           </el-form-item>
         </el-form>
       </div>
@@ -87,7 +87,7 @@
 <script>
 import InfoSearch from "comm/InfoSearch.vue";
 import Fetch from "mixins/fetch";
-import { $_splitField } from "@/utils";
+import { $_splitField, deepClone } from "@/utils";
 
 export default {
   components: {
@@ -101,7 +101,8 @@ export default {
       containPopulation: "",
       councilRoomAdministrator: "",
       visible: false,
-      singleRoom: {}
+      singleRoom: {},
+      oldSingleRoom: {}
     };
   },
   mixins: [Fetch],
@@ -127,7 +128,7 @@ export default {
     },
     // 跳转到对应访客预约信息
     jumpToAppointmentInfo(row, event, column) {
-      if(column.label === '会议室名称') {
+      if (column.label === "会议室名称") {
         this.$router.push({
           name: "councilRoomAppointmentInfo",
           params: { roomId: row.roomId }
@@ -214,9 +215,10 @@ export default {
         });
     },
     // 弹出修改框
-    handleEdit(councilRoom) {
+    async handleEdit(councilRoom) {
       this.visible = true;
-      this.singleRoom = councilRoom;
+      this.oldSingleRoom = councilRoom;
+      this.singleRoom = await deepClone(councilRoom);
     },
     // 修改会议室信息
     changeCouncilRoom() {
@@ -229,8 +231,18 @@ export default {
         roomPeople: this.singleRoom.roomPeople,
         roomManager:
           this.singleRoom.administrator + "#" + this.singleRoom.adminContact
-      }).then(() => {
-        this.visible = false;
+      }).then(res => {
+        // status === 1，修改成功
+        if (res.status) {
+          for (let key in this.oldSingleRoom) {
+            this.oldSingleRoom[key] = this.singleRoom[key];
+          }
+          this.visible = false;
+          this.$message({
+            message: "修改成功！",
+            type: "success"
+          });
+        }
       });
     },
     // 关闭修改弹窗

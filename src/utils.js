@@ -40,3 +40,12 @@ export function $_splitField(args) {
     args[i].adminContact = manager[1];
   }
 }
+
+// 对象深拷贝
+export function deepClone(obj) {
+  return new Promise(resolve => {
+    const { port1, port2 } = new MessageChannel();
+    port2.onmessage = ev => resolve(ev.data);
+    port1.postMessage(obj);
+  });
+}
