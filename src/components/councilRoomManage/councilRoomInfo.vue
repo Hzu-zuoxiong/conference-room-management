@@ -188,11 +188,17 @@ export default {
     },
     // 删除会议室信息
     handleDelete(index) {
-      this.$confirm("此操作将永久删除该文件, 是否继续?", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning"
-      })
+      this.$confirm(
+        `此操作将删除"${
+          this.councilRoomInfo[index].roomName
+        }"会议室, 是否继续?`,
+        "提示",
+        {
+          confirmButtonText: "确定",
+          cancelButtonText: "取消",
+          type: "warning"
+        }
+      )
         .then(() => {
           return this.$_fetch_deleteCouncilRoom({
             roomId: this.councilRoomInfo[index].roomId
