@@ -1,6 +1,8 @@
 {
-  "name": "meetingroommanagement",
-  "version": "0.1.0",
+  "name": "conference-room-management",
+  "version": "2.0.0",
+  "description": "基于vue和ElementUI构建的会议室管理系统",
+  "author": "Hzu_zuoxiong",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -12,13 +14,12 @@
     "echarts": "^4.2.0-rc.2",
     "element-ui": "^2.4.11",
     "qs": "^6.6.0",
-    "sass-resources-loader": "^2.0.0",
     "vue": "^2.5.17",
     "vue-particles": "^1.0.9",
-    "vue-router": "^3.0.1",
-    "vuex": "^3.0.1"
+    "vue-router": "^3.0.1"
   },
   "devDependencies": {
+    "sass-resources-loader": "^2.0.0",
     "@vue/cli-plugin-babel": "^3.2.0",
     "@vue/cli-plugin-e2e-cypress": "^3.2.0",
     "@vue/cli-plugin-eslint": "^3.2.0",
@@ -30,5 +31,9 @@
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1",
     "vue-template-compiler": "^2.5.17"
+  },
+  "engines": {
+    "node": ">= 8.0.0",
+    "npm": ">= 5.0.0"
   }
 }
