@@ -6,7 +6,7 @@ export default {
     $_fetch_account() {
       return Ajax({
         method: 'GET',
-        url: 'getAccount.action.action'
+        url: 'getAccount.action'
       });
     },
     // 登陆
