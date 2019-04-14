@@ -95,14 +95,14 @@ const router = new Router({
   ]
 });
 
-router.beforeEach((to, name, next) => {
-  const userInfo = sessionStorage.getItem('userInfo');
-  if (userInfo !== null || !to.meta.requireLogin) {
-    next();
-  } else {
-    next({ name: 'login', params: { path: '/login' } });
-  }
-});
+// router.beforeEach((to, name, next) => {
+//   const userInfo = sessionStorage.getItem('userInfo');
+//   if (userInfo !== null || !to.meta.requireLogin) {
+//     next();
+//   } else {
+//     next({ name: 'login', params: { path: '/login' } });
+//   }
+// });
 
 router.afterEach(route => {
   if (route.meta.title) {
