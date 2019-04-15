@@ -65,7 +65,12 @@ export default {
       console.log(password);
       if (userName !== "" && password !== "") {
         this.$_fetch_login(
-          this.$qs.stringify({ adminId: userName, adminPassword: password })
+          this.$qs.stringify({
+            username: userName,
+            password: password,
+            identity: 0,
+            userid: userName
+          })
         ).then(res => {
           if (res.status === 1) {
             sessionStorage.setItem(
