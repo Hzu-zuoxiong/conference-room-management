@@ -1,4 +1,8 @@
-// 格式化日期代码
+/**
+ * 格式化日期代码
+ * @param {Date} data
+ * @param {String} format
+ */
 export function dateFormate(data, format) {
   let date = new Date(data);
   let args = {
@@ -26,7 +30,9 @@ export function dateFormate(data, format) {
   return format;
 }
 
-// 拆分管理员字段
+/**
+ * 拆分管理员字段
+ */
 export function $_splitField(args) {
   let manager = [];
   // 数组
@@ -48,4 +54,23 @@ export function deepClone(obj) {
     port2.onmessage = ev => resolve(ev.data);
     port1.postMessage(obj);
   });
+}
+
+// 导出excel,利用表单提交数据
+const exportURL = 'http://47.94.206.242/meet/admin/getExcel.action';
+// 导出excel,利用表单提交数据
+export function Excelpost(params) {
+  var temp = document.createElement('form');
+  temp.action = exportURL;
+  temp.method = 'post';
+  temp.style.display = 'none';
+  for (var i in params) {
+    var opt = document.createElement('input');
+    opt.name = i;
+    opt.value = params[i];
+    temp.appendChild(opt);
+  }
+  document.body.appendChild(temp);
+  temp.submit();
+  return temp;
 }

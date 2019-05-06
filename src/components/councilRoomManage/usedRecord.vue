@@ -52,13 +52,12 @@
 <script>
 import InfoSearch from "comm/InfoSearch.vue";
 import Fetch from "mixins/fetch";
-import { $_splitField, dateFormate } from "@/utils";
+import { $_splitField, dateFormate, Excelpost } from "@/utils";
 
 export default {
   components: {
     InfoSearch
   },
-  props: {},
   mixins: [Fetch],
   data() {
     return {
@@ -82,8 +81,6 @@ export default {
       this.$_formateTime(this.usedRecordInfo);
     });
   },
-  mounted() {},
-  computed: {},
   methods: {
     // 格式化时间
     $_formateTime(usedInfo) {
@@ -137,7 +134,7 @@ export default {
           json.push(temp);
         }
         json = JSON.stringify(json);
-        this.$_fetch_exportExcel({ fileName, headers, json });
+        Excelpost({ fileName, headers, json });
       });
     },
     // 分页

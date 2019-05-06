@@ -29,7 +29,8 @@
           :data="visiInfo"
           stripe
           :cell-style="guestNameCellStyle"
-          @row-click="jumpToAppointmentInfo">
+          @row-click="jumpToAppointmentInfo"
+        >
           <el-table-column prop="guestName" label="姓名" header-align="center"></el-table-column>
           <el-table-column prop="guestCredit" label="身份证" header-align="center"></el-table-column>
           <el-table-column prop="guestTelephone" label="联系方式" header-align="center"></el-table-column>
@@ -54,6 +55,7 @@
 
 <script>
 import InfoSearch from "comm/InfoSearch.vue";
+import { Excelpost } from "@/utils";
 import Fetch from "mixins/fetch";
 
 export default {
@@ -90,7 +92,7 @@ export default {
     },
     // 跳转到对应访客预约信息
     jumpToAppointmentInfo(row, event, column) {
-      if(column.label === '姓名') {
+      if (column.label === "姓名") {
         this.$router.push({
           name: "VisitorAppointmentInfo",
           params: { guestId: row.guestId }
@@ -119,9 +121,7 @@ export default {
           json.push(temp);
         }
         json = JSON.stringify(json);
-        this.$_fetch_exportExcel(
-          this.$qs.stringify({ fileName, headers, json })
-        );
+        Excelpost({ fileName, headers, json });
       });
     },
     // 分页

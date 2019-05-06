@@ -26,10 +26,7 @@ git reset --hard 3bce2f3bf88855312890e1b2e1c8e5e7cd5ea4a0
 原先系统的文件目录列表为: [原文件目录](/oldProjectMddir.md '文件目录')
 
 现在已经对该系统进行重构，使用 `vue 、 ElementUI 和 Echarts` 进行搭建。项目尚未完成，正在努力完善当中  
-现如今的文件目录列表为: [新文件目录](/newProjectMddir.md '文件目录')  
-
-目前重构后还存在的 `bug` 有：  
-- `excel` 导出接口出错
+现如今的文件目录列表为: [新文件目录](/newProjectMddir.md '文件目录')
 
 项目运行
 
@@ -45,8 +42,8 @@ npm run build
 
 ```
 
-管理员账号： `admin`  
-管理员密码： `admin-123`
+管理员账号： `jack`  
+管理员密码： `jack`
 
 修改账号密码的授权码：`0b47860265c14a7999648045a1e9a96e`
 

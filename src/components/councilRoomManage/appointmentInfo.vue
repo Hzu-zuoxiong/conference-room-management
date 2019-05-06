@@ -64,7 +64,7 @@
 <script>
 import InfoSearch from "comm/InfoSearch.vue";
 import Fetch from "mixins/fetch";
-import { $_splitField, dateFormate } from "@/utils";
+import { $_splitField, dateFormate, Excelpost } from "@/utils";
 
 export default {
   components: {
@@ -177,7 +177,7 @@ export default {
         $_splitField(excelData);
         let fileName = "hysAppointInfo";
         let headers =
-          "会议室名称,预约时间,预约者,预约者联系方式,管理员，管理员联系方式,";
+          "会议室名称,预约时间,预约者,预约者联系方式,管理员,管理员联系方式,";
         let json = [];
         for (let i in excelData) {
           let temp = {};
@@ -190,7 +190,7 @@ export default {
           json.push(temp);
         }
         json = JSON.stringify(json);
-        this.$_fetch_exportExcel({ fileName, headers, json });
+        Excelpost({ fileName, headers, json });
       });
     }
   },

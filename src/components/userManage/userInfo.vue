@@ -64,7 +64,7 @@
 <script>
 import InfoSearch from "comm/InfoSearch.vue";
 import Fetch from "mixins/fetch";
-import { dateFormate } from "@/utils";
+import { dateFormate, Excelpost } from "@/utils";
 
 export default {
   components: {
@@ -107,7 +107,40 @@ export default {
         );
       }
     },
-    exportExcel() {},
+    // 导出excel
+    exportExcel() {
+      const { userId, userName, userEmail } = this;
+      this.$_fetch_userInfo({
+        pageNum: -1,
+        userId,
+        userName,
+        userEmail
+      }).then(res => {
+        let excelData = res.pageBean.dataList;
+        console.log(excelData);
+        let fileName = "userInfo";
+        let headers =
+          "ID,真实姓名,邮箱,联系方式,上次登录时间,上次登录IP,授权登录，";
+        let json = [];
+        for (let i in excelData) {
+          let temp = {};
+          temp["ID"] = excelData[i].userId;
+          temp["真实姓名"] = excelData[i].userName;
+          temp["邮箱"] = excelData[i].userEmail;
+          temp["联系方式"] = excelData[i].userTelephone;
+          temp["上次登录时间"] = dateFormate(
+            excelData[i].userLoginPreTime,
+            "yyyy-MM-dd hh:mm:ss"
+          );
+          temp["上次登录IP"] = excelData[i].userLoginIp;
+          temp["授权登录"] = excelData[i].userIsAuthorized;
+          json.push(temp);
+        }
+        console.log(json);
+        json = JSON.stringify(json);
+        Excelpost({ fileName, headers, json });
+      });
+    },
     // 分页
     currentChange(num) {
       const { userId, userName, userEmail } = this;

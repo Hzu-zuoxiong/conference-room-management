@@ -87,7 +87,7 @@
 <script>
 import InfoSearch from "comm/InfoSearch.vue";
 import Fetch from "mixins/fetch";
-import { $_splitField, deepClone } from "@/utils";
+import { $_splitField, deepClone, Excelpost } from "@/utils";
 
 export default {
   components: {
@@ -170,7 +170,7 @@ export default {
           json.push(temp);
         }
         json = JSON.stringify(json);
-        this.$_fetch_exportExcel({ fileName, headers, json });
+        Excelpost({ fileName, headers, json });
       });
     },
     // 分页
