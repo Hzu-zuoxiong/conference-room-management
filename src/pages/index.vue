@@ -37,12 +37,12 @@
 </template>
 
 <script>
-import vHeader from 'comm/vHeader';
-import vAside from 'comm/vAside';
-import Fetch from 'mixins/fetch';
+import vHeader from "comm/vHeader";
+import vAside from "comm/vAside";
+import Fetch from "mixins/fetch";
 
 export default {
-  name: 'index',
+  name: "index",
   components: {
     vHeader,
     vAside
@@ -52,56 +52,56 @@ export default {
     return {
       visible: false,
       updateAccount: {
-        name: '',
-        code: '',
-        passWorld: '',
-        confirmPassWorld: ''
+        name: "",
+        code: "",
+        passWorld: "",
+        confirmPassWorld: ""
       },
       num: 0
     };
   },
   mounted() {
-    this.$bus.$on('sideVisible', () => {
+    this.$bus.$on("sideVisible", () => {
       this.num++;
-      let aside = document.querySelectorAll('.content-aside')[0];
-      let content = document.querySelectorAll('.content')[0];
+      let aside = document.querySelectorAll(".content-aside")[0];
+      let content = document.querySelectorAll(".content")[0];
       if (this.num % 2) {
-        aside.style.width = 200 + 'px';
-        content.style.marginLeft = 200 + 'px';
+        aside.style.width = 65 + "px";
+        content.style.marginLeft = 65 + "px";
       } else {
-        aside.style.width = 65 + 'px';
-        content.style.marginLeft = 65 + 'px';
+        aside.style.width = 200 + "px";
+        content.style.marginLeft = 200 + "px";
       }
     });
   },
   methods: {
     update() {
       const { name, code, passWorld, confirmPassWorld } = this.updateAccount;
-      if (passWorld === '') {
-        this.$message.error('密码不能为空！');
+      if (passWorld === "") {
+        this.$message.error("密码不能为空！");
         return;
       }
       if (passWorld !== confirmPassWorld) {
-        this.$message.error('密码不一致！');
+        this.$message.error("密码不一致！");
         return;
       }
       let formData = new FormData();
-      formData.append('adminPassword', passWorld);
-      formData.append('adminId', name);
-      formData.append('keyId', code);
+      formData.append("adminPassword", passWorld);
+      formData.append("adminId", name);
+      formData.append("keyId", code);
       this.$_fetch_forgetPassWord(formData).then(res => {
         switch (res.status) {
           case 1:
-            this.$message.success('密码修改成功！');
+            this.$message.success("密码修改成功！");
             break;
           case -1:
-            this.$message.error('授权码过期！');
+            this.$message.error("授权码过期！");
             break;
           case -2:
-            this.$message.error('用户与授权码不对应！');
+            this.$message.error("用户与授权码不对应！");
             break;
           case 0:
-            this.$message.error('用户不存在！');
+            this.$message.error("用户不存在！");
             break;
         }
       });
@@ -125,11 +125,11 @@ export default {
     margin-top: 60px;
     height: 100%;
     .content-aside {
-      width: 65px;
+      width: 200px;
       transition: all 0.5s;
     }
     .content {
-      margin-left: 65px;
+      margin-left: 200px;
       padding: 10px;
       transition: all 0.5s;
     }

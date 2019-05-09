@@ -66,7 +66,7 @@
 export default {
   data() {
     return {
-      sideVisible: true
+      sideVisible: false
     };
   },
   mounted() {
