@@ -84,6 +84,9 @@ export default {
         status: index,
         day: +this.visitorTime
       }).then(res => {
+        if (res.length > 5) {
+          res = res.slice(0, 5);
+        }
         let guestName = [];
         let guestTimes = [];
         for (var i = 0; i < res.length; i++) {
